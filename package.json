@@ -1,0 +1,28 @@
+{
+  "name": "learning-programming-online-website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "build": "cd client && npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huynhdthanhtuan/learning-programming-online-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/huynhdthanhtuan/learning-programming-online-website/issues"
+  },
+  "homepage": "https://github.com/huynhdthanhtuan/learning-programming-online-website#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  },
+  "engines": {
+    "node": "v16.14.0"
+  }
+}
