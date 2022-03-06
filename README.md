@@ -18,4 +18,4 @@
 
 #### 4. Gõ lệnh "npm start", bấm enter
 
-#### 5. Ctrl+Click vào đường dẫn "http://localhost:5001/" ở của sổ Terminal
+#### 5. Ctrl+Click vào đường dẫn "http://localhost:5001/" ở cửa sổ Terminal
