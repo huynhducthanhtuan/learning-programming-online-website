@@ -6,7 +6,7 @@
 
 #### 2. Gõ lệnh "npm start", bấm enter
 
-#### 3. Ctrl+Click vào đường dẫn "http://localhost:5001/" ở của sổ Terminal
+#### 3. Ctrl+Click vào đường dẫn "http://localhost:5001/" ở cửa sổ Terminal
 
 ### Cách chỉnh sửa và chạy lại dự án
 
