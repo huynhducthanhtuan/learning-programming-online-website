@@ -1,15 +1,14 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import HomePage from "./pages/Home";
-import LoginPage from "./pages/Login";
 import "./App.css";
+import ForgotPassword from "./pages/Forgot password";
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<HomePage />}></Route>
-        <Route path="/login" element={<LoginPage />}></Route>
+        {/* <Route path="/" element={<Home/>}></Route> */}
+        <Route path="/forgot-password" element={<ForgotPassword/>}></Route>
       </Routes>
     </div>
   );
