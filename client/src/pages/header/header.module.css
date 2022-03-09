@@ -1,0 +1,57 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.headerLogo {
+  padding-right: 120px;
+}
+
+.headerSearch {
+  top: 50%;
+  left: 0%;
+  position: relative;
+}
+
+.headerSearch input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 795px;
+  height: 55px;
+  background: #e2e8ef;
+  box-shadow: 0px 34.417px 25.8127px rgba(25, 25, 46, 0.04);
+  border-radius: 13.7668px;
+  padding-left: 20px;
+  border: none;
+}
+
+.headerSearch input:hover {
+  border: none;
+}
+
+.headerSearch img {
+  position: absolute;
+  top: 33%;
+  right: 5%;
+}
+
+.buttonSign {
+    position: relative;
+  width: 94px;
+  height: 43px;
+  background: #5d87a8;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 20px;
+  margin-left: 70px;
+  border: none;
+}
+
+.buttonSign p {
+    position: absolute;
+    top: -15%;
+    transform: translate(35%, 0);
+    margin-top: none;
+}
