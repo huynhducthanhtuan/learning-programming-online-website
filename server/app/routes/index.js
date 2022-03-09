@@ -1,8 +1,8 @@
 
-const signin = require('./signin')
+const auth = require('./auth')
 
 function route(app) {
-    app.use('/signin', signin);
+    app.use('/', auth);
 }
 
 module.exports = route;
