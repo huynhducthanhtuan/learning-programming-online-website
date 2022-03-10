@@ -1,11 +1,14 @@
 import React from "react";
 import styles from "./Re-Pass.module.css";
+import { Link } from "react-router-dom";
 const ForgotRePass = () => {
     return (
         <section >
             <div className={styles.header}>
                 <img src="../icons/lpo.png" className={styles.logo}></img>
-                <button type="sign-in" className={styles.buttonSignIn} >Sign in</button>
+                <Link to="/sign-in" className={styles.buttonLink}>
+                    Sign in
+                </Link>
 
             </div>
             <img src="../icons/line.png" className={styles.lineAll}></img>
