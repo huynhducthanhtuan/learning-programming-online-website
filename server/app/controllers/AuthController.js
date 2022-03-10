@@ -1,12 +1,12 @@
 const User = require('../models/User')
 const bcrypt = require('bcrypt');
-const { use } = require('../routes/auth');
+//const { use } = require('../routes/auth');
 class AuthController {
     // [post]  /signUp  
     signUp(req, res, next) {
       
-        const {email, password} = req.body
-        if(!email || !password) {
+        const {email, password, role} = req.body
+        if(!email || !password || !role) {
             return res.status(422).json({error: "Please input email and password field"})
         }
         User.findOne({email: email}) 
@@ -19,7 +19,8 @@ class AuthController {
                     .then(hashPassword => {
                         const user = new User({
                             email,
-                            password: hashPassword
+                            password: hashPassword,
+                            role
                         }) 
                         user.save()
                             .then(userSaved => {

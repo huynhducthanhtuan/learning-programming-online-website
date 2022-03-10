@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 8000;
 const User = require("./app/models/User");
 const route = require('./app/routes')
 
+app.use(express.json())
 //  connect DB
 mongoose.connect(process.env.MONGODB_URI)
 mongoose.connection.on('connected', () => {
