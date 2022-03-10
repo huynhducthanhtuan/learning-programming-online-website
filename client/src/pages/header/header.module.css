@@ -1,7 +1,12 @@
 .header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+}
+
+.headerButton {
+ display: flex;
+ justify-content: space-around;
 }
 
 .headerLogo {
@@ -45,13 +50,16 @@
   border: 1px solid #000000;
   box-sizing: border-box;
   border-radius: 20px;
-  margin-left: 70px;
   border: none;
+  text-decoration: none;
+  color: white;
+  margin-right: 10px;
 }
 
 .buttonSign p {
     position: absolute;
     top: -15%;
     transform: translate(35%, 0);
-    margin-top: none;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }

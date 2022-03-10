@@ -5,19 +5,28 @@ import styles from "./header.module.css";
 const Header = () => {
     return (
         <header className={`container ${styles.header}`}>
-            <div className={styles.headerLogo}>
-                <img src="./icons/logo.png"></img>
-            </div>
+            <Link to="/">
+                <div className={styles.headerLogo}>
+                    <img src="./icons/logo.png"></img>
+                </div>
+            </Link>
             <div className={styles.headerSearch}>
                 <img src="./icons/search.png"></img>
                 <input type="text" name="search" placeholder="search"></input>
             </div>
-            <div className={styles.buttonSign}>
-                <p>Sign up</p>
+            <div className={styles.headerButton}>
+                <Link to="/">
+                    <div className={styles.buttonSign}>
+                        <p>Sign up</p>
+                    </div>
+                </Link>
+                <Link to="/">
+                    <div className={styles.buttonSign}>
+                        <p>Sign in</p>
+                    </div>
+                </Link>
             </div>
-            <div className={styles.buttonSign}>
-                <p >Sign in</p>
-            </div>
+
         </header >
     );
 };
