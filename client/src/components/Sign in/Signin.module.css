@@ -19,7 +19,7 @@
   text-align: center;
   background: #fff;
   border-radius: 6px;
-  margin: 24px;
+  margin-bottom: 25px;
   align-self: center;
   box-shadow: 0 10px 12px 0 rgb(51 62 73 / 12%);
 }
@@ -29,6 +29,7 @@
   font-weight: bold;
   font-size: 48px;
   line-height: 56px;
+  margin: 19px 0px 22px 0px;
 
 }
 .heading {
@@ -40,12 +41,14 @@
 .desc {
   font-size: 14px;
   line-height: 21px;
-  margin-bottom: 38px;
+  margin-bottom: 0px;
+  
 }
 .formGroup {
   display: flex;
   flex-direction: column;
   margin: 12px 20px 20px 20px ;
+  
 }
 .formLabel {
   text-align: left;
@@ -59,8 +62,9 @@
 .formControl {
   color: #544444;
   border: 1px solid #c1b9b9 !important;
-  padding: 8px 0px 6px 12px !important;
+  padding: 10px 0px 10px 12px !important;
   border-radius: 7px !important;
+
 }
 
 .formSubmit {

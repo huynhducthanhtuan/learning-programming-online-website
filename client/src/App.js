@@ -1,16 +1,21 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import ForgotPassword from "./pages/Forgot password";
-import EnterCode from "./pages/Forgot Password-Enter code";
-import ForgotRePass from "./pages/Forgot Password-Re Pass";
-import SignIn from "./pages/Sign in";
+
+import ForgotPassword from "./components/Forgot password"
+import EnterCode from "./components/Forgot Password-Enter code"
+import ForgotRePass from "./components/Forgot Password-Re Pass"
+import SignIn from "./components/Sign in"
+import SignUp from "./components/Sign up";
 
 function App() {
   return (
+    
     <div className="App">
       <Routes>
         {/* <Route path="/" element={<Home/>}></Route> */}
+        {/* sign up  */}
+        <Route path="/sign-up" element={<SignUp/>}></Route>
         {/* sign in  */}
         <Route path="/sign-in" element={<SignIn/>}></Route>
         {/* forgot pass */}

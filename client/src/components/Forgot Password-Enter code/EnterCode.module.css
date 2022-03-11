@@ -5,7 +5,7 @@
 
 .buttonLink{
     margin-left: 80%;
-    background-color: #5D87A8;
+    background-color: #7877b9;
     line-height: 49px;
     width: 107.2px;
     height: 49.55px;
@@ -28,7 +28,7 @@
 
 .headerString{
     padding: 10px;
-    color: #3751FE;
+    color: #3C3B93;
     font-weight: 700;
     width: 364.13px;
     height: 56.33px;
@@ -41,7 +41,7 @@
 }
 
 .formHeader{
-    color: #3751FE;
+    color: #3C3B93;
     font-weight: 700;
     font-size: 30px;
 }
@@ -54,7 +54,7 @@
 .buttonSend{
     padding: 8px 39px;
     color: #FFFFFF;
-    background-color: #3751FE;
+    background-color: #3C3B93;
     border: 1px solid;
     font-size: 18px;
 }
