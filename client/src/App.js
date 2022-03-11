@@ -5,7 +5,7 @@ import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "./pages/header/Header";
 import Footer from "./pages/footer/Footer";
-
+import Profile from "./pages/profile/Profile"
 //  const Routing = () => {
 //   return (   
 //       <Routes>
@@ -19,8 +19,8 @@ import Footer from "./pages/footer/Footer";
 function App() {
   return (    
          <Routes>
-            <Route path="/" element={<Home />}></Route>
-
+            {/* <Route path="/" element={<Home />}></Route> */}
+            <Route path="/" element={<Profile />}></Route>
          </Routes>    
    
   );
