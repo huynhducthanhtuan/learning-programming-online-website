@@ -1,6 +1,6 @@
 const Course = require('../models/Course')
 const User = require('../models/User')
-
+const requireLogin = require('../middleware/requireLogin')
 
 class CourseController {
 
