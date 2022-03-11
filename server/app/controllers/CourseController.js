@@ -44,6 +44,16 @@ class CourseController {
             .then(() => res.json({message: 'Delete successfully'}))
             .catch(next)
     }
+
+    searchCourse(req, res, next) {
+        let coursePattern = new RegExp("^"+req.body.query)
+        Course.find({name: {$regex:coursePattern}})
+            .then(course => {
+                res.json({course})
+            })
+            .catch(next)
+     
+    }
 }
 
 module.exports = new CourseController()
