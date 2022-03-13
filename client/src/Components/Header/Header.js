@@ -7,11 +7,11 @@ const Header = () => {
         <header className={`container ${styles.header}`}>
             <Link to="/">
                 <div className={styles.headerLogo}>
-                    <img src="./icons/logo.png"></img>
+                    <img alt="" src="./icons/logo.png"></img>
                 </div>
             </Link>
             <div className={styles.headerSearch}>
-                <img src="./icons/search.png"></img>
+                <img alt="" src="./icons/search.png"></img>
                 <input type="text" name="search" placeholder="search"></input>
             </div>
             <div className={styles.headerButton}>

@@ -3,12 +3,22 @@ const express = require("express");
 const mongoose = require('mongoose')
 const app = express();
 const path = require("path");
+const morgan = require('morgan')
+const bodyParse = require('body-parser')
+const cookieParse = require('cookie-parser')
+const expressValidator = require('express-validator');
+
+
 require('dotenv').config()
 const PORT = process.env.PORT || 8000;
-const User = require("./app/models/User");
 const route = require('./app/routes')
 
-app.use(express.json())
+app.use(morgan('dev'))
+app.use(bodyParse.json())
+app.use(cookieParse())
+app.use(expressValidator());
+
+
 //  connect DB
 mongoose.connect(process.env.MONGODB_URI)
 mongoose.connection.on('connected', () => {

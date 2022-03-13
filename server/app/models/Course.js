@@ -2,7 +2,9 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const slug = require('mongoose-slug-generator');
 const {ObjectId} = mongoose.Schema.Types
-mongoose.plugin(slug);
+const mongooseDelete = require('mongoose-delete');
+
+
 const Course = new Schema({
     name: {
         type: String,
@@ -20,17 +22,22 @@ const Course = new Schema({
         topic: String,
         lessons: [{type: ObjectId, ref: 'Lesson'}]
     }],
-    rates: [{
-        numberStar: Number,
-        ratedBy: {type: ObjectId, ref: 'User'}
-    }],
-    teacherId: {
+    // rates: [{
+    //     numberStar: Number,
+    //     ratedBy: {type: ObjectId, ref: 'User'}
+    // }],
+    creator: {
         type: ObjectId,
         ref: 'User'
     },
     slug: { type: String, slug: 'name', unique: true },
-
-})
+   
+    }, 
+    { timestamps: true,},
+)
+// add plugin
+mongoose.plugin(slug);
+// Course.plugin(mongooseDelete, { overrideMethods: 'all', deletedAt: true });
 
 module.exports = mongoose.model('Course', Course);
 
