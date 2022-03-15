@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import './homeSlick.css';
 import Footer from "../Footer/Footer";
+import { useEffect, useState } from "react";
 
 const Home = () => {
   const settings = {
