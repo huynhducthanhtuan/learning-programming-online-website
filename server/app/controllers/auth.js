@@ -62,5 +62,5 @@ exports.signin = (req, res, next) => {
 
 exports.signout = (req, res, next) => {
   res.clearCookie("t");
-  res.json({ message: "Sign out success" });
+  res.json({ message: "Sign out success !!" });
 };
