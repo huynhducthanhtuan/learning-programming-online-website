@@ -1,13 +1,13 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./home.module.css";
 import Header from "../Header";
+import Slider from "react-slick";
+import Footer from "../Footer";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
-import './homeSlick.css';
-import Footer from "../Footer";
-import { useEffect, useState } from "react";
+import "./homeSlick.css";
 
 const Home = () => {
   const settings = {
@@ -15,7 +15,7 @@ const Home = () => {
     infinite: true,
     speed: 500,
     slidesToShow: 4,
-    slidesToScroll: 1
+    slidesToScroll: 1,
   };
   return (
     <body className={styles.home}>
@@ -26,12 +26,16 @@ const Home = () => {
       <section className={styles.homeCourseText}>
         <h1>Course</h1>
         <div className={styles.homeCourseTextP}>
-          <p><b>Learning Programming Online Website</b> where you can find low cost online programming courses. We are committed to the quality of each course.</p>
+          <p>
+            <b>Learning Programming Online Website</b> where you can find low
+            cost online programming courses. We are committed to the quality of
+            each course.
+          </p>
         </div>
       </section>
       <section className={`container ${styles.homeSlider}`}>
         <h2>Recent new course</h2>
-        <Slider {...settings} >
+        <Slider {...settings}>
           <Link to="/" className={styles.homeSliderItemA}>
             <div className={styles.homeSliderItem}>
               <img src="./icons/php&mysql.png"></img>
@@ -67,7 +71,7 @@ const Home = () => {
       <section className={`container ${styles.homeSlider}`}>
         <h2>Front-end</h2>
         <div className={styles.homeListItem}>
-          <Slider {...settings} >
+          <Slider {...settings}>
             <Link to="/" className={styles.homeSliderItemA}>
               <div className={styles.homeSliderItem}>
                 <img src="./icons/php&mysql.png"></img>
@@ -109,7 +113,7 @@ const Home = () => {
       <section className={`container ${styles.homeSlider}`}>
         <h2>Back-end</h2>
         <div className={styles.homeListItem}>
-          <Slider {...settings} >
+          <Slider {...settings}>
             <Link to="/" className={styles.homeSliderItemA}>
               <div className={styles.homeSliderItem}>
                 <img src="./icons/express.png"></img>
@@ -148,10 +152,9 @@ const Home = () => {
           </Slider>
         </div>
       </section>
-      <Footer/>
+      <Footer />
     </body>
-  )
-}
+  );
+};
 
-export default Home
-
+export default Home;
