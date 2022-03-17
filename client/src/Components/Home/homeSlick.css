@@ -1,0 +1,13 @@
+.slick-prev:before {
+    content: '←';
+    color: black;
+}
+
+.slick-next:before {
+    content: '→';
+    color: #333;
+}
+
+.slick-dots{
+    display: none !important;
+}
