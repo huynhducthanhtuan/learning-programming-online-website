@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./ForgotPassword.module.css";
 import { Link } from "react-router-dom";
+
 const ForgotPassword = () => {
   return (
     <section>
