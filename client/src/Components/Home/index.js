@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./home.module.css";
-import Header from "../Header/Header";
+import Header from "../Header";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import './homeSlick.css';
-import Footer from "../Footer/Footer";
+import Footer from "../Footer";
 import { useEffect, useState } from "react";
 
 const Home = () => {

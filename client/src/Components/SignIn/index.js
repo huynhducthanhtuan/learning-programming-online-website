@@ -1,21 +1,21 @@
-import Reac, {useState} from "react";
+import Reac, {useState,useContext,} from "react";
 import styles from "./Signin.module.css";
 import {Link, useNavigate} from "react-router-dom"
 import {authenticate} from '../Auth'
+import {UserContext} from '../../App'
 
 import M from 'materialize-css'
 
 const SignIn = () => {
-    
+    const {state,dispatch} = useContext(UserContext)
     const navigate = useNavigate()
-
     const [values, setValues] = useState({
         email: "",
         password: "",
         error: "",
         redirectUser: false
     })
-    console.log("value: ", values);
+
     const {email, password, error, redirectUser} = values
 
     const handleChange = name => event => {
@@ -54,16 +54,18 @@ const SignIn = () => {
         event.preventDefault()
         signInAPI({email, password})
             .then(data => {
-                
                 if(data.error) {
                     console.log("data error: ", data.error);
                     M.toast({html: data.error, classes: 'rounded red'})
                 }
-                else 
+                else {
                     authenticate(data, () => {
-                        M.toast({html: "login Success", classes: 'rounded green'})
+                        M.toast({html: "Login Success", classes: 'rounded green'})
                         setValues({...values, error: "", redirectUser: true})
-                    })   
+                    })
+                    dispatch({type:"USER",payload:data.user})   
+                }
+                   
             })
     }
 
