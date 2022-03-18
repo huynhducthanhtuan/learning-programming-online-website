@@ -36,31 +36,31 @@ const Home = () => {
       <section className={`container ${styles.homeSlider}`}>
         <h2>Recent new course</h2>
         <Slider {...settings}>
-          <Link to="/" className={styles.homeSliderItemA}>
+          <Link to="/course" className={styles.homeSliderItemA}>
             <div className={styles.homeSliderItem}>
               <img src="./icons/php&mysql.png"></img>
               <p>Lập trình web bằng PHP & Mysql</p>
             </div>
           </Link>
-          <Link to="/" className={styles.homeSliderItemA}>
+          <Link to="/course" className={styles.homeSliderItemA}>
             <div className={styles.homeSliderItem}>
               <img src="./icons/quytrinh.png"></img>
               <p>Quy trình xử lý front-end</p>
             </div>
           </Link>
-          <Link to="/" className={styles.homeSliderItemA}>
+          <Link to="/course" className={styles.homeSliderItemA}>
             <div className={styles.homeSliderItem}>
               <img src="./icons/khoahoc.png"></img>
               <p>Khoá học html/css cơ bản</p>
             </div>
           </Link>
-          <Link to="/" className={styles.homeSliderItemA}>
+          <Link to="/course" className={styles.homeSliderItemA}>
             <div className={styles.homeSliderItem}>
               <img src="./icons/jscoban.png"></img>
               <p>Khoá học javascript cơ bản</p>
             </div>
           </Link>
-          <Link to="/" className={styles.homeSliderItemA}>
+          <Link to="/course" className={styles.homeSliderItemA}>
             <div className={styles.homeSliderItem}>
               <img src="./icons/jscoban.png"></img>
               <p>Khoá học javascript cơ bản</p>
@@ -72,35 +72,35 @@ const Home = () => {
         <h2>Front-end</h2>
         <div className={styles.homeListItem}>
           <Slider {...settings}>
-            <Link to="/" className={styles.homeSliderItemA}>
+            <Link to="/course" className={styles.homeSliderItemA}>
               <div className={styles.homeSliderItem}>
                 <img src="./icons/php&mysql.png"></img>
                 <img src="./icons/star.png"></img>
                 <p>Quy trình xử lý front-end</p>
               </div>
             </Link>
-            <Link to="/" className={styles.homeSliderItemA}>
+            <Link to="/course" className={styles.homeSliderItemA}>
               <div className={styles.homeSliderItem}>
                 <img src="./icons/quytrinh.png"></img>
                 <img src="./icons/star.png"></img>
                 <p>Khoá học html/css cơ bản</p>
               </div>
             </Link>
-            <Link to="/" className={styles.homeSliderItemA}>
+            <Link to="/course" className={styles.homeSliderItemA}>
               <div className={styles.homeSliderItem}>
                 <img src="./icons/khoahoc.png"></img>
                 <img src="./icons/star.png"></img>
                 <p>Khoá học javascript cơ bản</p>
               </div>
             </Link>
-            <Link to="/" className={styles.homeSliderItemA}>
+            <Link to="/course" className={styles.homeSliderItemA}>
               <div className={styles.homeSliderItem}>
                 <img src="./icons/jscoban.png"></img>
                 <img src="./icons/star.png"></img>
                 <p>Khoá học javascript nâng cao</p>
               </div>
             </Link>
-            <Link to="/" className={styles.homeSliderItemA}>
+            <Link to="/course" className={styles.homeSliderItemA}>
               <div className={styles.homeSliderItem}>
                 <img src="./icons/jscoban.png"></img>
                 <img src="./icons/star.png"></img>
@@ -114,35 +114,35 @@ const Home = () => {
         <h2>Back-end</h2>
         <div className={styles.homeListItem}>
           <Slider {...settings}>
-            <Link to="/" className={styles.homeSliderItemA}>
+            <Link to="/course" className={styles.homeSliderItemA}>
               <div className={styles.homeSliderItem}>
                 <img src="./icons/express.png"></img>
                 <img src="./icons/star.png"></img>
                 <p>Khoá học express JS</p>
               </div>
             </Link>
-            <Link to="/" className={styles.homeSliderItemA}>
+            <Link to="/course" className={styles.homeSliderItemA}>
               <div className={styles.homeSliderItem}>
                 <img src="./icons/quytrinh.png"></img>
                 <img src="./icons/star.png"></img>
                 <p>Khoá học html/css cơ bản</p>
               </div>
             </Link>
-            <Link to="/" className={styles.homeSliderItemA}>
+            <Link to="/course" className={styles.homeSliderItemA}>
               <div className={styles.homeSliderItem}>
                 <img src="./icons/khoahoc.png"></img>
                 <img src="./icons/star.png"></img>
                 <p>Khoá học javascript cơ bản</p>
               </div>
             </Link>
-            <Link to="/" className={styles.homeSliderItemA}>
+            <Link to="/course" className={styles.homeSliderItemA}>
               <div className={styles.homeSliderItem}>
                 <img src="./icons/jscoban.png"></img>
                 <img src="./icons/star.png"></img>
                 <p>Khoá học javascript nâng cao</p>
               </div>
             </Link>
-            <Link to="/" className={styles.homeSliderItemA}>
+            <Link to="/course" className={styles.homeSliderItemA}>
               <div className={styles.homeSliderItem}>
                 <img src="./icons/jscoban.png"></img>
                 <img src="./icons/star.png"></img>
