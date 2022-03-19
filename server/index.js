@@ -17,7 +17,7 @@ app.use(bodyParse.json());
 app.use(cookieParse());
 app.use(expressValidator());
 
-// connect DB
+// Connect DB
 mongoose.connect(process.env.MONGODB_URI);
 mongoose.connection.on("connected", () => {
   console.log("Connected to Database");
@@ -26,13 +26,13 @@ mongoose.connection.on("error", (err) => {
   console.log("Connecting error", err);
 });
 
-// routing
+// Routing
 route(app);
 
-// Have Node serve the files for our built React app
+// Cấu hình thư mục chứa các file tĩnh
 app.use(express.static(path.resolve(__dirname, "../client/build")));
 
-// All other GET requests not handled before will return our React app
+// Cấu hình hiển thị file client/build/index.html khi [GET] /
 // app.get("*", (req, res) => {
 //   res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
 // });

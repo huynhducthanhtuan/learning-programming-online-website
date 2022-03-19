@@ -5,13 +5,9 @@ const {
   requireSignIn,
   isAuth,
   isAdmin,
-} = require("../middleware/authentication");
+} = require("../middlewares/authentication");
 
-//
 router.get("/secret/:userId", requireSignIn, isAuth, isAdmin, userInfo);
-
-
-
 router.param("userId", userById);
 
 module.exports = router;
