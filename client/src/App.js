@@ -5,6 +5,7 @@ import SignUp from "./Components/Signup";
 import Signin from "./Components/SignIn";
 import Home from "./Components/Home";
 import Course from "./Components/Course";
+import ForgotPassword from "./Components/Forgot password";
 import "./App.css";
 
 export const UserContext = createContext();
@@ -17,6 +18,7 @@ function App() {
         <Route path="/signup" element={<SignUp />}></Route>
         <Route path="/signin" element={<Signin />}></Route>
         <Route path="/course" element={<Course />}></Route>
+        <Route path="/forgot-password" element={<ForgotPassword />}></Route>
         <Route path="/" element={<Home />}></Route>
       </Routes>
     </UserContext.Provider>

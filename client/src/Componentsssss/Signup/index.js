@@ -17,8 +17,6 @@ const SignUp = () => {
   };
 
   const signUpApi = (user) => {
-    console.log("user api: ", user);
-    // console.log(JSON.stringify(user));
     return fetch("/auth/signup", {
       method: "POST",
       headers: {
@@ -39,7 +37,7 @@ const SignUp = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    
+
     signUpApi({ name, email, password }).then((data) => {
       if (data.error || data.err) {
         setValues({ ...values, error: data.error || data.err, success: false });
@@ -77,7 +75,7 @@ const SignUp = () => {
         {successShow()}
         <div className={styles.formGroup}>
           <div className={styles.flex}>
-            <p className={styles.formLabel}> name</p>
+            <p className={styles.formLabel}>Name</p>
             <p className={styles.formForce}>*</p>
           </div>
 

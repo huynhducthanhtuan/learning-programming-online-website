@@ -1,6 +1,7 @@
 import React from "react";
-import styles from "./EnterCode.module.css";
 import { Link } from "react-router-dom";
+import styles from "./EnterCode.module.css";
+
 const EnterCode = () => {
   return (
     <section>

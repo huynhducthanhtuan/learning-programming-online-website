@@ -1,6 +1,7 @@
 import React from "react";
-import styles from "./Re-Pass.module.css";
 import { Link } from "react-router-dom";
+import styles from "./Re-Pass.module.css";
+
 const ForgotRePass = () => {
   return (
     <section>
