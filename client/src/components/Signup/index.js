@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import styles from "./Signup.module.css";
+import styles from "./SignUp.module.css";
 
 const SignUp = () => {
   const [values, setValues] = useState({
@@ -134,7 +134,7 @@ const SignUp = () => {
           className={styles.imageSignUp}
           alt=""
         ></img>
-        <Link to="../signin">
+        <Link to="/signin">
           <p className={styles.link}>Already have account? Sign in</p>
         </Link>
       </div>

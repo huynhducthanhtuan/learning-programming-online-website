@@ -3,10 +3,10 @@
   display: flex;
   justify-content: center;
   padding-top: 20px;
-  background-image: url('sign-in-pic.png');
+  background-image: url("sign-in-background.png");
 }
 
-.logo{
+.logo {
   width: 120px;
   height: 120px;
   margin-bottom: -40px;
@@ -25,15 +25,14 @@
 }
 .headingSignIn {
   text-align: center;
-  color: #3751FE;
+  color: #3751fe;
   font-weight: bold;
   font-size: 48px;
   line-height: 56px;
   margin: 19px 0px 22px 0px;
-
 }
 .heading {
-  color: #3751FE;
+  color: #3751fe;
   font-size: 18px;
   line-height: 34px;
   margin-top: 34px;
@@ -42,13 +41,11 @@
   font-size: 14px;
   line-height: 21px;
   margin-bottom: 0px;
-  
 }
 .formGroup {
   display: flex;
   flex-direction: column;
-  margin: 12px 20px 20px 20px ;
-  
+  margin: 12px 20px 20px 20px;
 }
 .formLabel {
   text-align: left;
@@ -64,16 +61,15 @@
   border: 1px solid #c1b9b9 !important;
   padding: 10px 0px 10px 12px !important;
   border-radius: 7px !important;
-
 }
 
 .formSubmit {
   padding: 12px 39px 12px;
-  color: #FFFFFF;
+  color: #ffffff;
   border: 1px solid;
   margin-top: 20px;
   font-size: 15px;
-  background: linear-gradient(180deg, #6E6CE0 0%, #4D4CAD 100%);
+  background: linear-gradient(180deg, #6e6ce0 0%, #4d4cad 100%);
   border-radius: 7.05133px;
 }
 .formSubmit:hover {

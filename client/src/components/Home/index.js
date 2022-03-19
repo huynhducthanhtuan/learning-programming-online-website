@@ -1,13 +1,12 @@
 import React from "react";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import styles from "./home.module.css";
 import Header from "../Header";
 import Slider from "react-slick";
 import Footer from "../Footer";
+import styles from "./Home.module.css";
+import "./HomeSlick.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./homeSlick.css";
 
 const Home = () => {
   const settings = {
@@ -17,6 +16,7 @@ const Home = () => {
     slidesToShow: 4,
     slidesToScroll: 1,
   };
+
   return (
     <body className={styles.home}>
       <Header />

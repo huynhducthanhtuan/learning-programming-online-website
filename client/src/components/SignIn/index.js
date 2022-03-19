@@ -1,14 +1,14 @@
 import React, { useState, useContext } from "react";
-import styles from "./Signin.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { authenticate } from "../Auth";
 import { UserContext } from "../../App";
-
+import styles from "./SignIn.module.css";
 import M from "materialize-css";
 
 const SignIn = () => {
   const { state, dispatch } = useContext(UserContext);
   const navigate = useNavigate();
+
   const [values, setValues] = useState({
     email: "",
     password: "",

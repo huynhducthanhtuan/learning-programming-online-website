@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "./footer.module.css";
+import styles from "./Footer.module.css";
 
 const Footer = () => {
   return (
@@ -23,7 +23,7 @@ const Footer = () => {
         <div className="col ">
           <p>Liên hệ qua email</p>
           <Link to="/" className={styles.footerTextA}>
-            <span>Thuandepgai@gmail.com</span>
+            <span>thuancr7@gmail.com</span>
           </Link>
         </div>
         <div className="col ">
@@ -35,7 +35,9 @@ const Footer = () => {
           <span>Chính sách quyền riêng tư</span>
         </div>
         <div className="col ">
-          <span>Copyright © 2022 All rights reserved</span>
+          <span>Copyright © 2022</span>
+          <br />
+          <span>All rights reserved</span>
         </div>
       </div>
     </footer>

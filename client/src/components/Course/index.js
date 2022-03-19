@@ -39,11 +39,11 @@ const Course = () => {
             <div className={styles.courseOnlPeople}>
               <div className="d-flex">
                 <img src="./icons/onl1.png"></img>
-                <p>Thuan De: Hi moi nguoi!</p>
+                <p>Thuan Le: Hi moi nguoi!</p>
               </div>
               <div className="d-flex ">
                 <img src="./icons/onl2.png"></img>
-                <p>Hieu Huynh: Hello may cung</p>
+                <p>Hieu Huynh: Hello cac ban...</p>
               </div>
               <div className="d-flex pb-3 ">
                 <img src="./icons/onl3.png"></img>
@@ -52,7 +52,7 @@ const Course = () => {
               <input
                 type="text"
                 name="binhluan"
-                placeholder="binh luan ..."
+                placeholder="Comment ..."
               ></input>
               <button>Send</button>
             </div>

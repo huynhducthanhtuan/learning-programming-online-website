@@ -8,7 +8,7 @@ const ForgotPassword = () => {
       <div className={styles.header}>
         <img src="./icons/lpo.png" className={styles.logo}></img>
 
-        <Link to="/sign-in" className={styles.buttonLink}>
+        <Link to="/signin" className={styles.buttonLink}>
           Sign in
         </Link>
       </div>

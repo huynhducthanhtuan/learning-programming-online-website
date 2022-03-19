@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "./Re-Pass.module.css";
+import styles from "./RePass.module.css";
 
-const ForgotRePass = () => {
+const RePass = () => {
   return (
     <section>
       <div className={styles.header}>
         <img src="../icons/lpo.png" className={styles.logo}></img>
-        <Link to="/sign-in" className={styles.buttonLink}>
+        <Link to="/signin" className={styles.buttonLink}>
           Sign in
         </Link>
       </div>
@@ -41,4 +41,4 @@ const ForgotRePass = () => {
   );
 };
 
-export default ForgotRePass;
+export default RePass;
