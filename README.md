@@ -4,18 +4,12 @@
 
 #### 1. Tại thư mục gốc (learning-programming-online-website), mở CMD
 
-#### 2. Gõ lệnh "npm start", bấm enter
+#### 2. Gõ lệnh "npm start", bấm enter để start server phía back-end
 
-#### 3. Ctrl+Click vào đường dẫn "http://localhost:5001/" ở cửa sổ Terminal
+#### 3. Ctrl+Click vào đường dẫn "http://localhost:8000/" ở cửa sổ Terminal
 
-### Cách chỉnh sửa và chạy lại dự án
+#### 4. Tại thư mục (learning-programming-online-website/client), mở CMD
 
-#### 1. Thực hiện chỉnh sửa
+#### 5. Gõ lệnh "npm start", bấm enter để start web server phía front-end
 
-#### 2. Tại thư mục gốc (learning-programming-online-website), mở CMD
-
-#### 3. Gõ lệnh "npm run build", bấm enter
-
-#### 4. Gõ lệnh "npm start", bấm enter
-
-#### 5. Ctrl+Click vào đường dẫn "http://localhost:5001/" ở cửa sổ Terminal
+#### 6. Ctrl+Click vào đường dẫn "http://localhost:3000/" ở cửa sổ Terminal
