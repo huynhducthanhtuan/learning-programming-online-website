@@ -17,6 +17,8 @@ const Home = () => {
     slidesToShow: 4,
     slidesToScroll: 1
   };
+
+
   return (
     <body className={styles.home}>
       <Header />

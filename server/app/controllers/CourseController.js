@@ -20,7 +20,9 @@ class CourseController {
     create(req, res, next) {
         const {
             name, 
-            price
+            price,
+            description,
+            category
         } = req.body
 
         if(!name || !price ) {
@@ -28,7 +30,9 @@ class CourseController {
         }
         const course = new Course({
             name,
-            price
+            price,
+            description,
+            category
         })
         course.save()
             .then(result => {

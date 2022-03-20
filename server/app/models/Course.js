@@ -30,6 +30,14 @@ const Course = new Schema({
         type: ObjectId,
         ref: 'User'
     },
+    category: {
+        type: ObjectId,
+        ref: 'Category',
+        required: true,
+    },
+    image: {
+        type: String,   
+    },
     slug: { type: String, slug: 'name', unique: true },
    
     }, 
