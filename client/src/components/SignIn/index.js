@@ -56,11 +56,10 @@ const SignIn = () => {
 
     signInAPI({ email, password }).then((data) => {
       if (data.error) {
-        console.log("data error: ", data.error);
         M.toast({ html: data.error, classes: "rounded red" });
       } else {
         authenticate(data, () => {
-          M.toast({ html: "Login Success", classes: "rounded green" });
+          M.toast({ html: "Signin Success", classes: "rounded green" });
           setValues({ ...values, error: "", redirectUser: true });
         });
         dispatch({ type: "USER", payload: data.user });

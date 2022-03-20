@@ -22,10 +22,6 @@ export const signOut = () => {
     method: "GET",
   })
     .then((res) => res.json())
-    .then((data) => {
-      // Toast message - data.message
-      alert(data.message);
-    })
     .catch((err) => {
       console.log(err);
     });

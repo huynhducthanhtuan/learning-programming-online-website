@@ -17,7 +17,8 @@ const Header = () => {
           onClick={() => {
             dispatch({ type: "CLEAR" });
             signOut();
-            navigate("/");
+            // navigate("/");
+            window.location = "/";
           }}
         >
           Sign Out
