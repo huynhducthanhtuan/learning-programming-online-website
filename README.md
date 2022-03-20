@@ -23,5 +23,3 @@
 #### 6. Gõ lệnh "npm install" để cài đặt những thư viện mà phía Front-end đang sử dụng
 
 #### 7. Gõ lệnh "npm start" để start web server phía Front-end
-
-#### 8. Ctrl+Click vào đường dẫn "http://localhost:3000/" ở cửa sổ Terminal
