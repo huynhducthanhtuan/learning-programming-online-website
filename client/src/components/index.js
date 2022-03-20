@@ -1,4 +1,7 @@
+export { default as Cart } from "./Cart";
 export { default as Course } from "./Course";
+export { default as CourseDetail } from "./CourseDetail";
+export { default as CreateCourse } from "./CreateCourse";
 export { default as Footer } from "./Footer";
 export { default as ForgotPassword } from "./ForgotPassword";
 export { default as Header } from "./Header";

@@ -23,6 +23,9 @@ const Header = () => {
         >
           Sign Out
         </button>
+        <Link to="/cart">
+          <img src="./icons/shopping-cart.png" className={styles.headerCart} />
+        </Link>
       </div>
     ) : (
       <div className={styles.headerButton}>

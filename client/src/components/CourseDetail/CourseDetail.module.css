@@ -1,0 +1,72 @@
+.courseContainer {
+  background: #d1d7dc;
+}
+
+.course {
+  display: flex;
+}
+
+.courseParts {
+  width: 30%;
+  height: 500px;
+  background: #ffffff;
+}
+
+.courseVideo {
+  width: 70%;
+  height: 500px;
+  background-color: aquamarine;
+}
+
+.courseHeader {
+  border: 1px solid #d1d7dc;
+  padding: 0.8rem 0.8rem 0.8rem 1.6rem;
+}
+
+.courseHeader p {
+  font-size: 20px;
+  font-weight: 800;
+  height: 100%;
+}
+
+.courseAllParts {
+  z-index: 1;
+  background-color: #fff;
+  border: 1px solid #aabac2;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.coursePart {
+  width: 100%;
+  border-top: 1px solid #aabac2;
+}
+
+.coursePartHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+.coursePartHeader p {
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-self: center;
+  margin-bottom: 0;
+}
+.courseDropDownIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.courseAllLessons {
+  display: none;
+  background: #ffffff;
+}
+
+.courseLesson {
+  padding: 10px 0 0 25px;
+  border-top: 1px solid #aabac2;
+}

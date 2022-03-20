@@ -13,6 +13,12 @@
   padding-right: 120px;
 }
 
+.headerCart{
+  width: 30px;
+  height: 30px;
+  margin-left: 24px;
+}
+
 .headerSearch {
   top: 50%;
   left: 0%;
