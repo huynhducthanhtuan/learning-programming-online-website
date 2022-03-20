@@ -12,12 +12,16 @@
 
 #### 1. Tại thư mục gốc đã clone về trước đó (learning-programming-online-website), mở CMD
 
-#### 2. Gõ lệnh "npm start" để start server phía back-end
+#### 2. Gõ lệnh "npm install" để cài đặt những thư viện mà phía Back-end đang sử dụng
 
-#### 3. Ctrl+Click vào đường dẫn "http://localhost:8000/" ở cửa sổ Terminal
+#### 3. Gõ lệnh "npm start" để start server phía Back-end
 
-#### 4. Tại thư mục (learning-programming-online-website/client), mở CMD
+#### 4. Ctrl+Click vào đường dẫn "http://localhost:8000/" ở cửa sổ Terminal
 
-#### 5. Gõ lệnh "npm start" để start web server phía front-end
+#### 5. Tại thư mục (learning-programming-online-website/client), mở CMD
 
-#### 6. Ctrl+Click vào đường dẫn "http://localhost:3000/" ở cửa sổ Terminal
+#### 6. Gõ lệnh "npm install" để cài đặt những thư viện mà phía Front-end đang sử dụng
+
+#### 7. Gõ lệnh "npm start" để start web server phía Front-end
+
+#### 8. Ctrl+Click vào đường dẫn "http://localhost:3000/" ở cửa sổ Terminal
