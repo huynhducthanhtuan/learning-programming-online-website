@@ -1,35 +1,38 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
-const slug = require('mongoose-slug-generator');
-const {ObjectId} = mongoose.Schema.Types
-const mongooseDelete = require('mongoose-delete');
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+const slug = require("mongoose-slug-generator");
+const { ObjectId } = mongoose.Schema.Types;
+const mongooseDelete = require("mongoose-delete");
 
-
-const Course = new Schema({
+const Course = new Schema(
+  {
     name: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     description: {
-        goal: String,
-        achievement:[{text: String}]
+      goal: String,
+      achievement: [{ text: String }],
     },
     price: {
-        type: Number,
-        required: true
+      type: Number,
+      required: true,
     },
-    parts:[{
+    parts: [
+      {
         topic: String,
-        lessons: [{type: ObjectId, ref: 'Lesson'}]
-    }],
+        lessons: [{ type: ObjectId, ref: "Lesson" }],
+      },
+    ],
     // rates: [{
     //     numberStar: Number,
     //     ratedBy: {type: ObjectId, ref: 'User'}
     // }],
     creator: {
-        type: ObjectId,
-        ref: 'User'
+      type: ObjectId,
+      ref: "User",
     },
+<<<<<<< HEAD
     category: {
         type: ObjectId,
         ref: 'Category',
@@ -43,10 +46,15 @@ const Course = new Schema({
     }, 
     { timestamps: true,},
 )
+=======
+    slug: { type: String, slug: "name", unique: true },
+  },
+  { timestamps: true }
+);
+
+>>>>>>> 391808446986ef4f9cdc229e9b90833a7210862f
 // add plugin
 mongoose.plugin(slug);
 // Course.plugin(mongooseDelete, { overrideMethods: 'all', deletedAt: true });
 
-module.exports = mongoose.model('Course', Course);
-
-
+module.exports = mongoose.model("Course", Course);
