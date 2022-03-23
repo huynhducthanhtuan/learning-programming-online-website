@@ -4,9 +4,15 @@
 
 .course {
   display: flex;
-  height: 500px;
 }
 
+.courseFooter{
+  margin-top: 60px;
+}
+
+.courseVideoAndNotes{
+  width: 70%;
+}
 .courseParts {
   width: 30%;
   height: 500px;
@@ -14,9 +20,10 @@
 }
 
 .courseVideo {
-  width: 70%;
+  width: 100%;
   height: 500px;
   background-color: aquamarine;
+  
 }
 
 .courseHeader {
@@ -104,10 +111,66 @@
   height: 25.2px;
   width: 25.2px;
 }
+.courseNoNote{
+  text-align: center;
+  padding-top: 6.4rem;
+  margin: 0 auto;
+}
+.courseNote{
+  width: 740px;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 32px;
+}
+.courseNoteTimes{
+  font-weight: 600;
+  display: inline-block;
+  min-width: 54px;
+  text-align: center;
+  background: #1c1d1f;
+  color: #fff;
+  line-height: 2.4rem;
+  height: 26px;
+  border-radius: 9999px;
+  padding: 0 0.8rem;
+  display: flex;
+  align-items: center;
+}
+.courseNoteDetail{
+  width: 91%;
+  
+}
+.courseNoteTitle{
+  display: flex;
+  height: 20px;
+}
+.courseNoteTitleName{
+  display: flex;
+  justify-content: space-between;
+}
+.courseNoteTitleName div:first-child{
+  margin-right: 10px;
+  font-weight: 700;
+}
+.courseSpacer{
+  flex: 1;
+}
+.courseNoteButton{
+  border: 0px;
+  display: flex;
+  align-items: center;
+}
+.courseNoteParam{
+  width: 100%;
+  padding: 2.4rem;
+  margin: 1.6rem 0 0;
+  background-color: #f7f9fa;
+  word-wrap: break-word;
+}
 
 
 .courseFilter{
-  margin-top: 100px;
+  margin-top: 50px;
   margin-left: 24px;
   display: flex;
   align-items: center;

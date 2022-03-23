@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Header from "../Header";
+import Footer from "../Footer";
 import styles from "./CourseDetail.module.css";
 import "bootstrap/dist/css/bootstrap.css";
 
@@ -25,7 +26,82 @@ const CourseDetail = () => {
       </div>
 
       <div className={styles.course}>
-        <div className={styles.courseVideo}></div>
+
+        <div className={styles.courseVideoAndNotes}>
+          <iframe className={styles.courseVideo} src="https://www.youtube.com/embed/R0jbjEX0dBY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>
+
+          <div className={styles.courseNotes} > 
+            <div className={styles.courseCreateNote}>
+              <button className={styles.courseNewNoteButton}>
+                <span>Create new note at 
+                  <span>0:00</span>
+                </span>
+                
+                <img src="./icons/add.png"/>
+
+              </button>
+
+              <div className={styles.courseFilter}>
+
+                <div className={styles.courseFilterAllParts}>
+                  <button className={styles.courseFilterAllPartsButton}>
+                    <span>All Parts</span>
+                    <img src="./icons/drop-down-arrow.png"/>
+                  </button>
+                </div>
+
+                <div className={styles.courseFilterCurrentPart}>
+                  <button className={styles.courseFilterCurrentPartButton}>
+                    <span>Current Part</span>
+                  </button>
+                </div>              
+
+              </div>
+
+              <div className={styles.courseNoNote}>Click the "Create new note" box, the "+" button to make your first note</div>
+
+              <div className={styles.courseNote}>
+
+                <div className={styles.courseNoteTimes}>
+                  <span>0:00</span>  
+                </div>  
+
+                <div className={styles.courseNoteDetail}>
+
+                  <div className={styles.courseNoteTitle}>
+
+                    <div className={styles.courseNoteTitleName}>
+                      <div>Part 1: Get started</div>
+                      <div>1. What is HTML, CSS?</div>
+                    </div>
+
+                    <div className={styles.courseSpacer}></div>
+                    
+                    <button className={styles.courseNoteButton}>
+                      <img src="./icons/pen.png"/>
+                    </button>
+
+                    <button className={styles.courseNoteButton}>
+                      <img src="./icons/trash-can.png"/>
+                    </button>
+
+                  </div>
+
+                  <div className={styles.courseNoteParam}>
+                    <div>
+                      <p>attribute: là các thuộc tính trong thẻ</p>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>  
+
+          </div>
+
+        </div>
+
+        </div>
 
         <div className={styles.courseParts}>
           <section>
@@ -86,42 +162,13 @@ const CourseDetail = () => {
 
           </section>
         </div>
-      </div>
-
-      <div className={styles.courseNotes} >
-
-        <div className={styles.courseCreateNote}>
-          <button className={styles.courseNewNoteButton}>
-            <span>Create new note at 
-              <span>0:00</span>
-            </span>
-            
-            <img src="./icons/add.png"/>
-
-          </button>
-
-          <div className={styles.courseFilter}>
-
-            <div className={styles.courseFilterAllParts}>
-              <button className={styles.courseFilterAllPartsButton}>
-                <span>All Parts</span>
-                <img src="./icons/drop-down-arrow.png"/>
-              </button>
-            </div>
-
-            <div className={styles.courseFilterCurrentPart}>
-              <button className={styles.courseFilterCurrentPartButton}>
-                <span>Current Part</span>
-              </button>
-            </div>
-
-
-          </div>
-
-        </div>
 
       </div>
 
+      <div className={styles.courseFooter}>
+        <Footer/>
+      </div>
+      
     </section>
   );
 };
