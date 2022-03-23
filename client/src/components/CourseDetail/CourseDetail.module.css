@@ -68,6 +68,16 @@
   width: 20px;
   height: 20px;
 }
+.courseVideoTimes{
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.courseVideoTimes p{
+  margin-left: 10px;
+  height: 10px;
+}
+
 
 .courseAllLessons {
   display: none;
@@ -78,7 +88,9 @@
   padding: 10px 0 0 25px;
   border-top: 1px solid #aabac2;
 }
-
+.courseLesson p:first-child{
+  font-weight: 600;
+}
 
 .courseCreateNote{
   border: 1px solid rgb(255, 255, 255);

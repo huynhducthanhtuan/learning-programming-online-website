@@ -111,7 +111,7 @@ const CourseDetail = () => {
 
             <div className={styles.courseAllParts}>
               <div className={styles.coursePart}>
-                <div className={styles.coursePartHeader}>
+                <div className={styles.coursePartHeader} onClick={() => lessonsList("allLessons1", "dropIcon1")}>
                   <div>
                     <p>Part 1: Get started</p>
                   </div>
@@ -120,25 +120,31 @@ const CourseDetail = () => {
                     id="dropIcon1"
                     className={styles.courseDropDownIcon}
                     src="./icons/drop-down-arrow.png"
-                    onClick={() => lessonsList("allLessons1", "dropIcon1")}
+                    
                   />
                 </div>
 
                 <div id="allLessons1" className={styles.courseAllLessons}>
                   <div className={styles.courseLesson}>
                     <p>1. What is HTML, CSS?</p>
-                    <p>1:10</p>
+                    <div className={styles.courseVideoTimes}>
+                      <img src="./icons/play-button.png"/>
+                      <p>1:10</p>
+                    </div>
                   </div>
 
                   <div className={styles.courseLesson}>
                     <p>2. Get know to Dev tools</p>
-                    <p>5:00</p>
+                    <div className={styles.courseVideoTimes}>
+                      <img src="./icons/play-button.png"/>
+                      <p>5:20</p>
+                    </div>
                   </div>
                 </div>
               </div>
 
               <div className={styles.coursePart}>
-                <div className={styles.coursePartHeader}>
+                <div className={styles.coursePartHeader} onClick={() => lessonsList("allLessons2", "dropIcon2")}>
                   <div>
                     <p>Part 2: Get familiar with HTML</p>
                   </div>
@@ -147,14 +153,17 @@ const CourseDetail = () => {
                     id="dropIcon2"
                     className={styles.courseDropDownIcon}
                     src="./icons/drop-down-arrow.png"
-                    onClick={() => lessonsList("allLessons2", "dropIcon2")}
+                    
                   />
                 </div>
 
                 <div id="allLessons2" className={styles.courseAllLessons}>
                   <div className={styles.courseLesson}>
                     <p>1. Tag</p>
-                    <p>10:30</p>
+                    <div className={styles.courseVideoTimes}>
+                      <img src="./icons/play-button.png"/>
+                      <p>10:00</p>
+                    </div>
                   </div>
                 </div>
               </div>
