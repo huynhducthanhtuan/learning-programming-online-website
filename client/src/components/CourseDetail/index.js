@@ -23,6 +23,7 @@ const CourseDetail = () => {
       <div className={`container ${styles.courseContainer}`}>
         <Header />
       </div>
+
       <div className={styles.course}>
         <div className={styles.courseVideo}></div>
 
@@ -82,9 +83,45 @@ const CourseDetail = () => {
                 </div>
               </div>
             </div>
+
           </section>
         </div>
       </div>
+
+      <div className={styles.courseNotes} >
+
+        <div className={styles.courseCreateNote}>
+          <button className={styles.courseNewNoteButton}>
+            <span>Create new note at 
+              <span>0:00</span>
+            </span>
+            
+            <img src="./icons/add.png"/>
+
+          </button>
+
+          <div className={styles.courseFilter}>
+
+            <div className={styles.courseFilterAllParts}>
+              <button className={styles.courseFilterAllPartsButton}>
+                <span>All Parts</span>
+                <img src="./icons/drop-down-arrow.png"/>
+              </button>
+            </div>
+
+            <div className={styles.courseFilterCurrentPart}>
+              <button className={styles.courseFilterCurrentPartButton}>
+                <span>Current Part</span>
+              </button>
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
     </section>
   );
 };
