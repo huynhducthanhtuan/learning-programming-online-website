@@ -1,20 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Header from "../Header";
 import Footer from "../Footer";
 import styles from "./CourseDetail.module.css";
 import "bootstrap/dist/css/bootstrap.css";
+import { useState } from "react";
 
 const CourseDetail = () => {
 
-// const $ = document.querySelector.bind(document)
-// const $$ = document.querySelectorAll.bind(document)
-// const tabs = $$(".tab-item")
-// const panes = $$(".tab-pane")
-
-// tabs.array.forEach((tab, index) => {
-//   tab.onClick
-// });
+const [toggle, setToggle] = useState("parts")
 
 function lessonsList(lessonsId, buttonId) {
   if (
@@ -29,6 +22,7 @@ function lessonsList(lessonsId, buttonId) {
   }
 }
 
+
   return (
     <section>
       <div className={`container ${styles.courseContainer}`}>
@@ -42,16 +36,16 @@ function lessonsList(lessonsId, buttonId) {
 
           <div className={styles.courseTabs} >
             
-            <div data-index="1" className={styles.courseTab}>
+            <div className={toggle === "parts" ? `${styles.tabItem} ${styles.active}` : `${styles.tabItem}`} onClick={()=>setToggle("parts")}>
               <h6>
                 <button >
                   <span>Parts</span>
                 </button>
               </h6>
-              
+
             </div>
 
-            <div data-index="2" className={styles.courseTab} >
+            <div className={toggle === "comments" ? `${styles.tabItem} ${styles.active}` : `${styles.tabItem}`} onClick={()=>setToggle("comments")} >
               <h6>
                 <button >
                   <span>Comments</span>
@@ -62,8 +56,10 @@ function lessonsList(lessonsId, buttonId) {
 
           </div>
 
-          <div >
-            <div className={styles.courseNotes}  > 
+          <div></div>
+
+          <div className="tabContents">
+            <div className={toggle === "parts" ? `${styles.tabContent} ${styles.active}` : `${styles.tabContent}`}  > 
               <div className={styles.courseCreateNote}>
                 <button className={styles.courseNewNoteButton}>
                   <span>Create new note at 
@@ -134,8 +130,8 @@ function lessonsList(lessonsId, buttonId) {
 
             </div>
 
-            <div className={styles.courseComments} >
-
+            <div className={toggle === "comments" ? `${styles.tabContent} ${styles.active}` : `${styles.tabContent}`} >
+              hello
             </div>
           </div>
 
