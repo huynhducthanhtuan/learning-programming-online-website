@@ -5,6 +5,17 @@ import Footer from "../Footer";
 import styles from "./CourseDetail.module.css";
 import "bootstrap/dist/css/bootstrap.css";
 
+const CourseDetail = () => {
+
+// const $ = document.querySelector.bind(document)
+// const $$ = document.querySelectorAll.bind(document)
+// const tabs = $$(".tab-item")
+// const panes = $$(".tab-pane")
+
+// tabs.array.forEach((tab, index) => {
+//   tab.onClick
+// });
+
 function lessonsList(lessonsId, buttonId) {
   if (
     document.getElementById(lessonsId).style.display == "none" ||
@@ -14,11 +25,10 @@ function lessonsList(lessonsId, buttonId) {
     document.getElementById(buttonId).style.transform = "rotate(180deg)";
   } else {
     document.getElementById(lessonsId).style.display = "none";
-    document.getElementById(buttonId).style.transform = "rotate(360deg)";
+    document.getElementById(buttonId).style.display = "rotate(360deg)"
   }
 }
 
-const CourseDetail = () => {
   return (
     <section>
       <div className={`container ${styles.courseContainer}`}>
@@ -30,76 +40,104 @@ const CourseDetail = () => {
         <div className={styles.courseVideoAndNotes}>
           <iframe className={styles.courseVideo} src="https://www.youtube.com/embed/R0jbjEX0dBY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>
 
-          <div className={styles.courseNotes} > 
-            <div className={styles.courseCreateNote}>
-              <button className={styles.courseNewNoteButton}>
-                <span>Create new note at 
-                  <span>0:00</span>
-                </span>
-                
-                <img src="./icons/add.png"/>
+          <div className={styles.courseTabs} >
+            
+            <div data-index="1" className={styles.courseTab}>
+              <h6>
+                <button >
+                  <span>Parts</span>
+                </button>
+              </h6>
+              
+            </div>
 
-              </button>
-
-              <div className={styles.courseFilter}>
-
-                <div className={styles.courseFilterAllParts}>
-                  <button className={styles.courseFilterAllPartsButton}>
-                    <span>All Parts</span>
-                    <img src="./icons/drop-down-arrow.png"/>
-                  </button>
-                </div>
-
-                <div className={styles.courseFilterCurrentPart}>
-                  <button className={styles.courseFilterCurrentPartButton}>
-                    <span>Current Part</span>
-                  </button>
-                </div>              
-
-              </div>
-
-              <div className={styles.courseNoNote}>Click the "Create new note" box, the "+" button to make your first note</div>
-
-              <div className={styles.courseNote}>
-
-                <div className={styles.courseNoteTimes}>
-                  <span>0:00</span>  
-                </div>  
-
-                <div className={styles.courseNoteDetail}>
-
-                  <div className={styles.courseNoteTitle}>
-
-                    <div className={styles.courseNoteTitleName}>
-                      <div>Part 1: Get started</div>
-                      <div>1. What is HTML, CSS?</div>
-                    </div>
-
-                    <div className={styles.courseSpacer}></div>
-                    
-                    <button className={styles.courseNoteButton}>
-                      <img src="./icons/pen.png"/>
-                    </button>
-
-                    <button className={styles.courseNoteButton}>
-                      <img src="./icons/trash-can.png"/>
-                    </button>
-
-                  </div>
-
-                  <div className={styles.courseNoteParam}>
-                    <div>
-                      <p>attribute: là các thuộc tính trong thẻ</p>
-                    </div>
-                  </div>
-
-                </div>
-
-              </div>  
+            <div data-index="2" className={styles.courseTab} >
+              <h6>
+                <button >
+                  <span>Comments</span>
+                </button>
+              </h6>
+              
+            </div>
 
           </div>
 
-        </div>
+          <div >
+            <div className={styles.courseNotes}  > 
+              <div className={styles.courseCreateNote}>
+                <button className={styles.courseNewNoteButton}>
+                  <span>Create new note at 
+                    <span>0:00</span>
+                  </span>
+                  
+                  <img src="./icons/add.png"/>
+
+                </button>
+
+                <div className={styles.courseFilter}>
+
+                  <div className={styles.courseFilterAllParts}>
+                    <button className={styles.courseFilterAllPartsButton}>
+                      <span>All Parts</span>
+                      <img src="./icons/drop-down-arrow.png"/>
+                    </button>
+                  </div>
+
+                  <div className={styles.courseFilterCurrentPart}>
+                    <button className={styles.courseFilterCurrentPartButton}>
+                      <span>Current Part</span>
+                    </button>
+                  </div>              
+
+                </div>
+
+                <div className={styles.courseNoNote}>Click the "Create new note" box, the "+" button to make your first note</div>
+
+                <div className={styles.courseNote}>
+
+                  <div className={styles.courseNoteTimes}>
+                    <span>0:00</span>  
+                  </div>  
+
+                  <div className={styles.courseNoteDetail}>
+
+                    <div className={styles.courseNoteTitle}>
+
+                      <div className={styles.courseNoteTitleName}>
+                        <div>Part 1: Get started</div>
+                        <div>1. What is HTML, CSS?</div>
+                      </div>
+
+                      <div className={styles.courseSpacer}></div>
+                      
+                      <button className={styles.courseNoteButton}>
+                        <img src="./icons/pen.png"/>
+                      </button>
+
+                      <button className={styles.courseNoteButton}>
+                        <img src="./icons/trash-can.png"/>
+                      </button>
+
+                    </div>
+
+                    <div className={styles.courseNoteParam}>
+                      <div>
+                        <p>attribute: là các thuộc tính trong thẻ</p>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>  
+
+            </div>
+
+            </div>
+
+            <div className={styles.courseComments} >
+
+            </div>
+          </div>
 
         </div>
 
@@ -177,7 +215,7 @@ const CourseDetail = () => {
       <div className={styles.courseFooter}>
         <Footer/>
       </div>
-      
+
     </section>
   );
 };

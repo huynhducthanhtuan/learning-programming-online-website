@@ -79,6 +79,25 @@
 }
 
 
+.courseTabs{
+  display: grid;
+  grid-auto-columns: max-content;
+  grid-auto-flow: column;
+  grid-gap: 1.6rem;
+  padding: 0px 16px;
+  margin-left: 50px;
+  
+}
+.courseTab{
+  border: 1px solid #ffffff;
+}
+.courseTab button{
+  border: 1px solid #ffffff;
+  background: #fff;
+  cursor: default;
+}
+
+
 .courseAllLessons {
   display: none;
   background: #ffffff;
