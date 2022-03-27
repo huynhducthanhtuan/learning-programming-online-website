@@ -5,6 +5,8 @@ import styles from "./home.module.css";
 import Header from "../Header";
 import Slider from "react-slick";
 import Footer from "../Footer";
+import { getCourses } from "./apiCore";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./homeSlick.css";
@@ -18,12 +20,42 @@ const Home = () => {
     slidesToScroll: 1,
   };
 
+  const [courseBySell, setCourseBySell] = useState([]);
+  const [courseByArrival, setCourseByArrival] = useState([]);
+  const [error, setError] = useState(false);
+
+  const loadCourseBySell = () => {
+    getCourses("sold").then((data) => {
+      if (data.error) {
+        setError(data.error);
+      } else {
+        setCourseBySell(data);
+      }
+    });
+  };
+  const loadCourseByArrival = () => {
+    getCourses("createdAt").then((data) => {
+      if (data.error) {
+        setError(data.error);
+      } else {
+        setCourseByArrival(data);
+      }
+    });
+  };
+
+  useEffect(() => {
+    loadCourseBySell();
+    loadCourseByArrival();
+  }, []);
+
+  console.log("loadCourseBySell", courseBySell);
+  console.log("loadCourseByArrival", courseByArrival);
 
   return (
     <body className={styles.home}>
       <Header />
       <section className={`container_fluid ${styles.homeBanner}`}>
-        <img src="./icons/banner.png"></img>
+        <img src="./icons/banner.png" alt=""></img>
       </section>
       <section className={styles.homeCourseText}>
         <h1>Course</h1>
@@ -36,124 +68,36 @@ const Home = () => {
         </div>
       </section>
       <section className={`container ${styles.homeSlider}`}>
-        <h2>Recent new course</h2>
+        <h2>New arrivals</h2>
         <Slider {...settings}>
-          <Link to="/" className={styles.homeSliderItemA}>
-            <div className={styles.homeSliderItem}>
-              <img src="./icons/php&mysql.png"></img>
-              <p>Lập trình web bằng PHP & Mysql</p>
-            </div>
-          </Link>
-          <Link to="/" className={styles.homeSliderItemA}>
-            <div className={styles.homeSliderItem}>
-              <img src="./icons/quytrinh.png"></img>
-              <p>Quy trình xử lý front-end</p>
-            </div>
-          </Link>
-          <Link to="/" className={styles.homeSliderItemA}>
-            <div className={styles.homeSliderItem}>
-              <img src="./icons/khoahoc.png"></img>
-              <p>Khoá học html/css cơ bản</p>
-            </div>
-          </Link>
-          <Link to="/" className={styles.homeSliderItemA}>
-            <div className={styles.homeSliderItem}>
-              <img src="./icons/jscoban.png"></img>
-              <p>Khoá học javascript cơ bản</p>
-            </div>
-          </Link>
-          <Link to="/" className={styles.homeSliderItemA}>
-            <div className={styles.homeSliderItem}>
-              <img src="./icons/jscoban.png"></img>
-              <p>Khoá học javascript cơ bản</p>
-            </div>
-          </Link>
+        {courseByArrival.map((course, i) => (
+              <Link to="/" className={styles.homeSliderItemA}>
+                <div className={styles.homeSliderItem}>
+                  <img src={course.image} alt=""></img>
+                  <img src="./icons/star.png" alt=""></img>
+                  <p>{course.name}</p>
+                </div>
+              </Link>
+            ))}
         </Slider>
       </section>
       <section className={`container ${styles.homeSlider}`}>
-        <h2>Front-end</h2>
+        <h2>Best Sellers</h2>
         <div className={styles.homeListItem}>
           <Slider {...settings}>
-            <Link to="/" className={styles.homeSliderItemA}>
-              <div className={styles.homeSliderItem}>
-                <img src="./icons/php&mysql.png"></img>
-                <img src="./icons/star.png"></img>
-                <p>Quy trình xử lý front-end</p>
-              </div>
-            </Link>
-            <Link to="/" className={styles.homeSliderItemA}>
-              <div className={styles.homeSliderItem}>
-                <img src="./icons/quytrinh.png"></img>
-                <img src="./icons/star.png"></img>
-                <p>Khoá học html/css cơ bản</p>
-              </div>
-            </Link>
-            <Link to="/" className={styles.homeSliderItemA}>
-              <div className={styles.homeSliderItem}>
-                <img src="./icons/khoahoc.png"></img>
-                <img src="./icons/star.png"></img>
-                <p>Khoá học javascript cơ bản</p>
-              </div>
-            </Link>
-            <Link to="/" className={styles.homeSliderItemA}>
-              <div className={styles.homeSliderItem}>
-                <img src="./icons/jscoban.png"></img>
-                <img src="./icons/star.png"></img>
-                <p>Khoá học javascript nâng cao</p>
-              </div>
-            </Link>
-            <Link to="/" className={styles.homeSliderItemA}>
-              <div className={styles.homeSliderItem}>
-                <img src="./icons/jscoban.png"></img>
-                <img src="./icons/star.png"></img>
-                <p>Khoá học javascript cơ bản</p>
-              </div>
-            </Link>
+            {courseBySell.map((course, i) => (
+              <Link to="/" className={styles.homeSliderItemA}>
+                <div className={styles.homeSliderItem}>
+                  <img src={course.image} alt=""></img>
+                  <img src="./icons/star.png" alt=""></img>
+                  <p>{course.name}</p>
+                </div>
+              </Link>
+            ))}
           </Slider>
         </div>
       </section>
-      <section className={`container ${styles.homeSlider}`}>
-        <h2>Back-end</h2>
-        <div className={styles.homeListItem}>
-          <Slider {...settings}>
-            <Link to="/" className={styles.homeSliderItemA}>
-              <div className={styles.homeSliderItem}>
-                <img src="./icons/express.png"></img>
-                <img src="./icons/star.png"></img>
-                <p>Khoá học express JS</p>
-              </div>
-            </Link>
-            <Link to="/" className={styles.homeSliderItemA}>
-              <div className={styles.homeSliderItem}>
-                <img src="./icons/quytrinh.png"></img>
-                <img src="./icons/star.png"></img>
-                <p>Khoá học html/css cơ bản</p>
-              </div>
-            </Link>
-            <Link to="/" className={styles.homeSliderItemA}>
-              <div className={styles.homeSliderItem}>
-                <img src="./icons/khoahoc.png"></img>
-                <img src="./icons/star.png"></img>
-                <p>Khoá học javascript cơ bản</p>
-              </div>
-            </Link>
-            <Link to="/" className={styles.homeSliderItemA}>
-              <div className={styles.homeSliderItem}>
-                <img src="./icons/jscoban.png"></img>
-                <img src="./icons/star.png"></img>
-                <p>Khoá học javascript nâng cao</p>
-              </div>
-            </Link>
-            <Link to="/" className={styles.homeSliderItemA}>
-              <div className={styles.homeSliderItem}>
-                <img src="./icons/jscoban.png"></img>
-                <img src="./icons/star.png"></img>
-                <p>Khoá học javascript cơ bản</p>
-              </div>
-            </Link>
-          </Slider>
-        </div>
-      </section>
+
       <Footer />
     </body>
   );

@@ -12,47 +12,44 @@ const Course = new Schema(
     },
     description: {
       goal: String,
-      achievement: [{ text: String }],
+      // achievement: [{ text: String }],
     },
     price: {
       type: Number,
       required: true,
     },
-    parts: [
-      {
-        topic: String,
-        lessons: [{ type: ObjectId, ref: "Lesson" }],
-      },
-    ],
-    // rates: [{
-    //     numberStar: Number,
-    //     ratedBy: {type: ObjectId, ref: 'User'}
-    // }],
+    
     creator: {
       type: ObjectId,
       ref: "User",
     },
-<<<<<<< HEAD
     category: {
         type: ObjectId,
         ref: 'Category',
-        required: true,
+        
     },
     image: {
         type: String,   
     },
+    sold: {
+      type: Number,
+      default: 0
+    },
+    // parts: [
+    //   {
+    //     topic: String,
+    //     lessons: [{ type: ObjectId, ref: "Lesson" }],
+    //   },
+    // ],
+    // rates: [{
+    //     numberStar: Number,
+    //     ratedBy: {type: ObjectId, ref: 'User'}
+    // }],
     slug: { type: String, slug: 'name', unique: true },
    
     }, 
     { timestamps: true,},
 )
-=======
-    slug: { type: String, slug: "name", unique: true },
-  },
-  { timestamps: true }
-);
-
->>>>>>> 391808446986ef4f9cdc229e9b90833a7210862f
 // add plugin
 mongoose.plugin(slug);
 // Course.plugin(mongooseDelete, { overrideMethods: 'all', deletedAt: true });

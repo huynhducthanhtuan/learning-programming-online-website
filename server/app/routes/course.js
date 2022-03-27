@@ -1,17 +1,16 @@
 const express = require("express");
 const router = express.Router();
-const CourseController = require("../controllers/CourseController");
+const {create, list, courseById, listBySearch} = require("../controllers/course");
+const AuthController = require("../controllers/auth");
+const {requireSignIn, isAuth, isAdmin} = require("../middleware/authentication");
+const {userById} = require("../controllers/user")
 
-//detail course
-router.get("/:slug", CourseController.show);
+router.get('/' , list)
 
-// create course
-router.post("/create", CourseController.create);
+router.post('/create/:userId' , requireSignIn, isAuth, isAdmin, create)
+router.post('/by/search', listBySearch)
 
-// search course
-router.post("/search", CourseController.searchCourse);
-
-// delete course
-router.delete("/delete/:id", CourseController.destroy);
+router.param('userId', userById)
+router.param('courseId', courseById)
 
 module.exports = router;

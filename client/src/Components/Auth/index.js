@@ -18,7 +18,6 @@ export const isAuth = () => {
 export const signOut = () => {
   localStorage.removeItem("jwt");
 
-<<<<<<< HEAD
     fetch('/auth/signout', {
         method: "POST",
         headers: {
@@ -30,17 +29,3 @@ export const signOut = () => {
         console.log(err);
     })
 }
-=======
-  fetch("/auth/signout", {
-    method: "GET",
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      // Toast message - data.message
-      alert(data.message);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
->>>>>>> 391808446986ef4f9cdc229e9b90833a7210862f
