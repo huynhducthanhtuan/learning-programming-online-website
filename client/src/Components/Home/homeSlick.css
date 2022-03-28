@@ -11,3 +11,7 @@
 .slick-dots{
     display: none !important;
 }
+.slick-track {
+    height: 200px;
+    transform: translate3d(-300px, 0px, 0px);
+}

@@ -5,6 +5,7 @@ import styles from "./home.module.css";
 import Header from "../Header";
 import Slider from "react-slick";
 import Footer from "../Footer";
+import CardCourse from "../CardCourse";
 import { getCourses } from "./apiCore";
 
 import "slick-carousel/slick/slick.css";
@@ -70,30 +71,57 @@ const Home = () => {
       <section className={`container ${styles.homeSlider}`}>
         <h2>New arrivals</h2>
         <Slider {...settings}>
-        {courseByArrival.map((course, i) => (
-              <Link to="/" className={styles.homeSliderItemA}>
-                <div className={styles.homeSliderItem}>
-                  <img src={course.image} alt=""></img>
-                  <img src="./icons/star.png" alt=""></img>
-                  <p>{course.name}</p>
-                </div>
-              </Link>
-            ))}
+          
+          { courseByArrival.map((course, i) => (
+             <div className={styles.listCourse}>
+             <div className="row">
+                 <article className={`col listCourse__item`}>
+                     <img className={styles.itemImage} src={course.image} alt="" />
+                     <h6 className="mt-2">{course.name}</h6>
+                     <span>vo trung hieu</span>
+                     <div className={styles.listCourseItemStar}>
+                         <p>4.7</p>
+                         <img src="./images/oddstar.png" alt="" />
+                         <img src="./images/oddstar.png" alt="" />
+                         <img src="./images/oddstar.png" alt="" />
+                         <img src="./images/oddstar.png" alt="" />
+                         <img src="./images/oddstar.png" alt="" />   
+                         <p>(295,007)</p>
+                     </div>
+                     <span className={styles.money}>${course.price}</span>
+                 </article>
+             </div>
+         </div>
+         ))
+        }
         </Slider>
       </section>
       <section className={`container ${styles.homeSlider}`}>
         <h2>Best Sellers</h2>
         <div className={styles.homeListItem}>
           <Slider {...settings}>
-            {courseBySell.map((course, i) => (
-              <Link to="/" className={styles.homeSliderItemA}>
-                <div className={styles.homeSliderItem}>
-                  <img src={course.image} alt=""></img>
-                  <img src="./icons/star.png" alt=""></img>
-                  <p>{course.name}</p>
-                </div>
-              </Link>
-            ))}
+          { courseBySell.map((course, i) => (
+             <div className={styles.listCourse}>
+             <div className="row">
+                 <article className={`col listCourse__item`}>
+                     <img className={styles.itemImage} src={course.image} alt="" />
+                     <h6 className="mt-2">{course.name}</h6>
+                     <span>vo trung hieu</span>
+                     <div className={styles.listCourseItemStar}>
+                         <p>4.7</p>
+                         <img src="./images/oddstar.png" alt="" />
+                         <img src="./images/oddstar.png" alt="" />
+                         <img src="./images/oddstar.png" alt="" />
+                         <img src="./images/oddstar.png" alt="" />
+                         <img src="./images/oddstar.png" alt="" />   
+                         <p>(295,007)</p>
+                     </div>
+                     <span className={styles.money}>${course.price}</span>
+                 </article>
+             </div>
+         </div>
+         ))
+        }
           </Slider>
         </div>
       </section>

@@ -55,12 +55,18 @@ const Header = () => {
                         <img alt="" src="./icons/logo.png"></img>
                     </div>
                 </Link>
+                <Link to="/shop " className="nav-link">
+                        <button className="btn btn-secondary ">Shop</button>
+                </Link>
+                <Link to="/admin/dashboard " className="nav-link">
+                        <button className="btn btn-secondary ">DashBoard</button>
+                </Link>
                 <div className={styles.headerSearch}>
                     <img alt="" src="./icons/search.png"></img>
                     <input type="text" name="search" placeholder="search"></input>
                 </div>  
                 {renderList()}
-        
+               
             </header >
         </div>
        
