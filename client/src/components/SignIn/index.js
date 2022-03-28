@@ -96,7 +96,7 @@ const SignIn = () => {
 
         <div className={styles.formRemind}>
           <div className={styles.formRemember}>
-            {/* <input className={styles.formControl} type="checkbox" /> */}
+            
             <Link to="/signup">
               <span
                 className={styles.formRememberText}

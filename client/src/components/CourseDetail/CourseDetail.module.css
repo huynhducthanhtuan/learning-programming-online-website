@@ -254,3 +254,58 @@
 .tabContent.active{
   display: block;
 }
+
+.courseComment{
+  display: flex;
+  align-items: center;
+  margin-top: 50px;
+  margin-left: 70px;
+  width: 800px;
+  height: 20px;
+}
+.courseInputComment{
+  width: fit-content;
+  padding: 10px;
+  border: 1px solid #000000 !important;
+  padding: 0px 10px 0px 10px !important;
+}
+.courseSendIcon{
+  margin-left: 10px;
+  width: 30px;
+  height: 30px;
+}
+.courseAvatar{
+  border-radius:50%;
+    -moz-border-radius:50%;
+    -webkit-border-radius:50%;
+  border-style: groove;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+.courseAComment{
+  width: 800px;
+  display: flex;
+  margin-top: 50px;
+  margin-left: 70px;
+  align-items: flex-start;
+}
+.courseCommentContent{
+  
+  max-width: max-content;
+  background-color: #f2f3f5;
+  border-radius: 18px;
+  color: #1c1e21;
+  display: inline-block;
+  max-width: 586px;
+  min-width: 120px;
+  padding: 9px 12px;
+  position: relative;
+}
+.courseCommentName{
+  color: var(--black-color);
+  font-size: 16px;
+  margin: 0;
+  font-weight: 650;
+  margin-bottom: 5px;
+}

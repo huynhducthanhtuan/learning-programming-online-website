@@ -131,7 +131,27 @@ function lessonsList(lessonsId, buttonId) {
             </div>
 
             <div className={toggle === "comments" ? `${styles.tabContent} ${styles.active}` : `${styles.tabContent}`} >
-              hello
+
+              <form className={styles.courseComment}>
+                <img src="./images/avatar.jpg" className={styles.courseAvatar} />
+                <input className={styles.courseInputComment} type="text" ></input>
+                <img src="./icons/send.png" className={styles.courseSendIcon}/>
+              </form>
+
+              <div className={styles.courseAllComments}>
+
+                <form className={styles.courseAComment}>
+                  <img src="./images/avatar.jpg" className={styles.courseAvatar} />
+                  <div className={styles.courseCommentContent}>
+                    <h5 className={styles.courseCommentName}>Nguyễn Lê Phong</h5>
+                    <div>
+                      <p>Bài học rất dễ hiểu recommend các bạn nên học</p>
+                    </div>
+                  </div>
+                </form>
+
+              </div>
+
             </div>
           </div>
 
