@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "./Course.module.css";
 
 const Course = () => {
+  
   return (
     <section>
       <header className={`container ${styles.header}`}>

@@ -10,6 +10,7 @@ import {
   CourseDetail,
   ForgotPassword,
 } from "./components";
+import Checkout from "./components/Checkout";
 import "./App.css";
 
 export const UserContext = createContext();
@@ -25,6 +26,7 @@ function App() {
         <Route path="/create-course" element={<CreateCourse />}></Route>
         <Route path="/course-detail" element={<CourseDetail />}></Route>
         <Route path="/forgot-password" element={<ForgotPassword />}></Route>
+        <Route path="/checkout" element={<Checkout />}></Route>
         <Route path="/" element={<Home />}></Route>
       </Routes>
     </UserContext.Provider>

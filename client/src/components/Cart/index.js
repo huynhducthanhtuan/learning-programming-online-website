@@ -8,6 +8,9 @@ const Cart = () => {
   return (
     <section>
       <Header />
+
+      <button>Payment</button>
+
     </section>
   );
 };

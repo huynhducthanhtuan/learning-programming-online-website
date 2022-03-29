@@ -4,6 +4,7 @@ import Header from "../Header";
 import Slider from "react-slick";
 import Footer from "../Footer";
 import styles from "./Home.module.css";
+import { isAuth,isAuthenticated } from "../Auth";
 import "./HomeSlick.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -16,7 +17,8 @@ const Home = () => {
     slidesToShow: 4,
     slidesToScroll: 1,
   };
-
+  const results = isAuthenticated()
+  console.log(results);
   return (
     <body className={styles.home}>
       <Header />
