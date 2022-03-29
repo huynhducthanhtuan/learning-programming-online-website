@@ -6,4 +6,5 @@ export { default as Signup } from "./Signup";
 export { default as CardCourse } from "./CardCourse";
 export { default as DashboardAdmin } from "./DashboardAdmin";
 export { default as AddCategory } from "./Teacher/AddCategory";
+export { default as AddCProduct } from "./Teacher/AddProduct";
 

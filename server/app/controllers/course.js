@@ -21,18 +21,19 @@ exports.userById = (req, res, next, id) => {
 
 
 exports.create = (req, res, next) => {
-  const {name, description, price, pic} = req.body
+  const {name, description, price, pic, category} = req.body
   
-  
+  console.log("req.body ",req.body)
   if(!name || !description || !price  ) {
       res.status(422).json({error: 'Pleases add all the fields'})
   }
 
   const course = new Course({
-      name,
-      description,
-      price,
-      image: pic,
+    name,
+    description,
+    price,
+    image: pic,
+    category  
      
   })
   course.save() 
@@ -107,4 +108,27 @@ exports.listBySearch = (req, res) => {
               });
           }
       })
+};
+
+exports.listSearch = (req, res) => {
+    // create query object to handle incoming search
+    // and category value, from params
+    const query = {};
+    // assign search value to query.name filter
+    if (req.query.search) {
+        query.name = {
+            $regex: req.query.search,
+            $options: 'i'
+        }
+    }
+    Course.find(query, (err, courses) => {
+        if (err) {
+            return res.status(400).json({
+                error: "Not Found Course"
+            });
+        } else {
+            res.json(courses);
+        }
+    })
+    // }
 };

@@ -50,7 +50,7 @@ const Shop = () => {
     }
     useEffect(() => {
         init()
-        loadFilterResults(myFilters.filters)
+        // loadFilterResults(myFilters.filters)
     },[])
 
 
@@ -83,10 +83,10 @@ const Shop = () => {
 
         return range;
     }
-
+    console.log("filters ", );
     return (
             <div>
-                <Header />
+               <Header />
                 <div className='container-fluid'>
 
                     <div className='row'>
@@ -102,17 +102,15 @@ const Shop = () => {
                         </div>
                         
                         <div className='col-8 mb-5'>
-                        <h2 className='mb-4'>Courses</h2>
-                        <div className='row'>
-                                {filteredResult.map((course,i) => 
-                                    (
-                                    <div className='col-4 mt-4' key={course._id}>
-                                            <Card course={course}/>
-                                    </div>
-                                    )
-                                )}          
-                        </div>
-                        
+                            <div className='row'>
+                                    {filteredResult.map((course,i) => 
+                                        (
+                                        <div className='col-4 mt-4' key={course._id}>
+                                                <Card course={course}/>
+                                        </div>
+                                        )
+                                    )}          
+                            </div>                  
                         </div>
                     
                     </div>

@@ -1,19 +1,20 @@
 import React, {useContext, useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {UserContext} from '../../App'
-import { isAuth , signOut } from "../Auth";
+import Search from '../Header/Search'
+import {list} from '../Header/apiSearch'
+import Card from '../Home/Card'
 import Modal from "../model/Modal";
-
 import styles from "./header.module.css";
 import M from 'materialize-css'
+
 const Header = () => {
 
     const [modalOpen, setModalOpen] = useState(false)
-
     const {state,dispatch} = useContext(UserContext)
-
     const navigate = useNavigate()
    
+
     const signOutAction = () => {
         localStorage.clear()
         dispatch({type: "CLEAR"})
@@ -61,13 +62,11 @@ const Header = () => {
                 <Link to="/admin/dashboard " className="nav-link">
                         <button className="btn btn-secondary ">DashBoard</button>
                 </Link>
-                <div className={styles.headerSearch}>
-                    <img alt="" src="./icons/search.png"></img>
-                    <input type="text" name="search" placeholder="search"></input>
-                </div>  
+                <Search />
                 {renderList()}
                
             </header >
+            
         </div>
        
     );
