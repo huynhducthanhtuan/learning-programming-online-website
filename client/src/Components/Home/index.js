@@ -73,8 +73,10 @@ const Home = () => {
             <div key={i} className={styles.listCourse}>
               <div className="row">
                 <article className={`col listCourse__item`}>
-                  <img className={styles.itemImage} src={course.image} alt="" />
-                  <h6 className="mt-2">{course.name}</h6>
+                  <Link to={`/course/${course._id}`}>
+                    <img className={styles.itemImage} src={course.image} alt="" />
+                    <h6 className="mt-2">{course.name}</h6>
+                  </Link>
                   <span>vo trung hieu</span>
                   <div className={styles.listCourseItemStar}>
                     <p>(295,007)</p>

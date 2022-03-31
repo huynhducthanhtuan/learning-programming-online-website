@@ -5,21 +5,52 @@ import Card from '../Home/Card'
 import { getCategories, getFilteredCourses } from '../Home/apiCore'
 import {prices} from './fixedPrices';
 import Header from '../Header'
+import {useLocation} from 'react-router-dom'
+import {list} from '../Header/apiSearch'
+
+function useQuery () {
+    return new URLSearchParams(useLocation().search)
+}
 
 const Shop = () => {
-
+    const query = useQuery();
+    const keySearch = query.get('search') 
+    const [searchedCourses, setSearchedCourses] = useState([])
     const [myFilters, setMyFilters] = useState({
         filters: {category: [], price: []}
     })
- 
     const [categories, setCategories] = useState([])
     const [error, setError] = useState(false)
     const [limit, setLimit] = useState(6);
     const [skip, setSkip] = useState(0);
     const [size, setSize] = useState(0);
     const [filteredResult, setFilteredResult] = useState([]);
-
-
+    useEffect(() => {
+        searchData(keySearch)
+    },[keySearch])
+    console.log("ket qua search ", searchedCourses);
+    const searchData = (keySearch) => {
+        if(keySearch) {
+            list({search: keySearch || undefined})
+                .then(response => {
+                    if (response.error) {
+                        console.log(response.error)
+                    }
+                    else {
+                       setSearchedCourses(response)
+                    }
+                  console.log("searched courses ",response);
+                })
+        }
+    }
+    const searchMessage = (searchedCoursest) => {
+        if(searchedCourses && searchedCourses.length > 0 ) {
+            return `Found ${searchedCourses.length} products`
+        }
+        if(searchedCourses &&  searchedCourses.length <= 0) {
+            return "No product found"
+        }
+    }
     const loadFilterResults = (newFilters) => {
         getFilteredCourses(skip, limit, newFilters)
         .then(data => {
@@ -83,7 +114,6 @@ const Shop = () => {
 
         return range;
     }
-    console.log("filters ", );
     return (
             <div>
                <Header />
@@ -103,16 +133,24 @@ const Shop = () => {
                         
                         <div className='col-8 mb-5'>
                             <div className='row'>
+                                    {searchedCourses.map((course,i) => 
+                                        (
+                                        <div className='col-4 mt-4' key={course._id}>
+                                            <Card course={course}/>
+                                        </div>
+                                        )
+                                    )}   
                                     {filteredResult.map((course,i) => 
                                         (
                                         <div className='col-4 mt-4' key={course._id}>
-                                                <Card course={course}/>
+                                            <Card course={course}/>
                                         </div>
                                         )
                                     )}          
                             </div>                  
                         </div>
-                    
+
+                        
                     </div>
                 </div>  
             </div>

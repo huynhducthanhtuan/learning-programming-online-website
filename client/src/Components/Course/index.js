@@ -1,33 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Course.module.css";
+import Header from "../Header";
 
 const Course = () => {
   return (
     <section>
-      <header className={`container ${styles.header}`}>
-        <Link to="/">
-          <div className={styles.headerLogo}>
-            <img src="./icons/logo.png"></img>
-          </div>
-        </Link>
-        <div className={styles.headerSearch}>
-          <img src="./icons/search.png"></img>
-          <input type="text" name="search" placeholder="search"></input>
-        </div>
-        <div className={styles.headerButton}>
-          <Link to="/" className={styles.myCourse}>
-            <div>
-              <h3>My Course</h3>
-            </div>
-          </Link>
-          <Link to="/" className={styles.myProfile}>
-            <div>
-              <img src="./icons/myprofile.png"></img>
-            </div>
-          </Link>
-        </div>
-      </header>
+      <Header />
       <body className={`container ${styles.detailInformation}`}>
         <h1>HTML, CSS From Zero To Hero</h1>
         <section className={`row ${styles.courseDetailBox}`}>
