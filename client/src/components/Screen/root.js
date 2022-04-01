@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import {Home, Shop, SignIn, Signup, DashboardAdmin,Course , AddCategory, AddCProduct, CourseDetail} from '../index'
+import {Home, Shop, SignIn, Signup, DashboardAdmin,Course , AddCategory, AddCProduct, CourseDetail, Cart} from '../index'
 
 
 const Root = () => {
@@ -15,7 +15,8 @@ const Root = () => {
             {/* <Route path="/CardCourse" element={<CardCourse />}></Route> */}
             <Route path="/signup" element={<Signup />}></Route>
             <Route path="/signin" element={<SignIn />}></Route>
-            <Route path="/shop" element={<Shop />}></Route> 
+            <Route path="/cart" element={<Cart />}></Route>
+            <Route path="/shop" element={< Shop/>}></Route> 
             <Route path="/" element={<Home />}></Route>
         </Routes>
     )
