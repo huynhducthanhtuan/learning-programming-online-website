@@ -1,4 +1,3 @@
-const siteRoute = require("./site");
 const authRoute = require("./auth");
 const courseRoute = require("./course");
 const userRoute = require("./user");
@@ -9,7 +8,7 @@ function route(app) {
   app.use("/course", courseRoute);
   app.use("/category", categoryRoute);
   app.use("/user", userRoute);
-  app.use("/", siteRoute);
+  
 }
 
 module.exports = route;

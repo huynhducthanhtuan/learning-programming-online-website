@@ -1,25 +1,22 @@
 const Course = require("../models/Course");
 const User = require("../models/User");
 
+exports.read = (req, res, next) => {
+    res.json(req.course)
+} 
 
-exports.courseById = (req, res, next) => {
-    res.json(req.profile);
-  };
-  
-exports.userById = (req, res, next, id) => {
+exports.courseById = (req, res, next, id) => {
     Course.findById(id).exec((err, course) => {
       if (err || !course) {
         return res.status(400).json({
           error: `Course id ${id} not found `,
         });
       }
-      req.profile = course;
+      req.course = course;
       next();
     });
-  };
+};
   
-
-
 exports.create = (req, res, next) => {
   const {name, description, price, pic, category} = req.body
   

@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const slug = require("mongoose-slug-generator");
-const { ObjectId } = mongoose.Schema.Types;
 const mongooseDelete = require("mongoose-delete");
+const { ObjectId } = mongoose.Schema.Types;
 
 const Course = new Schema(
   {
@@ -12,7 +12,7 @@ const Course = new Schema(
     },
     description: {
       goal: String,
-      // achievement: [{ text: String }],
+      achievement: [{type: String}],
     },
     price: {
       type: Number,
@@ -35,12 +35,17 @@ const Course = new Schema(
       type: Number,
       default: 0
     },
+    rate: {
+      type: Number,
+      default: 1
+    },
     // parts: [
     //   {
     //     topic: String,
     //     lessons: [{ type: ObjectId, ref: "Lesson" }],
     //   },
     // ],
+   
     // rates: [{
     //     numberStar: Number,
     //     ratedBy: {type: ObjectId, ref: 'User'}

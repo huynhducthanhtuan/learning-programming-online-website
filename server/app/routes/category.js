@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const {list, create, categoryById} = require('../controllers/category')
-const {requireSignIn, isAuth, isAdmin } = require('../middleware/authentication')
+const {requireSignIn, isAuth, isAdmin } = require('../middlewares/authentication')
 const {userById} = require('../controllers/user')
 
 router.get('/', list)

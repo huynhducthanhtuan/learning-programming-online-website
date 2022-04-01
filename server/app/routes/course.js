@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const {create, list, courseById, listBySearch, listSearch} = require("../controllers/course");
+const {create, list, courseById, listBySearch, listSearch, read} = require("../controllers/course");
 const AuthController = require("../controllers/auth");
-const {requireSignIn, isAuth, isAdmin} = require("../middleware/authentication");
+const {requireSignIn, isAuth, isAdmin} = require('../middlewares/authentication')
 const {userById} = require("../controllers/user")
 
+router.get('/:courseId' , read)
 router.get('/' , list)
 
 router.post('/create/:userId' , requireSignIn, isAuth, isAdmin, create)

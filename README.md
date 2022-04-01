@@ -1,21 +1,25 @@
 ## Learning Programming Online Website
 
+### Cách clone dự án về máy
+
+#### 1. Trên máy, vào thư mục muốn clone về, mở CMD
+
+#### 2. Gõ lệnh "git init" để khởi tạo git
+
+#### 3. Gõ lệnh "git clone https://github.com/huynhdthanhtuan/learning-programming-online-website.git" để tiến hành clone dự án về máy
+
 ### Cách chạy dự án
 
-#### 1. Tại thư mục gốc (learning-programming-online-website), mở CMD
+#### 1. Tại thư mục gốc đã clone về trước đó (learning-programming-online-website), mở CMD
 
-#### 2. Gõ lệnh "npm start", bấm enter
+#### 2. Gõ lệnh "npm install" để cài đặt những thư viện mà phía Back-end đang sử dụng
 
-#### 3. Ctrl+Click vào đường dẫn "http://localhost:5001/" ở cửa sổ Terminal
+#### 3. Gõ lệnh "npm start" để start server phía Back-end
 
-### Cách chỉnh sửa và chạy lại dự án
+#### 4. Ctrl+Click vào đường dẫn "http://localhost:8000/" ở cửa sổ Terminal
 
-#### 1. Thực hiện chỉnh sửa
+#### 5. Tại thư mục (learning-programming-online-website/client), mở CMD
 
-#### 2. Tại thư mục gốc (learning-programming-online-website), mở CMD
+#### 6. Gõ lệnh "npm install" để cài đặt những thư viện mà phía Front-end đang sử dụng
 
-#### 3. Gõ lệnh "npm run build", bấm enter
-
-#### 4. Gõ lệnh "npm start", bấm enter
-
-#### 5. Ctrl+Click vào đường dẫn "http://localhost:5001/" ở cửa sổ Terminal
+#### 7. Gõ lệnh "npm start" để start web server phía Front-end
