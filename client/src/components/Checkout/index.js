@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import Header from "../Header";
 import styles from "./Checkout.module.css";
 import "bootstrap/dist/css/bootstrap.css";
-import { getBraintreeClientToken } from "../Cart/apiCart";
+import { getBraintreeClientToken, processPayment } from "./apiCheckout";
+import { emptyCart } from "../Cart/apiCart";
 import { useState } from "react";
 import { isAuth, isAuthenticated} from "../Auth";
 import { useEffect } from "react";
@@ -21,9 +22,7 @@ const Checkout = () => {
   })
 
   const result = JSON.parse(localStorage.getItem('jwt'))
- 
   const {user, token} = result
-  console.log(user,   token);
   const getToken = (user, token) =>{
     getBraintreeClientToken(user._id, token).then(result =>{
       if(result.error){
@@ -32,8 +31,7 @@ const Checkout = () => {
       else{
         setData({...data, clientToken: result.data.clientToken})
       }
-
-    //  console.log(result.data.clientToken);
+    
     })
   }
   
@@ -42,17 +40,58 @@ const Checkout = () => {
 
   }, [])
 
+  const confirmPay = () =>{
+    let nonce;
+    let getNonce = data.instance.requestPaymentMethod().then(result =>{
+      console.log('result',result)
+      nonce = result.nonce
+      //once you have nonce (card type, card number)
+      const paymentData = {
+        paymentMethodNonce: nonce,
+        amount: "500"
+
+      }
+
+      processPayment(user._id, token, paymentData)
+      .then(response =>{
+        
+        setData({...data, success: response.success})
+        //empty cart
+        // emptyCart(() => {
+        //   console.log("payment success");
+        // })
+      })
+      .catch(error => console.log(error))
+
+    })
+    .catch(errorPay => {
+      setData({...data, error: errorPay.message})
+    })
+  }
 
   const showDropIn = ()=> {
+
+    if(!data.clientToken){
+      return(
+        <div className={styles.checkoutLoading}>
+          <iframe  className={styles.checkoutGifLoading} src="./icons/loading-animation.gif"></iframe>
+        </div>
+      )
+    }
     return (
-      <div>
+      <div onBlur={()=> setData({...data, error: ""})}>
          {data.clientToken !== null ? (<div>
 
-            <DropIn options={{
-              authorization: data.clientToken
+            <DropIn 
+              options={{
+                authorization: data.clientToken,
+                paypal:{
+                  flow: "vault"
+                }
+              }}
               
-            }} onInstance={instance => instance = instance} />  
-            <button >Success</button>
+              onInstance={instance => data.instance = instance} />  
+            <button onClick={confirmPay} className="btn btn-success btn-block">Confirm</button>
           
          </div>) : null }
   
@@ -60,15 +99,17 @@ const Checkout = () => {
     )
   }
   
-
-
-  console.log(data.clientToken);
+  const showError = error =>{
+    <div className="alert alert-danger" style={{display: error ? 'block' : 'none'}}>
+      {error}
+    </div>
+  }
   return (
     <section>
-      <Header />
-
+      <Header /> 
+      {/* {showError(data.error)} */}
       
-      <div className="d-flex justify-content-center align-items-center">{data.clientToken && showDropIn()}</div>
+      <div className="d-flex justify-content-center align-items-center">{showDropIn()}</div>
 
     </section>
   );

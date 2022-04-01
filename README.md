@@ -23,3 +23,8 @@
 #### 6. Gõ lệnh "npm install" để cài đặt những thư viện mà phía Front-end đang sử dụng
 
 #### 7. Gõ lệnh "npm start" để start web server phía Front-end
+
+librarys have install
+braintree
+npm i braintree-web-drop-in-react
+path-browserify
