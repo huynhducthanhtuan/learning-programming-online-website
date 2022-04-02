@@ -9,6 +9,7 @@ import Modal from "../model/Modal";
 import styles from "./Header.module.css";
 import logo from '../../assets/images/logo192.png'
 import { useEffect } from "react";
+import cartIcon from '../../assets/icons/shopping-cart.png'
 
 const Header = () => {
 
@@ -28,17 +29,25 @@ const Header = () => {
         if(isAuthenticated()) {
             return (
                <div className="d-flex">
-                    <div className={styles.headerButton}>                 
+                    <div className={`${styles.headerButton }`}>                 
+                        <Link to="/cart">
+                            <div className={styles.cartIcon}>
+                                <img className={styles.imageIcon} src={cartIcon} alt=""/>
+                                <sup className={styles.quantityCart}><small className={styles.cartBadge}>{itemTotal()}</small></sup>  
+                            </div>
+                            
+                        </Link>
+                    </div> 
+                    <div className={`${styles.headerButton} ml-4`}>                 
                         <button className="btn btn-info openModalBtn"  onClick={() => {
                             setModalOpen(true);
                         
                         }} >sign Out</button>   
                     </div> 
-                    <div className={`${styles.headerButton } ml-4`}>                 
-                        <Link to="/cart">
-                            <button className="btn btn-info ">Cart <sup><small className={styles.cartBadge}>{itemTotal()}</small></sup> </button>   
-                        </Link>
-                    </div> 
+                   
+                    {/* <Link to="/admin/dashboard " className="nav-link">
+                    <p >DashBoard</p>
+                    </Link> */}
                </div>
                 
             )
@@ -66,12 +75,7 @@ const Header = () => {
                         <img alt="" src={logo}></img>
                     </div>
                 </Link>
-                <Link to="/shop " className="nav-link">
-                        <button className="btn btn-secondary ">Shop</button>
-                </Link>
-                <Link to="/admin/dashboard " className="nav-link">
-                        <button className="btn btn-secondary ">DashBoard</button>
-                </Link>
+              
                 <Search />
                 {renderList()}
                

@@ -54,11 +54,10 @@ const Course = () => {
           onClick={addToCart}
           className={`btn btn-info ${styles.btnRegister}`}
         >
-          Register
+          Add to Cart
         </button>
       );
     }
-   
   };
 
   return (

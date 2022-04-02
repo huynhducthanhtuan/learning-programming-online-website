@@ -77,4 +77,18 @@
   padding: 4px;
   font-size: 15px;
   background: #fff;
+  color: #141414;
+}
+.cartIcon {
+    width: 24px;
+    height: 24px;
+}
+.imageIcon {
+  height: 100%;
+  width: 100%;
+}
+.quantityCart {
+  position: absolute;
+  top: 6%;
+  right: 7.8%;
 }

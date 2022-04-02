@@ -134,7 +134,7 @@ const Shop = () => {
                         <div className='col-8 mb-5'>
                             <div className='row'>
                                     
-                                    {searchedCourses && searchMessage(searchedCourses)}
+                                    {searchedCourses.length <= 0 && searchMessage(searchedCourses)}
                                     {searchedCourses.map((course,i) => 
                                         (
                                         <div className='col-4 mt-4' key={course._id}>
