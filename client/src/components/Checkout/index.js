@@ -1,17 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../Header";
 import styles from "./Checkout.module.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { getBraintreeClientToken, processPayment } from "./apiCheckout";
-import { emptyCart } from "../Cart/apiCart";
 import { useState } from "react";
 import { isAuth, isAuthenticated } from "../Auth";
 import { useEffect } from "react";
 import DropIn from "braintree-web-drop-in-react"
+import { emptyCart, getTotal } from "../Cart/helperCart";
 
 const Checkout = () => {
-
+  
+  const navigate = useNavigate()
   const [data, setData] = useState({
     success: false,
     clientToken: null,
@@ -41,6 +42,10 @@ const Checkout = () => {
 
   }, [])
 
+  const moveToCourses = () => {
+    navigate("/mycourses")
+  }
+
   const confirmPay = () => {
     let nonce;
     let getNonce = data.instance.requestPaymentMethod().then(result => {
@@ -50,7 +55,7 @@ const Checkout = () => {
       //once you have nonce (card type, card number)
       const paymentData = {
         paymentMethodNonce: nonce,
-        amount: "500"
+        amount: getTotal()
 
       }
 
@@ -58,11 +63,10 @@ const Checkout = () => {
         .then(response => {
 
           setData({ ...data, success: response.success })
-          console.log(response.success);
-          // empty cart
-          // emptyCart(() => {
-          //   console.log("payment success");
-          // })
+          
+          emptyCart()
+          // const items = get
+          
         })
         .catch(error => console.log(error))
 
@@ -83,6 +87,8 @@ const Checkout = () => {
     }
     return (
       <div onBlur={() => setData({ ...data, error: "" })}>
+        
+        <h2>Total payment: {getTotal()}$</h2>
         {data.clientToken !== null ? (<div>
 
           <DropIn
@@ -94,7 +100,7 @@ const Checkout = () => {
             }}
 
             onInstance={instance => data.instance = instance} />
-          <button onClick={confirmPay} className="btn btn-success btn-block">Confirm</button>
+          <button onClick={success ? moveToCourses : confirmPay  } className="btn btn-success btn-block">Confirm</button>
 
         </div>) : null}
 

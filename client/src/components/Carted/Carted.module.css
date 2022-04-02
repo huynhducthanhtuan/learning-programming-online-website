@@ -1,0 +1,63 @@
+.courseItem {
+    display: flex;
+}
+
+.courseItemImage {
+    width: 100%;
+    height: 100%;
+    padding-right: 20px;
+}
+.imageCourseCart{
+
+}
+.courseItemText {
+    vertical-align: top;
+    padding-right: 90px;
+}
+.courseItemText ul {
+    padding: 0;
+    margin: 0;
+    display: flex;
+
+}
+.courseItemText ul li {
+    margin-left: 30px;
+}
+
+.courseItemText h6 {
+    margin: 0;
+    padding-bottom: 10px;
+    font-size: 24px
+}
+
+.courseItemText  p {
+    margin: 0;
+    padding-bottom: 10px;
+}
+
+.courseItem__rate img {
+    width: 15px;
+    height: 15px;
+}
+
+.courseItem__rate {
+    display: flex;
+    padding-bottom: 7px;
+    padding-right: 50px;
+}
+
+.courseItem__rate span:first-child {
+    color: brown;
+    font-weight: bold;
+}
+
+.courseItem__cost p {
+    margin: 0;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.courseItem__cost p:last-child {
+    font-weight: 400;
+    text-decoration: line-through;
+}

@@ -1,35 +1,21 @@
 import React, { useReducer, createContext } from "react";
-import { Routes, Route } from "react-router-dom";
+import GlobalStyle from "./components/GlobalStyle"
+import Root from './components/Screen/root'
 import { reducer, initialState } from "./reducers";
-import {
-  Home,
-  SignUp,
-  SignIn,
-  Cart,
-  CreateCourse,
-  CourseDetail,
-  ForgotPassword,
-} from "./components";
-import Checkout from "./components/Checkout";
-import "./App.css";
+
 
 export const UserContext = createContext();
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
-    <UserContext.Provider value={{ state, dispatch }}>
-      <Routes>
-        <Route path="/signup" element={<SignUp />}></Route>
-        <Route path="/signin" element={<SignIn />}></Route>
-        <Route path="/cart" element={<Cart />}></Route>
-        <Route path="/create-course" element={<CreateCourse />}></Route>
-        <Route path="/course-detail" element={<CourseDetail />}></Route>
-        <Route path="/forgot-password" element={<ForgotPassword />}></Route>
-        <Route path="/checkout" element={<Checkout />}></Route>
-        <Route path="/" element={<Home />}></Route>
-      </Routes>
-    </UserContext.Provider>
+   
+      <GlobalStyle>
+        <UserContext.Provider value={{ state, dispatch }}>  
+            <Root />     
+        </UserContext.Provider>
+      </GlobalStyle>
+   
   );
 }
 

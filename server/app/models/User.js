@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const crypto = require("crypto");
 const { v4: uuidv4 } = require("uuid");
+const { ObjectId } = mongoose.Schema.Types;
+
 
 const userSchema = new mongoose.Schema(
   {
@@ -30,6 +32,10 @@ const userSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    courseId: [{
+      type: ObjectId,
+      ref: "Course",
+    }],
     history: {
       type: Array,
       default: [],
@@ -37,6 +43,12 @@ const userSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+// api add course id
+// courses.map((course) => {
+//   api add(course._id)
+// })
+
 
 // create virtual password
 userSchema
