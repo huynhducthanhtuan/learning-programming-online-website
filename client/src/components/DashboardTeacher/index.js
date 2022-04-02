@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { isAuthenticated } from '../Auth'
 import Header from '../Header'
 
-const DashboardAdmin = () => {
+const DashboardTeacher = () => {
 
     const {token, user } = isAuthenticated()
   
@@ -41,7 +41,7 @@ const DashboardAdmin = () => {
     return (
         
        <div className='mt-4'>
-            <Layout title="DashBoard" description='Admin Dashboard' className='container-fluid'>
+            <Layout title="DashBoard" description='Teacher Dashboard' className='container-fluid'>
             
             <div className='row'>
                 <div className='col-3'>
@@ -56,4 +56,4 @@ const DashboardAdmin = () => {
     )
 }
 
-export default DashboardAdmin
+export default DashboardTeacher
