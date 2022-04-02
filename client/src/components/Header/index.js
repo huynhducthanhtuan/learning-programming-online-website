@@ -19,7 +19,7 @@ const Header = () => {
    
 
     const signOutAction = () => {
-        localStorage.clear()
+        localStorage.removeItem('jwt');
         dispatch({type: "CLEAR"})
         navigate('/')
         setModalOpen(false)

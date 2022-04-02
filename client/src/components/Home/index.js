@@ -7,6 +7,7 @@ import CardCourse from "../CardCourse";
 import { getCourses } from "./apiCore";
 import ResultSearch from './ResultSearch'
 import styles from "./Home.module.css";
+import { isAuth,isAuthenticated } from "../Auth";
 import "./HomeSlick.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

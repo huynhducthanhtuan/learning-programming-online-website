@@ -84,3 +84,9 @@ export const emptyCart = (next) => {
         next();
     }
 }
+export const getTotal = () => {
+    let courses = getCart()
+    return courses && courses.reduce((currentValue, nextValue) => {
+        return currentValue + nextValue.price 
+    }, 0)
+}

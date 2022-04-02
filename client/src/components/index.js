@@ -10,4 +10,5 @@ export { default as AddCProduct } from "./Teacher/AddProduct";
 export { default as CourseDetail } from "./CourseDetail";
 export { default as Course } from "./Course";
 export { default as Cart } from "./Cart";
+export { default as Checkout } from "./Checkout";
 

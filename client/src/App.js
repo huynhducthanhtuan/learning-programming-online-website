@@ -1,11 +1,7 @@
-
-import "./App.css";
-import React, { useReducer, useContext, createContext } from "react";
+import React, { useReducer, createContext } from "react";
+import { reducer, initialState } from "./reducers";
 import GlobalStyle from "./Components/GlobalStyle"
 import Root from './Components/Screen/root'
-import { BrowserRouter } from "react-router-dom";
-import { reducer, initialState } from "./reducers";
-
 
 export const UserContext = createContext();
 
