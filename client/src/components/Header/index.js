@@ -8,6 +8,7 @@ import { itemTotal } from "../Cart/helperCart";
 import Modal from "../model/Modal";
 import styles from "./Header.module.css";
 import logo from '../../assets/images/logo192.png'
+import { useEffect } from "react";
 
 const Header = () => {
 
@@ -22,7 +23,7 @@ const Header = () => {
         navigate('/')
         setModalOpen(false)
     }
-    console.log("isAuthenticated ",isAuthenticated())
+  
     const renderList = () => {
         if(isAuthenticated()) {
             return (

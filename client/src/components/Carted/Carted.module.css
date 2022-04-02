@@ -4,10 +4,12 @@
 
 .courseItemImage {
     width: 100%;
-    height: 235px;
+    height: 100%;
     padding-right: 20px;
 }
+.imageCourseCart{
 
+}
 .courseItemText {
     vertical-align: top;
     padding-right: 90px;

@@ -8,10 +8,12 @@ import Layout from "../Layout";
 import styles from "./Cart.module.css";
 import Card from "../Home/Card";
 import Carted from "../Carted";
+import Checkout from "./Checkout";
 
 const Cart = () => {
   const [items, setItems] = useState()
 
+  console.log(items);
   useEffect(() => {
     setItems(getCart())
   }, [])
@@ -25,7 +27,7 @@ const Cart = () => {
         <hr/>
         {items.map((course, i) => {
           return (
-            <Carted key={i} course={course} />
+            <Carted key={i} course={course} cartUpdate={true} showRemoveCourse={true}/>
           ) 
         })}
       </div>
@@ -47,11 +49,15 @@ const Cart = () => {
       className="container-fluid"
     >
       <div className="row">
-        <div className="col-10">
+        <div className="col-8">
             {items &&( items.length > 0? showItems(items): noItemMessage())}
         </div>
-        <div className="col-2">
-           <p>checkout options/Shipping address/total/update</p>
+        <div className="col-4">
+          <div>
+          <h2 className="mt-4">Your cart summary</h2>
+           <hr/>
+           <Checkout  courses={items} />
+          </div>
         </div>
       </div>
     </Layout>

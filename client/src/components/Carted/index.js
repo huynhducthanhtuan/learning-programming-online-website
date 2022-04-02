@@ -1,14 +1,36 @@
 import React from 'react'
 import styles from './Carted.module.css'
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import { updateItem, removeItem } from '../Cart/helperCart'
 
-const Carted = ({course}) => {
 
-    console.log(course);
+
+const Carted = ({course, cartUpdate = false, showRemoveCourse = false}) => {
+
+    
+    const [count, setCount] = useState()
+
+    const showRemoveProductButton = (showRemoveCourse) => {
+        return(
+            showRemoveCourse &&(
+                <button
+                    onClick={() => {
+                        removeItem(course._id);
+                        window.location.reload(); 
+                    }}            
+                    className='btn btn-outline-danger mt-2 mb-2'>
+                    Remove
+                </button>                  
+            )
+        );
+    }
 
     return (
         <div class={`${styles.courseItem} mt-4`}>
-           <Link to={`/course/${course._id}`}> <img class={styles.courseItemImage} src={course.image} alt="" /></Link>
+            <div className={styles.imageCourseCart}>
+                <Link to={`/course/${course._id}`}> <img class={styles.courseItemImage} src={course.image} alt="" /></Link>
+            </div>
             <div class={styles.courseItemText}>
                 <Link to={`/course/${course._id}`}>
                     <h6>{course.name}</h6>
@@ -23,10 +45,12 @@ const Carted = ({course}) => {
                     <li>177 lectures</li>
                     <li>All Levels</li>
                 </ul>
+                {showRemoveProductButton(showRemoveCourse)}
+               
             </div>
             <div class={styles.courseItemCost}>
                 <p>${course.price}</p>
-            
+           
             </div>
         </div>
     )
