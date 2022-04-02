@@ -4,6 +4,9 @@ import { Header } from "..";
 import styles from "./MyCourses.module.css";
 
 const MyCourses = ({courses}) => {
+
+      
+
   return (
     courses.map((course, i) => {
         return(
@@ -27,6 +30,7 @@ const MyCourses = ({courses}) => {
                         <li>177 lectures</li>
                         <li>All Levels</li>
                     </ul>
+                    
 
                 
                 </div>

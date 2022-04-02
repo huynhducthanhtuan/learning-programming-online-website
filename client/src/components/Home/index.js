@@ -11,6 +11,7 @@ import { isAuth,isAuthenticated } from "../Auth";
 import "./HomeSlick.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { addItem } from "../Cart/helperCart";
 
 const Home = () => {
   const settings = {
@@ -24,6 +25,7 @@ const Home = () => {
   const [courseBySell, setCourseBySell] = useState([]);
   const [courseByArrival, setCourseByArrival] = useState([]);
   const [error, setError] = useState(false);
+  const [redirect, setRedirect] = useState(false)
 
   const loadCourseBySell = () => {
     getCourses("sold").then((data) => {
@@ -43,6 +45,12 @@ const Home = () => {
       }
     });
   };
+
+  const addToCart = (courseToAdd) => {
+    addItem(courseToAdd, () => {
+        setRedirect(true)
+    })
+  }
 
   useEffect(() => {
     loadCourseBySell();
@@ -77,13 +85,17 @@ const Home = () => {
                     <img className={styles.itemImage} src={course.image} alt="" />
                     <h6 className="mt-2">{course.name}</h6>
                   </Link>
-                  <div className={styles.itemCourseText}>
+                    <div className={styles.itemCourseText}>
                       <span>vo trung hieu</span>
                       <div className={styles.listCourseItemStar}>
                         <p>(295,007)</p>
                       </div>
                       <span className={styles.money}>${course.price}</span>
                     </div>
+                    <button className='btn btn-outline-info mt-2 mb-2' onClick={() => addToCart(course)}>
+                        Add to cart
+                    </button>
+
                 </article>
               </div>
             </div>
@@ -109,6 +121,9 @@ const Home = () => {
                       </div>
                       <span className={styles.money}>${course.price}</span>
                     </div>
+                    <button className='btn btn-outline-info mt-2 mb-2' onClick={() => addToCart(course)}>
+                        Add to cart
+                    </button>
                   </article>
                 </div>
               </div>
