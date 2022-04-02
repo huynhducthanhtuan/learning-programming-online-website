@@ -6,9 +6,9 @@ import "bootstrap/dist/css/bootstrap.css";
 import { getBraintreeClientToken, processPayment } from "./apiCheckout";
 import { emptyCart } from "../Cart/apiCart";
 import { useState } from "react";
-import { isAuth, isAuthenticated} from "../Auth";
+import { isAuth, isAuthenticated } from "../Auth";
 import { useEffect } from "react";
-import DropIn from "braintree-web-drop-in-react" 
+import DropIn from "braintree-web-drop-in-react"
 
 const Checkout = () => {
 
@@ -20,31 +20,33 @@ const Checkout = () => {
     address: ""
 
   })
+  const { success, error } = data
 
   const result = JSON.parse(localStorage.getItem('jwt'))
-  const {user, token} = result
-  const getToken = (user, token) =>{
-    getBraintreeClientToken(user._id, token).then(result =>{
-      if(result.error){
-        setData({...data, error: result.error})
+  const { user, token } = result
+  const getToken = (user, token) => {
+    getBraintreeClientToken(user._id, token).then(result => {
+      if (result.error) {
+        setData({ ...data, error: result.error })
       }
-      else{
-        setData({...data, clientToken: result.data.clientToken})
+      else {
+        setData({ ...data, clientToken: result.data.clientToken })
       }
-    
+
     })
   }
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     getToken(user, token)
 
   }, [])
 
-  const confirmPay = () =>{
+  const confirmPay = () => {
     let nonce;
-    let getNonce = data.instance.requestPaymentMethod().then(result =>{
-      console.log('result',result)
+    let getNonce = data.instance.requestPaymentMethod().then(result => {
+      console.log('result', result)
       nonce = result.nonce
+      console.log("nonce ", nonce);
       //once you have nonce (card type, card number)
       const paymentData = {
         paymentMethodNonce: nonce,
@@ -53,62 +55,74 @@ const Checkout = () => {
       }
 
       processPayment(user._id, token, paymentData)
-      .then(response =>{
-        
-        setData({...data, success: response.success})
-        //empty cart
-        // emptyCart(() => {
-        //   console.log("payment success");
-        // })
-      })
-      .catch(error => console.log(error))
+        .then(response => {
+
+          setData({ ...data, success: response.success })
+          console.log(response.success);
+          // empty cart
+          // emptyCart(() => {
+          //   console.log("payment success");
+          // })
+        })
+        .catch(error => console.log(error))
 
     })
-    .catch(errorPay => {
-      setData({...data, error: errorPay.message})
-    })
+      .catch(errorPay => {
+        setData({ ...data, error: errorPay.message })
+      })
   }
 
-  const showDropIn = ()=> {
+  const showDropIn = () => {
 
-    if(!data.clientToken){
-      return(
+    if (!data.clientToken) {
+      return (
         <div className={styles.checkoutLoading}>
-          <iframe  className={styles.checkoutGifLoading} src="./icons/loading-animation.gif"></iframe>
+          <iframe className={styles.checkoutGifLoading} src="./icons/loading-animation.gif"></iframe>
         </div>
       )
     }
     return (
-      <div onBlur={()=> setData({...data, error: ""})}>
-         {data.clientToken !== null ? (<div>
+      <div onBlur={() => setData({ ...data, error: "" })}>
+        {data.clientToken !== null ? (<div>
 
-            <DropIn 
-              options={{
-                authorization: data.clientToken,
-                paypal:{
-                  flow: "vault"
-                }
-              }}
-              
-              onInstance={instance => data.instance = instance} />  
-            <button onClick={confirmPay} className="btn btn-success btn-block">Confirm</button>
-          
-         </div>) : null }
-  
+          <DropIn
+            options={{
+              authorization: data.clientToken,
+              paypal: {
+                flow: "vault"
+              }
+            }}
+
+            onInstance={instance => data.instance = instance} />
+          <button onClick={confirmPay} className="btn btn-success btn-block">Confirm</button>
+
+        </div>) : null}
+
       </div>
     )
   }
-  
-  const showError = error =>{
-    <div className="alert alert-danger" style={{display: error ? 'block' : 'none'}}>
-      {error}
-    </div>
+
+  const showError = error => {
+    return (
+      <div className="alert alert-danger" style={{ display: error ? 'block' : 'none' }}>
+        {error}
+      </div>
+    )
   }
+
+  const showSuccsess = success =>
+  (
+    <div className="alert alert-info" style={{ display: success ? 'block' : 'none' }}>
+      Payment success
+    </div>
+  )
+
   return (
     <section>
-      <Header /> 
-      {/* {showError(data.error)} */}
-      
+      <Header />
+      {showError(error)}
+      {showSuccsess(success)}
+
       <div className="d-flex justify-content-center align-items-center">{showDropIn()}</div>
 
     </section>
