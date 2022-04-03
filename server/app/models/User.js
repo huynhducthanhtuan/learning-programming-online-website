@@ -40,6 +40,12 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+// api add course id
+// courses.map((course) => {
+//   api add(course._id)
+// })
+
+
 // create virtual password
 userSchema
   .virtual("password")

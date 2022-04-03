@@ -92,3 +92,13 @@
   font-size: 25px;
   font-weight: bold;
 }
+
+.itemCourseText {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.itemCourseText p {
+  margin: 0;
+}

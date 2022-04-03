@@ -11,4 +11,6 @@ export { default as CourseDetail } from "./CourseDetail";
 export { default as Course } from "./Course";
 export { default as Cart } from "./Cart";
 export { default as Checkout } from "./Checkout";
+export { default as MyCourses } from "./MyCourses";
+
 

@@ -2,14 +2,13 @@ import React, {useContext, useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {UserContext} from '../../App'
 import Search from '../Header/Search'
-import Card from '../Home/Card'
 import {isAuthenticated} from '../Auth/index'
 import { itemTotal } from "../Cart/helperCart";
 import Modal from "../model/Modal";
 import styles from "./Header.module.css";
 import logo from '../../assets/images/logo192.png'
-import { useEffect } from "react";
 import cartIcon from '../../assets/icons/shopping-cart.png'
+import { ToastContainer, toast } from 'react-toastify';
 
 const Header = () => {
 
@@ -17,8 +16,12 @@ const Header = () => {
     const {state,dispatch} = useContext(UserContext)
     const navigate = useNavigate()
    
+    const openMyCourses = () =>{
+        return navigate('/mycourses')
+    }
 
     const signOutAction = () => {
+        toast.success('Sign Out Success')
         localStorage.removeItem('jwt');
         dispatch({type: "CLEAR"})
         navigate('/')
@@ -29,6 +32,12 @@ const Header = () => {
         if(isAuthenticated()) {
             return (
                <div className="d-flex">
+
+                    <div className={`${styles.headerButton} ml-4`}>                 
+                        <button className={`btn btn-outline-primary`} style={{marginRight: '55px'}}  onClick={
+                            openMyCourses} >My Courses</button>   
+                    </div> 
+
                     <div className={`${styles.headerButton }`}>                 
                         <Link to="/cart">
                             <div className={styles.cartIcon}>
@@ -42,7 +51,7 @@ const Header = () => {
                         <button className="btn btn-info openModalBtn"  onClick={() => {
                             setModalOpen(true);
                         
-                        }} >sign Out</button>   
+                        }} >Sign Out</button>   
                     </div> 
                    
                     {/* <Link to="/admin/dashboard " className="nav-link">
@@ -68,6 +77,7 @@ const Header = () => {
 
     return (
         <div>
+           
             {modalOpen && <Modal body="Are you sure you want to sign out?" setOpenModal={setModalOpen} action={signOutAction}  />}
              <header className={`container ${styles.header}`}>
                 <Link to="/">

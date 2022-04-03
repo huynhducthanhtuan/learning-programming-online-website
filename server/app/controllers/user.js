@@ -20,7 +20,7 @@ exports.userById = (req, res, next, id) => {
 
 exports.registerCourse = (req, res, next) => {
 
-
+  console.log( req.body.courseId );
   User.findByIdAndUpdate(
     req.profile._id,
     { $push: { coursesId: req.body.courseId } },

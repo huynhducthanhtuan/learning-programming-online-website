@@ -25,9 +25,8 @@ function lessonsList(lessonsId, buttonId) {
 
   return (
     <section>
-      <div className={`container ${styles.courseContainer}`}>
-        <Header />
-      </div>
+      
+      <Header />
 
       <div className={styles.course}>
 

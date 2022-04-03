@@ -80,13 +80,12 @@ export const removeItem = (productId) => {
 export const emptyCart = (next) => {
     if (typeof window !== undefined) {
         localStorage.removeItem('cart');
-
         next();
     }
 }
 export const getTotal = () => {
-    let courses = getCart()
+    let courses = getLocalStorageItem('cart');
     return courses && courses.reduce((currentValue, nextValue) => {
         return currentValue + nextValue.price 
     }, 0)
-}
+}   

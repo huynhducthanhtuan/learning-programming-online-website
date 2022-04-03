@@ -12,6 +12,6 @@
     display: none !important;
 }
 .slick-track {
-    height: 200px;
+    height: 350px;
     transform: translate3d(-300px, 0px, 0px);
 }

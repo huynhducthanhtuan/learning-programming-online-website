@@ -114,6 +114,9 @@ const Shop = () => {
 
         return range;
     }
+
+
+    console.log("filteredResult ",filteredResult);
     return (
             <div>
                <Header />
@@ -135,13 +138,14 @@ const Shop = () => {
                             <div className='row'>
                                     
                                     {searchedCourses.length <= 0 && searchMessage(searchedCourses)}
-                                    {searchedCourses.map((course,i) => 
+                                    {filteredResult && filteredResult.length <= 0 && searchedCourses.map((course,i) => 
                                         (
                                         <div className='col-4 mt-4' key={course._id}>
                                             <Card course={course}/>
                                         </div>
                                         )
                                     )}   
+
                                     {filteredResult.map((course,i) => 
                                         (
                                         <div className='col-4 mt-4' key={course._id}>
