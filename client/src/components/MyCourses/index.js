@@ -1,44 +1,47 @@
 import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Header } from "..";
-import styles from "./MyCourses.module.css";
+import Carted from "../Carted";
+import {getUserHasCourses} from './apiMyCourses'
+import {isAuthenticated} from '../Auth'
+import { ToastContainer, toast } from 'react-toastify';
 
-const MyCourses = ({courses}) => {
-  return (
-    courses.map((course, i) => {
-        return(
-        <section>
-            <Header/>
-            <div class={`${styles.courseItem} mt-4`}>
-                <div className={styles.imageCourseCart}>
-                    <Link to={`/course/${course._id}`}> <img class={styles.courseItemImage} src={course.image} alt="" /></Link>
-                </div>
-                <div class={styles.courseItemText}>
-                    <Link to={`/course/${course._id}`}>
-                        <h6>{course.name}</h6>
-                        <p>Learn<b> {course.category.name}</b>{course.description.goal}<b>{course.category.name}</b></p>
-                    </Link>
-                    <div class={styles.courseItemRate}>
-                        <span>4.6</span>
-                        
-                        <span>(64,668)</span>
-                    </div>
-                    <ul>35 total hours
-                        <li>177 lectures</li>
-                        <li>All Levels</li>
-                    </ul>
+const MyCourses = ({}) => {
+    const {token, user } = isAuthenticated([])
 
-                
-                </div>
-                <div class={styles.courseItemCost}>
-                    <p>${course.price}</p>
-            
-                </div>
-            </div>
-    </section>
-        )
-    })
-  );
+    const [userHasCourses, setUserHasCourses] = useState()
+    
+    
+    useEffect(() => {
+        getUserHasCourses(user._id, token)
+            .then(user => {
+               if(user.error) {
+                   toast.error(user.error)
+               }else {
+                   setUserHasCourses(user)
+               }
+            })
+    },[])
+
+    console.log(userHasCourses);
+    return (
+        <div>
+        <Header />
+        <div className="container-fluid">
+        {userHasCourses &&
+            userHasCourses.coursesId.map((course, i) => {
+                return(
+                    <Carted course={course}/>
+                )
+            } ) 
+        }
+        </div>
+        
+        </div>
+       
+    )
 };
 
 export default MyCourses;
