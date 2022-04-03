@@ -4,6 +4,9 @@ import styles from "./Course.module.css";
 import Header from "../Header";
 import { read } from "./aipCourse";
 import { addItem } from "../Cart/helperCart";
+import {isAuthenticated} from '../Auth'
+import {getUserHasCourses} from '../MyCourses/apiMyCourses'
+import { ToastContainer, toast } from 'react-toastify';
 import onl1 from "../../assets/icons/onl1.png";
 import onl2 from "../../assets/icons/onl2.png";
 import onl3 from "../../assets/icons/onl3.png";
@@ -11,19 +14,44 @@ import bluetick from "../../assets/icons/bluetick.png";
 import oddstar from "../../assets/icons/oddstar.png";
 import staremptypng from "../../assets/icons/staremptypng.png";
 import detailcourse1 from "../../assets/icons/detailcourse1.png";
-const Course = () => {
+
+
+const Course = ({isMyCourse = false}) => {
   const { courseId } = useParams();
   const navigate = useNavigate()
 
   const [course, setCourse] = useState({});
   const [error, setError] = useState(false);
   const [redirect, setRedirect] = useState(false)
+  
   const { description, name, rate } = course;
+  
+  const [userHasCourses, setUserHasCourses] = useState()
+  const {token, user } = isAuthenticated([])
 
   useEffect(() => {
     loadSingleProduct(courseId);
+    getUserHasCourses(user._id, token)
+    .then(user => {
+       if(user.error) {
+           toast.error(user.error)
+       }else {
+           setUserHasCourses(user)
+       }
+    })
   }, []);
 
+  // console.log(courseId)
+  // console.log(userHasCourses)
+
+  const containeCourse = () => {
+    const filterCourse = userHasCourses && userHasCourses.coursesId.filter(element => element._id == courseId
+    )
+      if(filterCourse && filterCourse.length > 0) 
+        return true
+      return false   
+  }
+  
   const loadSingleProduct = (courseId) => {
     read(courseId).then((data) => {
       if (data.error) {
@@ -33,6 +61,10 @@ const Course = () => {
       }
     });
   };
+
+  const courseDetai = () => {
+    return navigate('/courseDetail')
+  }
 
   const addToCart = () => {
     addItem(course, () => {
@@ -48,16 +80,25 @@ const Course = () => {
 
   const showRegister = () => {
     
-    if(course) {
+    if(course && ! containeCourse() ) {
       return (
         <button
           onClick={addToCart}
           className={`btn btn-info ${styles.btnRegister}`}
         >
-          Add to Cart
+          Add to cart
         </button>
-      );
+      )
     }
+    else return (
+      <button
+      onClick={courseDetai}
+      className={`btn btn-info ${styles.btnRegister}`}
+    >
+      Start
+    </button>
+    )
+
   };
 
   return (
@@ -106,6 +147,7 @@ const Course = () => {
             </div>
             <div className={styles.courseDetailRate}>
               <p>Rating and Review</p>
+              
             </div>
             <div className={`d-flex mt-2 ${styles.courseDetailStar}`}>
               {/* <img src={staremptypng}></img> */}

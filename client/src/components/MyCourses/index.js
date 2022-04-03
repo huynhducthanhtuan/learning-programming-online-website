@@ -33,7 +33,7 @@ const MyCourses = ({}) => {
         {userHasCourses &&
             userHasCourses.coursesId.map((course, i) => {
                 return(
-                    <Carted course={course}/>
+                    <Carted course={course} />
                 )
             } ) 
         }
