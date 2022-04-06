@@ -1,8 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Footer.module.css";
+import fbIcon from "../../assets/icons/fb.png";
+import instarIcon from "../../assets/icons/insta.png";
+import twIcon from "../../assets/icons/tw.png";
 
 const Footer = () => {
+  
   return (
     <footer className={`container_fluid ${styles.footer}`}>
       <div className="row">
@@ -10,13 +14,13 @@ const Footer = () => {
           <p>Thông tin về chúng tôi</p>
           <div className={styles.footerImage}>
             <Link to="/">
-              <img src="./icons/fb.png"></img>
+              <img src={fbIcon}></img>
             </Link>
             <Link to="/">
-              <img src="./icons/insta.png"></img>
+              <img src={instarIcon}></img>
             </Link>
             <Link to="/">
-              <img src="./icons/tw.png"></img>
+              <img src={twIcon}></img>
             </Link>
           </div>
         </div>

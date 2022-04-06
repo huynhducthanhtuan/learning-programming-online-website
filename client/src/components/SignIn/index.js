@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { authenticate } from "../Auth";
 import { UserContext } from "../../App";
 import styles from "./SignIn.module.css";
-import M from "materialize-css";
+import { ToastContainer, toast } from 'react-toastify';
 
 const SignIn = () => {
   const { state, dispatch } = useContext(UserContext);
@@ -56,14 +56,15 @@ const SignIn = () => {
 
     signInAPI({ email, password }).then((data) => {
       if (data.error) {
-        M.toast({ html: data.error, classes: "rounded red" });
+          toast.error(data.error)
       } else {
         authenticate(data, () => {
-          M.toast({ html: "Signin Success", classes: "rounded green" });
+          toast.success('Sign In Success')
           setValues({ ...values, error: "", redirectUser: true });
         });
         dispatch({ type: "USER", payload: data.user });
       }
+      // console.log(data);
     });
   };
 
@@ -96,7 +97,7 @@ const SignIn = () => {
 
         <div className={styles.formRemind}>
           <div className={styles.formRemember}>
-            {/* <input className={styles.formControl} type="checkbox" /> */}
+            
             <Link to="/signup">
               <span
                 className={styles.formRememberText}
@@ -125,6 +126,7 @@ const SignIn = () => {
 
   return (
     <div className={styles.main}>
+    
       {signInForm()}
       {redirectUserShow()}
     </div>

@@ -7,6 +7,7 @@
 .headerButton {
  display: flex;
  justify-content: space-around;
+ position: relative;
 }
 
 .headerLogo {
@@ -23,14 +24,14 @@
   top: 50%;
   left: 0%;
   position: relative;
-  width: 300px;
+
 }
 
 .headerSearch input {
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 795px;
+  width: 400px;
   height: 55px;
   background: #e2e8ef;
   box-shadow: 0px 34.417px 25.8127px rgba(25, 25, 46, 0.04);
@@ -46,7 +47,7 @@
 .headerSearch img {
   position: absolute;
   top: 33%;
-  right: 5%;
+  right: 8%;
 }
 
 .buttonSign {
@@ -70,3 +71,30 @@
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
+
+
+.cartBadge, cartBadge:hover {
+  height: 40px;
+  border-radius: 50%;
+  padding: 1px 6px;
+  font-size: 15px;
+  background-color: #42A5F5;
+  color: #141414;
+
+}
+.cartIcon {
+    width: 24px;
+    height: 24px;
+    margin-right: 30px;
+}
+.imageIcon {
+  height: 100%;
+  width: 100%;
+}
+.quantityCart {
+  position: absolute;
+  top: 1%;
+  left: 35%;
+  
+}
+

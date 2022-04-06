@@ -63,7 +63,7 @@ const SignUp = () => {
         className="alert alert-info"
         style={{ display: success ? "" : "none" }}
       >
-        Sign up success.
+        Sign up success. <Link to="/signin">Sign In</Link>
       </div>
     );
   };

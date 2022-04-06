@@ -5,7 +5,9 @@ exports.userInfo = (req, res, next) => {
 };
 
 exports.userById = (req, res, next, id) => {
-  User.findById(id).exec((err, user) => {
+  User.findById(id)
+  .populate('coursesId')
+  .exec((err, user) => {
     if (err || !user) {
       return res.status(400).json({
         error: `User id ${id} not found `,
@@ -15,3 +17,28 @@ exports.userById = (req, res, next, id) => {
     next();
   });
 };
+
+exports.registerCourse = (req, res, next) => {
+
+  console.log( req.body.courseId );
+  User.findByIdAndUpdate(
+    req.profile._id,
+    { $push: { coursesId: req.body.courseId } },
+    {new: true}
+  )
+  .then(data => {
+    res.json(data)
+  })
+  .catch(err => console.log(err))
+
+  // res.json(req.profile)
+};
+
+exports.getRegisteredCourses = (req, res, next) => {
+    Course.find({_id: id})
+      .then(course => {
+        res.json(course)
+      })
+      .catch(err => console.log(err))
+
+}
