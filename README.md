@@ -1,6 +1,6 @@
 ## Learning Programming Online Website
 
-### Cách chạy dự án (Back-end)
+### Cách chạy dự án (Back-end):
 
 #### 1. Tại thư mục gốc đã clone về trước đó (learning-programming-online-website), mở CMD
 
@@ -10,7 +10,7 @@
 
 #### 4. Ctrl+Click vào đường dẫn "http://localhost:8000/" ở cửa sổ Terminal
 
-### Cách chạy dự án (Front-end)
+### Cách chạy dự án (Front-end):
 
 #### 1. Tại thư mục (learning-programming-online-website/client), mở CMD
 
