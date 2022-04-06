@@ -11,36 +11,42 @@ import Carted from "../Carted";
 import Checkout from "./Checkout";
 
 const Cart = () => {
-  const [items, setItems] = useState()
+  const [items, setItems] = useState();
 
   console.log(items);
   useEffect(() => {
-    setItems(getCart())
-  }, [])
+    setItems(getCart());
+
+    window.scrollTo(0, 0);
+  }, []);
 
   const showItems = (items) => {
-    return(
+    return (
       <div>
-        <h2>
-          Your cart has {items && items.length} items
-        </h2>
-        <hr/>
-        {items && items.map((course, i) => {
-          return (
-            <Carted key={i} course={course} cartUpdate={true} showRemoveCourse={true}/>
-          ) 
-        })}
+        <h2>Your cart has {items && items.length} items</h2>
+        <hr />
+        {items &&
+          items.map((course, i) => {
+            return (
+              <Carted
+                key={i}
+                course={course}
+                cartUpdate={true}
+                showRemoveCourse={true}
+              />
+            );
+          })}
       </div>
-    )
-  }
+    );
+  };
 
-  const noItemMessage = () => ( <h2>
+  const noItemMessage = () => (
+    <h2>
       Your cart is empty .
-      <br/>
+      <br />
       <Link to="/shop">Continue Shop</Link>
-    </h2>)
-   
- 
+    </h2>
+  );
 
   return (
     <Layout
@@ -50,13 +56,13 @@ const Cart = () => {
     >
       <div className="row">
         <div className="col-8">
-            {items && ( items.length > 0? showItems(items): noItemMessage())}
+          {items && (items.length > 0 ? showItems(items) : noItemMessage())}
         </div>
         <div className="col-4">
           <div>
-          <h2 className="mt-4">Your cart summary</h2>
-           <hr/>
-           <Checkout  courses={items} />
+            <h2 className="mt-4">Your cart summary</h2>
+            <hr />
+            <Checkout courses={items} />
           </div>
         </div>
       </div>

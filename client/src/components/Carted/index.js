@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./Carted.module.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -6,7 +6,7 @@ import { updateItem, removeItem } from "../Cart/helperCart";
 import Course from "../Course";
 
 const Carted = ({ course, cartUpdate = false, showRemoveCourse = false }) => {
-  console.log("course ",course);
+  console.log("course ", course);
 
   const showRemoveProductButton = (showRemoveCourse) => {
     return (
@@ -23,6 +23,8 @@ const Carted = ({ course, cartUpdate = false, showRemoveCourse = false }) => {
       )
     );
   };
+
+  useEffect(() => window.scrollTo(0, 0), []);
 
   return (
     <div class={`${styles.courseItem} mt-4`}>

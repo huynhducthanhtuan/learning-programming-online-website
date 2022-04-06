@@ -3,8 +3,11 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import {
   Home,
   Shop,
-  SignIn,
   Signup,
+  SignIn,
+  ForgotPassword,
+  ForgotPasswordEnterCode,
+  ForgotPasswordCreateNewPassword,
   DashboardTeacher,
   Course,
   AddCategory,
@@ -25,6 +28,15 @@ const Root = () => {
       <Route path="/create/course" element={<AddCProduct />} />
       <Route path="/signup" element={<Signup />}></Route>
       <Route path="/signin" element={<SignIn />}></Route>
+      <Route path="/forgot-password" element={<ForgotPassword />}></Route>
+      <Route
+        path="/forgot-password-enter-code"
+        element={<ForgotPasswordEnterCode />}
+      ></Route>
+      <Route
+        path="/forgot-password-create-new-password"
+        element={<ForgotPasswordCreateNewPassword />}
+      ></Route>
       <Route path="/mycourses" element={<MyCourses />}></Route>
       <Route path="/cart" element={<Cart />}></Route>
       <Route path="/shop" element={<Shop />}></Route>

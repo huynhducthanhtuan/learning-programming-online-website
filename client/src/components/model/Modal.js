@@ -14,9 +14,11 @@ function Modal({ setOpenModal, title, body = "Body", action }) {
             X
           </button>
         </div>
-        {title && <div className="title">
-          <h1>{title}</h1>
-        </div> }
+        {title && (
+          <div className="title">
+            <h1>{title}</h1>
+          </div>
+        )}
         <div className="body">
           <p>{body}</p>
         </div>
@@ -29,9 +31,7 @@ function Modal({ setOpenModal, title, body = "Body", action }) {
           >
             Cancel
           </button>
-          <button
-            onClick={action}
-          >Oke</button>
+          <button onClick={action}>Oke</button>
         </div>
       </div>
     </div>

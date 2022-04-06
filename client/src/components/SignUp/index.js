@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./SignUp.module.css";
 
@@ -20,7 +20,6 @@ const SignUp = () => {
     return fetch("/auth/signup", {
       method: "POST",
       headers: {
-        // Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify(user),
@@ -46,6 +45,7 @@ const SignUp = () => {
       }
     });
   };
+
   const errorShow = () => {
     return (
       <div
@@ -121,6 +121,8 @@ const SignUp = () => {
       </form>
     );
   };
+
+  useEffect(() => window.scrollTo(0, 0), []);
 
   return (
     <section className={`mt-4 ${styles.flex}`}>

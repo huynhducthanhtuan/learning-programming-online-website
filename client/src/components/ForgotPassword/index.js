@@ -1,49 +1,96 @@
-import React from "react";
+import React, { useRef, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./ForgotPassword.module.css";
-import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { ForgotPasswordContext } from "../../contexts/ForgotPasswordContext";
+import { submitEmailApi } from "./apiForgotPassword";
+import Header from "../Header";
 
 const ForgotPassword = () => {
+  const navigate = useNavigate();
+  const emailInputRef = useRef();
+  const { code, setCode, email, setEmail } = useContext(ForgotPasswordContext);
+
+  const handleCancel = (e) => {
+    e.preventDefault();
+    emailInputRef.current.value = "";
+  };
+
+  const handleSendCode = async (e) => {
+    e.preventDefault();
+
+    // Call API
+    const data = await submitEmailApi({
+      email: emailInputRef.current.value,
+    });
+
+    // Xử lí kết quả trả về từ API
+    switch (data.message) {
+      case "Please enter your email":
+        toast.error(data.message.toLocaleUpperCase());
+        break;
+      case "Please enter an valid format email":
+        toast.error(data.message.toLocaleUpperCase());
+        break;
+      case "Email not found":
+        toast.error(data.message.toLocaleUpperCase());
+        break;
+      case "Send code failed":
+        setEmail(emailInputRef.current.value);
+        toast.error(data.message.toLocaleUpperCase());
+        break;
+      case "Send code success. Please check your email":
+        setEmail(emailInputRef.current.value);
+        toast.success(data.message.toLocaleUpperCase());
+        navigate("/forgot-password-enter-code");
+        break;
+    }
+  };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <section>
-      <div className={styles.header}>
-        <img src="./icons/lpo.png" className={styles.logo}></img>
+      <Header showSearchPart={false} />
+      <h1 className={`${styles.headerString} d-flex`}>Forgot Password</h1>
 
-        <Link to="/signin" className={styles.buttonLink}>
-          Sign in
-        </Link>
-      </div>
-      <img src="./icons/line.png" className={styles.lineAll}></img>
-
-      <div className={styles.header}>
-        <h1 className={styles.headerString}>Forgot Password</h1>
-        <img src="./images/lock.png" className={styles.imageLock}></img>
-      </div>
-
-      <form className={styles.form}>
+      <form className={styles.form} id="contact-form">
         <h3 className={styles.formHeader}>Reset your password</h3>
-        <img src="./icons/line.png" className={styles.line}></img>
+        <img src="./icons/Line.png" className={styles.line}></img>
         <div>
-          <h4>Please enter your email to find your account</h4>
+          <label className={styles.formString}>
+            Please enter your email to reset your account
+          </label>
           <input
             type="email"
+            name="user_email"
             className={styles.formControl}
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             placeholder="Enter email"
+            ref={emailInputRef}
           />
         </div>
 
         <div className={styles.formButton}>
-          <button className={styles.buttonCancel} type="cancel">
+          <button
+            className={styles.buttonCancel}
+            type="cancel"
+            onClick={(e) => handleCancel(e)}
+          >
             Cancel
           </button>
-          <button className={styles.buttonSend} type="send-code">
+          <button
+            className={styles.buttonSend}
+            type="submit"
+            onClick={(e) => handleSendCode(e)}
+          >
             Send code
           </button>
         </div>
       </form>
-
-      <img className={styles.imageForgot} src="./images/forgot-pass.png"></img>
     </section>
   );
 };

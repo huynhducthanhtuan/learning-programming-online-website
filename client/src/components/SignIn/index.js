@@ -1,9 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { authenticate } from "../Auth";
 import { UserContext } from "../../App";
 import styles from "./SignIn.module.css";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 
 const SignIn = () => {
   const { state, dispatch } = useContext(UserContext);
@@ -56,10 +56,10 @@ const SignIn = () => {
 
     signInAPI({ email, password }).then((data) => {
       if (data.error) {
-          toast.error(data.error)
+        toast.error(data.error);
       } else {
         authenticate(data, () => {
-          toast.success('Sign In Success')
+          toast.success("Sign In Success");
           setValues({ ...values, error: "", redirectUser: true });
         });
         dispatch({ type: "USER", payload: data.user });
@@ -97,7 +97,6 @@ const SignIn = () => {
 
         <div className={styles.formRemind}>
           <div className={styles.formRemember}>
-            
             <Link to="/signup">
               <span
                 className={styles.formRememberText}
@@ -124,9 +123,10 @@ const SignIn = () => {
     );
   };
 
+  useEffect(() => window.scrollTo(0, 0), []);
+
   return (
     <div className={styles.main}>
-    
       {signInForm()}
       {redirectUserShow()}
     </div>

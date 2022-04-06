@@ -47,6 +47,7 @@ const Home = () => {
   useEffect(() => {
     loadCourseBySell();
     loadCourseByArrival();
+    window.scrollTo(0, 0);
   }, []);
 
   return (

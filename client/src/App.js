@@ -3,6 +3,7 @@ import { reducer, initialState } from "./reducers";
 import GlobalStyle from "./components/GlobalStyle";
 import Root from "./components/Screen/root";
 import { ToastContainer, toast } from "react-toastify";
+import { ForgotPasswordContextProvider } from "./contexts/ForgotPasswordContext";
 
 export const UserContext = createContext();
 
@@ -12,7 +13,9 @@ function App() {
     <GlobalStyle>
       <ToastContainer position="top-right" autoClose={1000} type="default" />
       <UserContext.Provider value={{ state, dispatch }}>
-        <Root />
+        <ForgotPasswordContextProvider>
+          <Root />
+        </ForgotPasswordContextProvider>
       </UserContext.Provider>
     </GlobalStyle>
   );
