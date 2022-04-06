@@ -99,10 +99,9 @@
 
 
 .courseAllLessons {
-  display: none;
+  display: block;
   background: #ffffff;
 }
-
 .courseLesson {
   padding: 10px 0 0 25px;
   border-top: 1px solid #aabac2;

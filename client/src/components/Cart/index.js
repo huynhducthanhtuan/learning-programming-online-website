@@ -25,7 +25,7 @@ const Cart = () => {
           Your cart has {items && items.length} items
         </h2>
         <hr/>
-        {items.map((course, i) => {
+        {items && items.map((course, i) => {
           return (
             <Carted key={i} course={course} cartUpdate={true} showRemoveCourse={true}/>
           ) 
@@ -50,7 +50,7 @@ const Cart = () => {
     >
       <div className="row">
         <div className="col-8">
-            {items &&( items.length > 0? showItems(items): noItemMessage())}
+            {items && ( items.length > 0? showItems(items): noItemMessage())}
         </div>
         <div className="col-4">
           <div>

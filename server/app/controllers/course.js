@@ -1,12 +1,14 @@
 const Course = require("../models/Course");
 const User = require("../models/User");
-
+const Lesson = require("../models/Lesson")
 exports.read = (req, res, next) => {
     res.json(req.course)
 } 
 
 exports.courseById = (req, res, next, id) => {
-    Course.findById(id).exec((err, course) => {
+    Course.findById(id)
+    .populate("category" )
+    .exec((err, course) => {
       if (err || !course) {
         return res.status(400).json({
           error: `Course id ${id} not found `,
@@ -63,6 +65,8 @@ exports.list = (req, res, next) => {
             res.json(courses)
         })
 }
+
+
 
 exports.listBySearch = (req, res) => {
   var order = req.body.order ? req.body.order : 'desc';

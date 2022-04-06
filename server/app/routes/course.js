@@ -13,6 +13,7 @@ router.post('/create/:userId' , requireSignIn, isAuth, isAdmin, create)
 router.post('/by/search', listBySearch)
 router.get('/search/courseByName', listSearch)
 
+
 router.param('userId', userById)
 router.param('courseId', courseById)
 

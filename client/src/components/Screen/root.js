@@ -2,13 +2,13 @@
 import React from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import {Home, Shop, SignIn, Signup, DashboardTeacher ,Course , AddCategory, AddCProduct, CourseDetail, Cart , Checkout,
-    MyCourses} from '../index'
+    MyCourses, ViewCourseToLearn} from '../index'
 
 
 const Root = () => {
     return (
         <Routes>
-            <Route path="#" element={ <CourseDetail />} />
+       
             <Route path="/course/:courseId" element={ <Course />} /> 
             <Route path="/admin/dashboard" element={ <DashboardTeacher />} />
             <Route path="/create/category" element={ <AddCategory />} />
@@ -20,7 +20,8 @@ const Root = () => {
             <Route path="/cart" element={<Cart />}></Route>
             <Route path="/shop" element={< Shop/>}></Route> 
             <Route path="/checkout" element={< Checkout/>}></Route> 
-            <Route path="/coursedetail" element={< CourseDetail/>}></Route>
+            <Route path="/coursedetail/:courseId" element={< CourseDetail/>}></Route>
+            <Route path="/coursedetail/:courseId/:lessonId" element={< ViewCourseToLearn/>}></Route>
             <Route path="/" element={<Home />}></Route>
         </Routes>
     )

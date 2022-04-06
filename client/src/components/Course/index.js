@@ -63,10 +63,12 @@ const Course = ({isMyCourse = false}) => {
   };
 
   const courseDetai = () => {
-    return navigate('/courseDetail')
+    return navigate(`/courseDetail/${courseId}`)
   }
 
-  const addToCart = () => {
+  const addToCart = (course) => {
+  
+    console.log("course ",course);
     addItem(course, () => {
       setRedirect(true)
     })
@@ -80,10 +82,10 @@ const Course = ({isMyCourse = false}) => {
 
   const showRegister = () => {
     
-    if(course && ! containeCourse() ) {
+    if(course && !containeCourse() ) {
       return (
         <button
-          onClick={addToCart}
+          onClick={() => addToCart(course)}
           className={`btn btn-info ${styles.btnRegister}`}
         >
           Add to cart

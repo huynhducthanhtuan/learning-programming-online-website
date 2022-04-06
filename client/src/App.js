@@ -1,7 +1,7 @@
 import React, { useReducer, createContext } from "react";
 import { reducer, initialState } from "./reducers";
-import GlobalStyle from "./Components/GlobalStyle";
-import Root from "./Components/Screen/root";
+import GlobalStyle from "./components/GlobalStyle";
+import Root from "./components/Screen/root";
 import { ToastContainer, toast } from "react-toastify";
 
 export const UserContext = createContext();

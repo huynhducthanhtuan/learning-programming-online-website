@@ -40,15 +40,14 @@ export const addItem = (item, next) => {
     let cart = getCart();
 
     if (cart) {
-        cart.push({...item,
-            count: 1
-        });
+        cart.push({...item});
+     
     
         cart = Array.from(new Set(cart.map((p) => (p._id))))
             .map((id) => {
                 return cart.find(p => p._id === id);
             });
-    
+            console.log("cart ",cart);
         setLocalStorageItem('cart', cart);
     
         next();

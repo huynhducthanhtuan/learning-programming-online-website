@@ -36,6 +36,10 @@ const userSchema = new mongoose.Schema(
       type: Array,
       default: [],
     },
+    pic:{
+      type: String,
+      default:"https://res.cloudinary.com/dhzbsq7fj/image/upload/v1643101647/avatardefault_92824_aifry9.png"
+    },
   },
   { timestamps: true }
 );

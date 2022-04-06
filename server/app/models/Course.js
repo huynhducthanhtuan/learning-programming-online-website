@@ -12,51 +12,47 @@ const Course = new Schema(
     },
     description: {
       goal: String,
-      achievement: [{type: String}],
+      achievement: [{ type: String }],
     },
     price: {
       type: Number,
       required: true,
     },
-    
+
     creator: {
       type: ObjectId,
       ref: "User",
     },
     category: {
-        type: ObjectId,
-        ref: 'Category',
-        
+      type: ObjectId,
+      ref: "Category",
     },
     image: {
-        type: String,   
+      type: String,
     },
     sold: {
       type: Number,
-      default: 0
+      default: 0,
     },
     rate: {
       type: Number,
-      default: 1
+      default: 1,
     },
-    // parts: [
-    //   {
-    //     topic: String,
-    //     lessons: [{ type: ObjectId, ref: "Lesson" }],
-    //   },
-    // ],
+    parts: [
+      {
+        topic: String,
+        lessons: [{ type: ObjectId, ref: "Lesson", autopopulate: true }],
+      },
+    ],
    
-    // rates: [{
-    //     numberStar: Number,
-    //     ratedBy: {type: ObjectId, ref: 'User'}
-    // }],
-    slug: { type: String, slug: 'name', unique: true },
-   
-    }, 
-    { timestamps: true,},
-)
+    slug: { type: String, slug: "name", unique: true },
+  },
+  { timestamps: true }
+);
 // add plugin
 mongoose.plugin(slug);
+const topSchema = mongoose.Schema({ nested: Course });
+topSchema.plugin(require("mongoose-autopopulate"));
 // Course.plugin(mongooseDelete, { overrideMethods: 'all', deletedAt: true });
 
 module.exports = mongoose.model("Course", Course);

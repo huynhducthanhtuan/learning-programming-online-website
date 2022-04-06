@@ -6,7 +6,7 @@ import { updateItem, removeItem } from "../Cart/helperCart";
 import Course from "../Course";
 
 const Carted = ({ course, cartUpdate = false, showRemoveCourse = false }) => {
-  const [count, setCount] = useState();
+  console.log("course ",course);
 
   const showRemoveProductButton = (showRemoveCourse) => {
     return (
