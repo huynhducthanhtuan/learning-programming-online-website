@@ -21,8 +21,6 @@ const MyCourses = ({}) => {
         setUserHasCourses(user);
       }
     });
-
-    window.scrollTo(0, 0);
   }, []);
 
   console.log(userHasCourses);

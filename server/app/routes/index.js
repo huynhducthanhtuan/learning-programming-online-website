@@ -3,7 +3,7 @@ const courseRoute = require("./course");
 const categoryRoute = require("./category");
 const lessonRoute = require("./lesson");
 const userRoute = require("./user");
-
+const profileRoute = require("./profile");
 const braintreeRoute = require("./braintree");
 
 function route(app) {
@@ -12,8 +12,8 @@ function route(app) {
   app.use("/category", categoryRoute);
   app.use("/lesson", lessonRoute);
   app.use("/user", userRoute);
+  app.use("/profile", profileRoute);
   app.use("/braintree", braintreeRoute);
- 
 }
 
 module.exports = route;

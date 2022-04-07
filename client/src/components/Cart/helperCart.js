@@ -1,90 +1,91 @@
 export const getLocalStorageItem = (itemName) => {
-    let item = [];
-    
-    if (typeof window !== 'undefined') {
-        if (localStorage.getItem(itemName)) {
-            item = JSON.parse(localStorage.getItem(itemName));
-        }
-    }
+  let item = [];
 
-    return item;
-}
+  if (typeof window !== "undefined") {
+    if (localStorage.getItem(itemName)) {
+      item = JSON.parse(localStorage.getItem(itemName));
+    }
+  }
+
+  return item;
+};
 
 export const setLocalStorageItem = (itemName, object) => {
-    let item = JSON.stringify(object);
+  let item = JSON.stringify(object);
 
-    localStorage.setItem(itemName, item);
-}
+  localStorage.setItem(itemName, item);
+};
 
 export const getCart = () => {
-    let cart = getLocalStorageItem('cart');
+  let cart = getLocalStorageItem("cart");
 
-    return cart ? cart : 'undefined';
-}
+  return cart ? cart : "undefined";
+};
 
 export const updateItem = (productId, count) => {
-    let cart = getCart();
+  let cart = getCart();
 
-    if (cart) {
-        cart.map((p, i) => {
-            if (p._id === productId) {
-                cart[i].count = count;
-            }
-        });
-    
-        setLocalStorageItem('cart', cart);
-    }
-}
+  if (cart) {
+    cart.map((p, i) => {
+      if (p._id === productId) {
+        cart[i].count = count;
+      }
+    });
+
+    setLocalStorageItem("cart", cart);
+  }
+};
 
 export const addItem = (item, next) => {
-    let cart = getCart();
+  let cart = getCart();
 
-    if (cart) {
-        cart.push({...item});
-     
-    
-        cart = Array.from(new Set(cart.map((p) => (p._id))))
-            .map((id) => {
-                return cart.find(p => p._id === id);
-            });
-            console.log("cart ",cart);
-        setLocalStorageItem('cart', cart);
-    
-        next();
-    }
-}
+  if (cart) {
+    cart.push({ ...item });
+
+    cart = Array.from(new Set(cart.map((p) => p._id))).map((id) => {
+      return cart.find((p) => p._id === id);
+    });
+    console.log("cart ", cart);
+    setLocalStorageItem("cart", cart);
+
+    next();
+  }
+};
 
 export const itemTotal = () => {
-    let cartLength = getCart() ? getCart().length : 0;
+  let cartLength = getCart() ? getCart().length : 0;
 
-    return cartLength;
-}
+  return cartLength;
+};
 
 export const removeItem = (productId) => {
-    let cart = getCart();
+  let cart = getCart();
 
-    if (cart) {
-        cart.map((p, i) => {
-            if (p._id === productId) {
-                cart.splice(i, 1);
-            }
-        });
-    
-        setLocalStorageItem('cart', cart);
-    }
+  if (cart) {
+    cart.map((p, i) => {
+      if (p._id === productId) {
+        cart.splice(i, 1);
+      }
+    });
 
-    return cart;
-}
+    setLocalStorageItem("cart", cart);
+  }
+
+  return cart;
+};
 
 export const emptyCart = (next) => {
-    if (typeof window !== undefined) {
-        localStorage.removeItem('cart');
-        next();
-    }
-}
+  if (typeof window !== undefined) {
+    localStorage.removeItem("cart");
+    next();
+  }
+};
 export const getTotal = () => {
-    let courses = getLocalStorageItem('cart');
-    return courses && courses.reduce((currentValue, nextValue) => {
-        return currentValue + nextValue.price 
+  let courses = getLocalStorageItem("cart");
+  return (
+    courses &&
+    courses.reduce((currentValue, nextValue) => {
+      return currentValue + nextValue.price;
     }, 0)
-}   
+  );
+};

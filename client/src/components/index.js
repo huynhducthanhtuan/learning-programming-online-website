@@ -16,3 +16,5 @@ export { default as ViewCourseToLearn } from "./CourseDetail";
 export { default as ForgotPassword } from "./ForgotPassword";
 export { default as ForgotPasswordCreateNewPassword } from "./ForgotPasswordCreateNewPassword";
 export { default as ForgotPasswordEnterCode } from "./ForgotPasswordEnterCode";
+export { default as Profile } from "./Profile";
+export { default as UpdateProfile } from "./UpdateProfile";

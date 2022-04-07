@@ -58,6 +58,7 @@ const AddCProduct = () => {
       postImage();
     }
   }, [image]);
+
   const handleChange = (name) => (event) => {
     setValues({ ...values, [name]: event.target.value });
   };

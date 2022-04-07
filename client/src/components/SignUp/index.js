@@ -32,8 +32,6 @@ const SignUp = () => {
       });
   };
 
-  console.log("state:", values);
-
   const submitForm = (e) => {
     e.preventDefault();
 

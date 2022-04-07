@@ -6,7 +6,6 @@ import instarIcon from "../../assets/icons/insta.png";
 import twIcon from "../../assets/icons/tw.png";
 
 const Footer = () => {
-  
   return (
     <footer className={`container_fluid ${styles.footer}`}>
       <div className="row">

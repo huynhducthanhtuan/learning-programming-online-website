@@ -1,29 +1,23 @@
-import React, {useState, useEffect}from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Header from "../Header";
 import Slider from "react-slick";
 import Footer from "../Footer";
 import CardCourse from "../CardCourse";
 import { getCourses } from "./apiCore";
-import ResultSearch from './ResultSearch'
+import ResultSearch from "./ResultSearch";
 import styles from "./Home.module.css";
-import { isAuth,isAuthenticated } from "../Auth";
+import { isAuth, isAuthenticated } from "../Auth";
 import "./HomeSlick.css";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { addItem } from "../Cart/helperCart";
+import { ToastContainer, toast } from "react-toastify";
 
 const Home = () => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-  };
-
   const [courseBySell, setCourseBySell] = useState([]);
   const [courseByArrival, setCourseByArrival] = useState([]);
   const [error, setError] = useState(false);
+  const [redirect, setRedirect] = useState(false);
+  const navigate = useNavigate();
 
   const loadCourseBySell = () => {
     getCourses("sold").then((data) => {
@@ -44,10 +38,21 @@ const Home = () => {
     });
   };
 
+  const addToCart = (courseToAdd) => {
+    if (isAuthenticated()) {
+      addItem(courseToAdd, () => {
+        setRedirect(true);
+        toast.success("ADD TO CART SUCCESS");
+      });
+    } else {
+      toast.info("YOU MUST BE SIGN IN");
+      navigate("/signin");
+    }
+  };
+
   useEffect(() => {
     loadCourseBySell();
     loadCourseByArrival();
-    window.scrollTo(0, 0);
   }, []);
 
   return (
@@ -66,55 +71,61 @@ const Home = () => {
           </p>
         </div>
       </section>
-    {/* {ResultSearch()} */}
+      {/* {ResultSearch()} */}
       <section className={`container ${styles.homeSlider}`}>
         <h2>New arrivals</h2>
-        <Slider {...settings}>
+        <div className="d-flex justify-content-between">
           {courseByArrival.map((course, i) => (
-            <div key={i} className={styles.listCourse}>
-              <div className="row">
-                <article className={`col listCourse__item`}>
-                  <Link to={`/course/${course._id}`}>
-                    <img className={styles.itemImage} src={course.image} alt="" />
-                    <h6 className="mt-2">{course.name}</h6>
-                  </Link>
-                  <div className={styles.itemCourseText}>
-                      <span>vo trung hieu</span>
-                      <div className={styles.listCourseItemStar}>
-                        <p>(295,007)</p>
-                      </div>
-                      <span className={styles.money}>${course.price}</span>
-                    </div>
-                </article>
-              </div>
+            <div key={i} className={`row ${styles.listCourse}`}>
+              <article className={`col ${styles.listCourse__item}`}>
+                <Link to={`/course/${course._id}`}>
+                  <img className={styles.itemImage} src={course.image} alt="" />
+                  <h6 className="mt-2">{course.name}</h6>
+                </Link>
+                <div className={styles.itemCourseText}>
+                  <span>vo trung hieu</span>
+                  <div className={styles.listCourseItemStar}>
+                    <p>(295,007)</p>
+                  </div>
+                  <span className={styles.money}>${course.price}</span>
+                </div>
+                <button
+                  className="btn btn-outline-info mt-2 mb-2"
+                  onClick={() => addToCart(course)}
+                >
+                  Add to cart
+                </button>
+              </article>
             </div>
           ))}
-        </Slider>
+        </div>
       </section>
       <section className={`container ${styles.homeSlider}`}>
-        <h2>Best Sellers</h2>
-        <div className={styles.homeListItem}>
-          <Slider {...settings}>
-            {courseBySell.map((course, i) => (
-              <div key={i} className={styles.listCourse}>
-                <div className="row">
-                  <article className={`col listCourse__item`}>
-                  <Link to={`/course/${course._id}`}>
-                    <img className={styles.itemImage} src={course.image} alt="" />
-                    <h6 className="mt-2">{course.name}</h6>
-                  </Link>
-                    <div className={styles.itemCourseText}>
-                      <span>vo trung hieu</span>
-                      <div className={styles.listCourseItemStar}>
-                        <p>(295,007)</p>
-                      </div>
-                      <span className={styles.money}>${course.price}</span>
-                    </div>
-                  </article>
+        <h2>New arrivals</h2>
+        <div className="d-flex justify-content-between">
+          {courseBySell.map((course, i) => (
+            <div key={i} className={`row ${styles.listCourse}`}>
+              <article className={`col ${styles.listCourse__item}`}>
+                <Link to={`/course/${course._id}`}>
+                  <img className={styles.itemImage} src={course.image} alt="" />
+                  <h6 className="mt-2">{course.name}</h6>
+                </Link>
+                <div className={styles.itemCourseText}>
+                  <span>vo trung hieu</span>
+                  <div className={styles.listCourseItemStar}>
+                    <p>(295,007)</p>
+                  </div>
+                  <span className={styles.money}>${course.price}</span>
                 </div>
-              </div>
-            ))}
-          </Slider>
+                <button
+                  className="btn btn-outline-info mt-2 mb-2"
+                  onClick={() => addToCart(course)}
+                >
+                  Add to cart
+                </button>
+              </article>
+            </div>
+          ))}
         </div>
       </section>
 

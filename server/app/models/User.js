@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const crypto = require("crypto");
 const { v4: uuidv4 } = require("uuid");
-const {ObjectId} = mongoose.Schema.Types
+const { ObjectId } = mongoose.Schema.Types;
 
 const userSchema = new mongoose.Schema(
   {
@@ -18,6 +18,12 @@ const userSchema = new mongoose.Schema(
       maxlength: 32,
       unique: true,
     },
+    phone_number: {
+      type: String,
+      trim: true,
+      required: true,
+      maxlength: 11,
+    },
     hashed_password: {
       type: String,
       required: true,
@@ -31,24 +37,19 @@ const userSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    coursesId:[{type:ObjectId,ref:"Course"}],
+    coursesId: [{ type: ObjectId, ref: "Course" }],
     history: {
       type: Array,
       default: [],
     },
-    pic:{
+    pic: {
       type: String,
-      default:"https://res.cloudinary.com/dhzbsq7fj/image/upload/v1643101647/avatardefault_92824_aifry9.png"
+      default:
+        "https://res.cloudinary.com/dhzbsq7fj/image/upload/v1643101647/avatardefault_92824_aifry9.png",
     },
   },
   { timestamps: true }
 );
-
-// api add course id
-// courses.map((course) => {
-//   api add(course._id)
-// })
-
 
 // create virtual password
 userSchema

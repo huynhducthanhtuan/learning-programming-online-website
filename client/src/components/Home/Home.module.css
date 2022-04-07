@@ -42,7 +42,6 @@
   border-radius: 20px;
   display: inline-block !important;
   width: 100%;
-
 }
 
 .homeSliderItemA {
@@ -55,7 +54,7 @@
   box-shadow: 0px 40px 30px rgba(25, 25, 46, 0.04);
   border-radius: 10px;
   width: 330px;
-  margin-bottom: 45px ;
+  margin-bottom: 45px;
 }
 
 .homeSlider {
@@ -63,8 +62,8 @@
 }
 .itemImage {
   width: 100%;
+  border-radius: 24px;
 }
-
 
 .listCourse {
   padding: 8px 20px;
@@ -79,7 +78,7 @@
   align-items: center;
 }
 
-.listCourse__item--star  p {
+.listCourse__item--star p {
   margin: 0;
   padding-right: 5px;
 }
@@ -99,6 +98,23 @@
   align-items: center;
 }
 
+.listCourse__item h6 {
+  white-space: nowrap;
+  width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .itemCourseText p {
   margin: 0;
+  font-size: 12px;
+}
+
+.itemCourseText span {
+  margin: 0;
+  font-size: 12px;
+}
+
+.listCourse__item button {
+  font-size: 0.8rem;
 }

@@ -8,6 +8,8 @@ import {
   ForgotPassword,
   ForgotPasswordEnterCode,
   ForgotPasswordCreateNewPassword,
+  Profile,
+  UpdateProfile,
   DashboardTeacher,
   Course,
   AddCategory,
@@ -28,15 +30,17 @@ const Root = () => {
       <Route path="/create/course" element={<AddCProduct />} />
       <Route path="/signup" element={<Signup />}></Route>
       <Route path="/signin" element={<SignIn />}></Route>
-      <Route path="/forgot-password" element={<ForgotPassword />}></Route>
       <Route
-        path="/forgot-password-enter-code"
+        path="/forgot-password/enter-code"
         element={<ForgotPasswordEnterCode />}
       ></Route>
       <Route
-        path="/forgot-password-create-new-password"
+        path="/forgot-password/create-new-password"
         element={<ForgotPasswordCreateNewPassword />}
       ></Route>
+      <Route path="/forgot-password" element={<ForgotPassword />}></Route>
+      <Route path="/profile" element={<Profile />}></Route>
+      <Route path="/update-profile" element={<UpdateProfile />}></Route>
       <Route path="/mycourses" element={<MyCourses />}></Route>
       <Route path="/cart" element={<Cart />}></Route>
       <Route path="/shop" element={<Shop />}></Route>

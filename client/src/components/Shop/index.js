@@ -19,18 +19,15 @@ const Shop = () => {
   const [myFilters, setMyFilters] = useState({
     filters: { category: [], price: [] },
   });
-
   const [categories, setCategories] = useState([]);
   const [error, setError] = useState(false);
   const [limit, setLimit] = useState(6);
   const [skip, setSkip] = useState(0);
   const [size, setSize] = useState(0);
   const [filteredResult, setFilteredResult] = useState([]);
-
   useEffect(() => {
     searchData(keySearch);
   }, [keySearch]);
-
   console.log("ket qua search ", searchedCourses);
   const searchData = (keySearch) => {
     if (keySearch) {
@@ -44,7 +41,6 @@ const Shop = () => {
       });
     }
   };
-
   const searchMessage = (searchedCourses) => {
     if (searchedCourses && searchedCourses.length > 0) {
       return `Found ${searchedCourses.length} products`;
@@ -53,7 +49,6 @@ const Shop = () => {
       return "No product found";
     }
   };
-
   const loadFilterResults = (newFilters) => {
     getFilteredCourses(skip, limit, newFilters).then((data) => {
       if (data.error) {
@@ -76,11 +71,9 @@ const Shop = () => {
       }
     });
   };
-
   useEffect(() => {
     init();
     // loadFilterResults(myFilters.filters)
-    window.scrollTo(0, 0);
   }, []);
 
   const handleFilters = (filters, filterBy) => {

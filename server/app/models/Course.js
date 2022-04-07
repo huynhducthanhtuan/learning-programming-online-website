@@ -44,7 +44,7 @@ const Course = new Schema(
         lessons: [{ type: ObjectId, ref: "Lesson", autopopulate: true }],
       },
     ],
-   
+
     slug: { type: String, slug: "name", unique: true },
   },
   { timestamps: true }
