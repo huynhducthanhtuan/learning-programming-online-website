@@ -12,21 +12,33 @@ const Footer = () => {
         <div className="col ">
           <p>Thông tin về chúng tôi</p>
           <div className={styles.footerImage}>
-            <Link to="/">
+            <a
+              href="https://www.facebook.com/hdttuan/"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <img src={fbIcon}></img>
-            </Link>
-            <Link to="/">
+            </a>
+            <a
+              href="https://www.instagram.com/hdttuan/"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <img src={instarIcon}></img>
-            </Link>
-            <Link to="/">
+            </a>
+            <a
+              href="https://twitter.com/hdttuann"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               <img src={twIcon}></img>
-            </Link>
+            </a>
           </div>
         </div>
         <div className="col ">
           <p>Liên hệ qua email</p>
           <Link to="/" className={styles.footerTextA}>
-            <span>thuancr7@gmail.com</span>
+            <span>tuan40655@gmail.com</span>
           </Link>
         </div>
         <div className="col ">

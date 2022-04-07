@@ -1,19 +1,37 @@
-import React, { useContext, useState } from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../App";
-import Search from "../Header/Search";
 import { isAuthenticated } from "../Auth/index";
 import { itemTotal } from "../Cart/helperCart";
+import { toast } from "react-toastify";
+import { viewProfileApi } from "../Profile/apiProfile";
 import Modal from "../model/Modal";
+import Search from "../Header/Search";
 import styles from "./Header.module.css";
 import logo from "../../assets/images/logo192.png";
 import cartIcon from "../../assets/icons/shopping-cart.png";
-import { ToastContainer, toast } from "react-toastify";
+const defaultAvatarUrl =
+  "https://res.cloudinary.com/dhzbsq7fj/image/upload/v1643101647/avatardefault_92824_aifry9.png";
 
 const Header = ({ showSearchPart = true }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const { state, dispatch } = useContext(UserContext);
+  const avatarImageRef = useRef();
   const navigate = useNavigate();
+
+  const updateAvatarImage = async () => {
+    // Lấy userId từ localStorage
+    const userId = isAuthenticated() ? isAuthenticated().user._id : "";
+
+    // Call API
+    const data = await viewProfileApi({ _id: userId });
+
+    // Xử lí kết quả trả về từ API
+    if (data._id) {
+      // Cập nhật avatar
+      avatarImageRef.current.src = data.pic || defaultAvatarUrl;
+    }
+  };
 
   const openMyCourses = () => {
     return navigate("/mycourses");
@@ -26,6 +44,10 @@ const Header = ({ showSearchPart = true }) => {
     navigate("/");
     setModalOpen(false);
   };
+
+  useEffect(() => {
+    updateAvatarImage();
+  }, []);
 
   const renderList = () => {
     if (isAuthenticated()) {
@@ -51,6 +73,18 @@ const Header = ({ showSearchPart = true }) => {
               </div>
             </Link>
           </div>
+
+          <div className={`${styles.headerButton} ml-4`}>
+            <Link to="/profile">
+              <img
+                src={defaultAvatarUrl}
+                alt=""
+                className={styles.avatarImage}
+                ref={avatarImageRef}
+              />
+            </Link>
+          </div>
+
           <div className={`${styles.headerButton} ml-4`}>
             <button
               className="btn btn-info openModalBtn"
@@ -67,7 +101,7 @@ const Header = ({ showSearchPart = true }) => {
       return (
         <div className={styles.headerButton}>
           <Link to="/signup">
-            <button className="btn btn-secondary">Sign up</button>
+            <button className="btn btn-secondary">Sign Up</button>
           </Link>
           <Link to="/signin ">
             <button className="btn btn-secondary ml-4 mr-4">Sign In</button>

@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../Header";
-import Slider from "react-slick";
 import Footer from "../Footer";
-import CardCourse from "../CardCourse";
-import { getCourses } from "./apiCore";
-import ResultSearch from "./ResultSearch";
 import styles from "./Home.module.css";
-import { isAuth, isAuthenticated } from "../Auth";
-import "./HomeSlick.css";
+import { getCourses } from "./apiCore";
+import { isAuthenticated } from "../Auth";
+import { toast } from "react-toastify";
 import { addItem } from "../Cart/helperCart";
-import { ToastContainer, toast } from "react-toastify";
+import "./HomeSlick.css";
 
 const Home = () => {
   const [courseBySell, setCourseBySell] = useState([]);
@@ -51,6 +48,7 @@ const Home = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     loadCourseBySell();
     loadCourseByArrival();
   }, []);

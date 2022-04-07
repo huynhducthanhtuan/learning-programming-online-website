@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import styles from "./UpdateProfile.module.css";
 import { toast } from "react-toastify";
 import { isAuthenticated } from "../Auth";
-import { viewProfileApi, updateProfileApi } from "./apiUpdateProfile";
+import { viewProfileApi } from "../Profile/apiProfile";
+import { updateProfileApi } from "./apiUpdateProfile";
 import logo from "../../assets/images/logo192.png";
 const defaultAvatarUrl =
   "https://res.cloudinary.com/dhzbsq7fj/image/upload/v1643101647/avatardefault_92824_aifry9.png";
