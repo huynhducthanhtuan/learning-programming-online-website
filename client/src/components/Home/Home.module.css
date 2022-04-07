@@ -63,6 +63,7 @@
 }
 .itemImage {
   width: 100%;
+  border-radius: 24px;
 }
 
 
@@ -99,6 +100,23 @@
   align-items: center;
 }
 
+.listCourse__item h6 {
+  white-space: nowrap;
+    width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .itemCourseText p {
   margin: 0;
+  font-size: 12px;
+}
+
+.itemCourseText span {
+  margin: 0;
+  font-size: 12px;
+}
+
+.listCourse__item button {
+  font-size: 0.8rem;
 }

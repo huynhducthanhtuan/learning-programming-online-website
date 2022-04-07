@@ -3,12 +3,16 @@ import { Link, useNavigate } from "react-router-dom";
 import Header from "../Header";
 import styles from "./Checkout.module.css";
 import "bootstrap/dist/css/bootstrap.css";
-import { getBraintreeClientToken, processPayment, registerCourse } from "./apiCheckout";
+import {
+  getBraintreeClientToken,
+  processPayment,
+  registerCourse,
+} from "./apiCheckout";
 import { useState } from "react";
 import { isAuth, isAuthenticated } from "../Auth";
 import { useEffect } from "react";
 import DropIn from "braintree-web-drop-in-react";
-import { emptyCart, getTotal, getCart} from "../Cart/helperCart";
+import { emptyCart, getTotal, getCart } from "../Cart/helperCart";
 
 const Checkout = () => {
   const navigate = useNavigate();
@@ -43,12 +47,11 @@ const Checkout = () => {
 
   const saveCoursesRegistered = (courses) => {
     courses.map((course, id) => {
-      return registerCourse(user._id, token, course._id)
-      .then(data => {
-        console.log("course da dang ki ",data)
-      })
-    }) 
-  }
+      return registerCourse(user._id, token, course._id).then((data) => {
+        console.log("course da dang ki ", data);
+      });
+    });
+  };
 
   const confirmPay = () => {
     let nonce;
@@ -68,9 +71,8 @@ const Checkout = () => {
           .then((response) => {
             setData({ ...data, success: response.success });
             let courses = getCart();
-            saveCoursesRegistered(courses); 
-           emptyCart();
-
+            saveCoursesRegistered(courses);
+            emptyCart();
           })
           .catch((error) => console.log(error));
       })
@@ -105,7 +107,7 @@ const Checkout = () => {
               onInstance={(instance) => (data.instance = instance)}
             />
             <button
-              onClick={success ? moveToCourses : confirmPay}
+              onClick={moveToCourses}
               className="btn btn-success btn-block"
             >
               Confirm
