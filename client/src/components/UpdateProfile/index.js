@@ -99,9 +99,9 @@ const Profile = () => {
     if (avatarUrl != "") avatarImageRef.current.src = avatarUrl;
   }, [avatarUrl]);
 
-  useEffect(() => {
+  useEffect(async () => {
     window.scrollTo(0, 0);
-    updateInfomationFields();
+    await updateInfomationFields();
   }, []);
 
   return (

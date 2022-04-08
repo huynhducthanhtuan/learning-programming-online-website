@@ -1,7 +1,7 @@
 import React from "react";
-import "./Modal.css";
+import "./SignoutModal.css";
 
-function Modal({ setOpenModal, title, body = "Body", action }) {
+function SignoutModal({ setOpenModal, title, body = "Body", action }) {
   return (
     <div className="modalBackground">
       <div className="modalContainer">
@@ -38,4 +38,4 @@ function Modal({ setOpenModal, title, body = "Body", action }) {
   );
 }
 
-export default Modal;
+export default SignoutModal;

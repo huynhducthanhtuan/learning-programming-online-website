@@ -5,7 +5,7 @@ import { isAuthenticated } from "../Auth/index";
 import { itemTotal } from "../Cart/helperCart";
 import { toast } from "react-toastify";
 import { viewProfileApi } from "../Profile/apiProfile";
-import Modal from "../model/Modal";
+import { ProfileModal, SignoutModal } from "../Modal";
 import Search from "../Header/Search";
 import styles from "./Header.module.css";
 import logo from "../../assets/images/logo192.png";
@@ -14,8 +14,9 @@ const defaultAvatarUrl =
   "https://res.cloudinary.com/dhzbsq7fj/image/upload/v1643101647/avatardefault_92824_aifry9.png";
 
 const Header = ({ showSearchPart = true }) => {
-  const [modalOpen, setModalOpen] = useState(false);
   const { state, dispatch } = useContext(UserContext);
+  const [signoutModalOpen, setSignoutModalOpen] = useState(false);
+  const [profileModalOpen, setProfileModalOpen] = useState(false);
   const avatarImageRef = useRef();
   const navigate = useNavigate();
 
@@ -43,7 +44,7 @@ const Header = ({ showSearchPart = true }) => {
     localStorage.removeItem("jwt");
     dispatch({ type: "CLEAR" });
     navigate("/");
-    setModalOpen(false);
+    setSignoutModalOpen(false);
   };
 
   const renderList = () => {
@@ -59,7 +60,6 @@ const Header = ({ showSearchPart = true }) => {
               My Courses
             </button>
           </div>
-
           <div className={`${styles.headerButton}`}>
             <Link to="/cart">
               <div className={styles.cartIcon}>
@@ -70,7 +70,6 @@ const Header = ({ showSearchPart = true }) => {
               </div>
             </Link>
           </div>
-
           <div className={`${styles.headerButton} ml-4`}>
             <Link to="/profile">
               <img
@@ -82,11 +81,19 @@ const Header = ({ showSearchPart = true }) => {
             </Link>
           </div>
 
+          {/* {signoutModalOpen && (
+            <AskForSignOutModal
+              body="Are you sure you want to sign out?"
+              setOpenModal={setSignoutModalOpen}
+              action={signOutAction}
+            />
+          )} */}
+
           <div className={`${styles.headerButton} ml-4`}>
             <button
               className="btn btn-info openModalBtn"
               onClick={() => {
-                setModalOpen(true);
+                setSignoutModalOpen(true);
               }}
             >
               Sign Out
@@ -114,10 +121,10 @@ const Header = ({ showSearchPart = true }) => {
 
   return (
     <div>
-      {modalOpen && (
-        <Modal
+      {signoutModalOpen && (
+        <SignoutModal
           body="Are you sure you want to sign out?"
-          setOpenModal={setModalOpen}
+          setOpenModal={setSignoutModalOpen}
           action={signOutAction}
         />
       )}

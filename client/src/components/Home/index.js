@@ -99,7 +99,7 @@ const Home = () => {
         </div>
       </section>
       <section className={`container ${styles.homeSlider}`}>
-        <h2>New arrivals</h2>
+        <h2>Best sellers</h2>
         <div className="d-flex justify-content-between">
           {courseBySell.map((course, i) => (
             <div key={i} className={`row ${styles.listCourse}`}>

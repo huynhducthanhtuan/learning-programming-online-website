@@ -36,9 +36,9 @@ const Profile = () => {
     navigate("/update-profile");
   };
 
-  useEffect(() => {
+  useEffect(async () => {
     window.scrollTo(0, 0);
-    updateInfomationFields();
+    await updateInfomationFields();
   }, []);
 
   return (
