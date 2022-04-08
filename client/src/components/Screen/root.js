@@ -5,6 +5,7 @@ import {
   Shop,
   Signup,
   SignIn,
+  ChangePassword,
   ForgotPassword,
   ForgotPasswordEnterCode,
   ForgotPasswordCreateNewPassword,
@@ -30,6 +31,7 @@ const Root = () => {
       <Route path="/create/course" element={<AddCProduct />} />
       <Route path="/signup" element={<Signup />}></Route>
       <Route path="/signin" element={<SignIn />}></Route>
+      <Route path="/change-password" element={<ChangePassword />}></Route>
       <Route
         path="/forgot-password/enter-code"
         element={<ForgotPasswordEnterCode />}

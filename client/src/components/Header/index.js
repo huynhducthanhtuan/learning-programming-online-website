@@ -15,8 +15,7 @@ const defaultAvatarUrl =
 
 const Header = ({ showSearchPart = true }) => {
   const { state, dispatch } = useContext(UserContext);
-  const [signoutModalOpen, setSignoutModalOpen] = useState(false);
-  const [profileModalOpen, setProfileModalOpen] = useState(false);
+  const [openProfileModal, setOpenProfileModal] = useState(false);
   const avatarImageRef = useRef();
   const navigate = useNavigate();
 
@@ -39,12 +38,11 @@ const Header = ({ showSearchPart = true }) => {
     return navigate("/mycourses");
   };
 
-  const signOutAction = () => {
-    toast.success("Sign Out Success");
-    localStorage.removeItem("jwt");
-    dispatch({ type: "CLEAR" });
-    navigate("/");
-    setSignoutModalOpen(false);
+  const handleClickAvatarImage = () => {
+    // Toggle kích hoạt hoặc ngăn chặn hành vi cuộn (scroll)
+    document.body.style.overflow = openProfileModal ? "visible" : "hidden";
+
+    setOpenProfileModal(!openProfileModal);
   };
 
   const renderList = () => {
@@ -71,33 +69,14 @@ const Header = ({ showSearchPart = true }) => {
             </Link>
           </div>
           <div className={`${styles.headerButton} ml-4`}>
-            <Link to="/profile">
+            <div onClick={handleClickAvatarImage}>
               <img
                 src=""
                 alt=""
                 className={styles.avatarImage}
                 ref={avatarImageRef}
               />
-            </Link>
-          </div>
-
-          {/* {signoutModalOpen && (
-            <AskForSignOutModal
-              body="Are you sure you want to sign out?"
-              setOpenModal={setSignoutModalOpen}
-              action={signOutAction}
-            />
-          )} */}
-
-          <div className={`${styles.headerButton} ml-4`}>
-            <button
-              className="btn btn-info openModalBtn"
-              onClick={() => {
-                setSignoutModalOpen(true);
-              }}
-            >
-              Sign Out
-            </button>
+            </div>
           </div>
         </div>
       );
@@ -115,18 +94,14 @@ const Header = ({ showSearchPart = true }) => {
     }
   };
 
-  useEffect(() => {
-    updateAvatarImage();
+  useEffect(async () => {
+    await updateAvatarImage();
   }, []);
 
   return (
     <div>
-      {signoutModalOpen && (
-        <SignoutModal
-          body="Are you sure you want to sign out?"
-          setOpenModal={setSignoutModalOpen}
-          action={signOutAction}
-        />
+      {openProfileModal && (
+        <ProfileModal setOpenProfileModal={setOpenProfileModal} />
       )}
       <header className={`container ${styles.header}`}>
         <Link to="/">

@@ -13,6 +13,7 @@ export { default as Cart } from "./Cart";
 export { default as Checkout } from "./Checkout";
 export { default as MyCourses } from "./MyCourses";
 export { default as ViewCourseToLearn } from "./CourseDetail";
+export { default as ChangePassword } from "./ChangePassword";
 export { default as ForgotPassword } from "./ForgotPassword";
 export { default as ForgotPasswordCreateNewPassword } from "./ForgotPasswordCreateNewPassword";
 export { default as ForgotPasswordEnterCode } from "./ForgotPasswordEnterCode";

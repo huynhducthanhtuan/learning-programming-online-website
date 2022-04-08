@@ -25,6 +25,7 @@ const Home = () => {
       }
     });
   };
+
   const loadCourseByArrival = () => {
     getCourses("createdAt").then((data) => {
       if (data.error) {
@@ -51,10 +52,13 @@ const Home = () => {
     window.scrollTo(0, 0);
     loadCourseBySell();
     loadCourseByArrival();
+
+    // Kích hoạt hành vi cuộn (scroll)
+    document.body.style.overflow = "visible";
   }, []);
 
   return (
-    <body className={styles.home}>
+    <div className={styles.home}>
       <Header />
       <section className={`container_fluid ${styles.homeBanner}`}>
         <img src="./icons/banner.png" alt=""></img>
@@ -128,7 +132,7 @@ const Home = () => {
       </section>
 
       <Footer />
-    </body>
+    </div>
   );
 };
 

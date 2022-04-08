@@ -1,39 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import SignoutModal from "../SignoutModal";
 import "./ProfileModal.css";
 
-function ProfileModal({ setOpenModal, title, body = "Body", action }) {
+function ProfileModal({ setOpenProfileModal }) {
+  const [openSignoutModal, setOpenSignoutModal] = useState(false);
+
   return (
-    <div className="modalBackground">
-      <div className="modalContainer">
-        <div className="titleCloseBtn">
-          <button
-            onClick={() => {
-              setOpenModal(false);
-            }}
-          >
-            X
-          </button>
-        </div>
-        {title && (
-          <div className="title">
-            <h1>{title}</h1>
-          </div>
-        )}
-        <div className="body">
-          <p>{body}</p>
-        </div>
-        <div className="footer">
-          <button
-            onClick={() => {
-              setOpenModal(false);
-            }}
-            id="cancelBtn"
-          >
-            Cancel
-          </button>
-          <button onClick={action}>Oke</button>
+    <div className="modal-container">
+      <div className="modal-body-part">
+        <Link to="/profile" className="modal-body-item">
+          Profile
+        </Link>
+        <Link to="/change-password" className="modal-body-item">
+          Change Password
+        </Link>
+        <div
+          className="modal-body-item"
+          onClick={(e) => setOpenSignoutModal(!openSignoutModal)}
+        >
+          Sign out
         </div>
       </div>
+
+      {openSignoutModal && (
+        <SignoutModal
+          body="Are you sure you want to sign out?"
+          setOpenSignoutModal={setOpenSignoutModal}
+          setOpenProfileModal={setOpenProfileModal}
+        />
+      )}
     </div>
   );
 }
