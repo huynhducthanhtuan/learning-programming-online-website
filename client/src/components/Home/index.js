@@ -85,7 +85,7 @@ const Home = () => {
                   <h6 className="mt-2">{course.name}</h6>
                 </Link>
                 <div className={styles.itemCourseText}>
-                  <span>vo trung hieu</span>
+                  <span>Sơn Đặng</span>
                   <div className={styles.listCourseItemStar}>
                     <p>(295,007)</p>
                   </div>
@@ -113,7 +113,7 @@ const Home = () => {
                   <h6 className="mt-2">{course.name}</h6>
                 </Link>
                 <div className={styles.itemCourseText}>
-                  <span>vo trung hieu</span>
+                  <span>Sơn Đặng</span>
                   <div className={styles.listCourseItemStar}>
                     <p>(295,007)</p>
                   </div>

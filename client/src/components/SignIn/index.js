@@ -73,7 +73,7 @@ const SignIn = () => {
       <form className={styles.form} id="form-1">
         <img src="./icons/LPO.png" className={styles.logo}></img>
         <h2 className={styles.headingSignIn}>Sign In</h2>
-        <p className={styles.desc}>Login to start learning today!</p>
+        <p className={styles.desc}>Signin to start learning today!</p>
 
         <div className={styles.formGroup}>
           <label className={styles.formLabel}>Email</label>
