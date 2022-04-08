@@ -4,6 +4,7 @@ const categoryRoute = require("./category");
 const lessonRoute = require("./lesson");
 const userRoute = require("./user");
 const profileRoute = require("./profile");
+const changePasswordRoute = require("./changePassword");
 const braintreeRoute = require("./braintree");
 
 function route(app) {
@@ -13,6 +14,7 @@ function route(app) {
   app.use("/lesson", lessonRoute);
   app.use("/user", userRoute);
   app.use("/profile", profileRoute);
+  app.use("/change-password", changePasswordRoute);
   app.use("/braintree", braintreeRoute);
 }
 

@@ -11,7 +11,7 @@ function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <GlobalStyle>
-      <ToastContainer position="top-right" autoClose={1000} type="default" />
+      <ToastContainer position="top-center" autoClose={1000} type="default" />
       <UserContext.Provider value={{ state, dispatch }}>
         <ForgotPasswordContextProvider>
           <Root />
