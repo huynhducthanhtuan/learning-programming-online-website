@@ -1,11 +1,16 @@
 import Axios from "axios";
 import React, { useRef, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import styles from "./UpdateProfile.module.css";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { isAuthenticated } from "../Auth";
 import { viewProfileApi } from "../Profile/apiProfile";
 import { updateProfileApi } from "./apiUpdateProfile";
+import {
+  validateFullname,
+  validateEmail,
+  validatePhoneNumber,
+} from "./validate";
 import logo from "../../assets/images/logo192.png";
 const defaultAvatarUrl =
   "https://res.cloudinary.com/dhzbsq7fj/image/upload/v1643101647/avatardefault_92824_aifry9.png";
@@ -48,6 +53,28 @@ const Profile = () => {
     }
   };
 
+  const handleValidateFields = () => {
+    const isValidFullname = validateFullname(
+      fullnameInputRef.current.value.trim()
+    );
+    const isValidEmail = validateEmail(emailInputRef.current.value.trim());
+    const isValidPhoneNumber = validatePhoneNumber(
+      phoneNumberInputRef.current.value.trim()
+    );
+
+    if (!isValidFullname.isValid) {
+      return { message: isValidFullname.error };
+    }
+    if (!isValidEmail.isValid) {
+      return { message: isValidEmail.error };
+    }
+    if (!isValidPhoneNumber.isValid) {
+      return { message: isValidPhoneNumber.error };
+    }
+
+    return { message: "success" };
+  };
+
   const postImage = () => {
     const data = new FormData();
     data.append("file", imageString);
@@ -63,31 +90,39 @@ const Profile = () => {
     setImageString(e.target.files[0]);
   };
 
-  const handleClickUpdateProfile = async () => {
+  const handleUpdateProfile = async () => {
     // Lấy userId từ localStorage
     const userId = isAuthenticated() ? isAuthenticated().user._id : "";
 
-    // Call API
-    const payloadData = {
-      _id: userId,
-      name: fullnameInputRef.current.value.trim(),
-      email: emailInputRef.current.value.trim(),
-      phone_number: phoneNumberInputRef.current.value.trim(),
-    };
-    if (avatarUrl != "") payloadData["pic"] = avatarUrl;
-    const data = await updateProfileApi(payloadData);
+    // Validate input fields
+    const validateMessage = handleValidateFields().message;
 
-    // Xử lí kết quả trả về từ API
-    switch (data.message) {
-      case "success":
-        cleanInputText();
-        await updateInfomationFields();
-        setIsUpdated(!isUpdated);
-        toast.success("Update profile success");
-        break;
-      case "failed":
-        toast.error("Update profile failed");
-        break;
+    // Nếu nhập hợp lệ
+    if (validateMessage == "success") {
+      // Call API
+      const payloadData = {
+        _id: userId,
+        name: fullnameInputRef.current.value.trim(),
+        email: emailInputRef.current.value.trim(),
+        phone_number: phoneNumberInputRef.current.value.trim(),
+      };
+      if (avatarUrl != "") payloadData["pic"] = avatarUrl;
+      const data = await updateProfileApi(payloadData);
+
+      // Xử lí kết quả trả về từ API
+      switch (data.message) {
+        case "success":
+          cleanInputText();
+          await updateInfomationFields();
+          setIsUpdated(!isUpdated);
+          toast.success("Update profile success");
+          break;
+        case "failed":
+          toast.error("Update profile failed");
+          break;
+      }
+    } else {
+      toast.error(validateMessage);
     }
   };
 
@@ -170,10 +205,7 @@ const Profile = () => {
       </div>
 
       <div className={styles.buttonForm}>
-        <button
-          className={styles.buttonUpdate}
-          onClick={handleClickUpdateProfile}
-        >
+        <button className={styles.buttonUpdate} onClick={handleUpdateProfile}>
           Update
         </button>
       </div>
