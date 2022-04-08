@@ -50,21 +50,20 @@
   margin-bottom: 0 !important;
 }
 
-.buttonForm {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
 .logoWebsite {
   position: absolute;
-  width: 107px;
-  height: 108px;
+  width: 80px;
+  height: 80px;
   left: 40px;
-  top: 26px;
+  top: 40px;
   border-radius: 90px;
 }
 
+.buttonForm {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
 .chooseAvatarButton {
   position: absolute;
   left: 46%;

@@ -17,16 +17,13 @@ import detailcourse1 from "../../assets/icons/detailcourse1.png";
 
 const Course = ({ isMyCourse = false }) => {
   const { courseId } = useParams();
-  const navigate = useNavigate();
-
   const [course, setCourse] = useState({});
   const [error, setError] = useState(false);
   const [redirect, setRedirect] = useState(false);
-
-  const { description, name, rate } = course;
-
   const [userHasCourses, setUserHasCourses] = useState();
   const { token, user } = isAuthenticated([]);
+  const { description, name, rate } = course;
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadSingleProduct(courseId);

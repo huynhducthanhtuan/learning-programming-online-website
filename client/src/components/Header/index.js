@@ -28,8 +28,9 @@ const Header = ({ showSearchPart = true }) => {
 
     // Xử lí kết quả trả về từ API
     if (data._id) {
-      // Cập nhật avatar
-      avatarImageRef.current.src = data.pic || defaultAvatarUrl;
+      avatarImageRef.current.src = data.pic;
+    } else {
+      avatarImageRef.current.src = defaultAvatarUrl;
     }
   };
 
@@ -44,10 +45,6 @@ const Header = ({ showSearchPart = true }) => {
     navigate("/");
     setModalOpen(false);
   };
-
-  useEffect(() => {
-    updateAvatarImage();
-  }, []);
 
   const renderList = () => {
     if (isAuthenticated()) {
@@ -77,7 +74,7 @@ const Header = ({ showSearchPart = true }) => {
           <div className={`${styles.headerButton} ml-4`}>
             <Link to="/profile">
               <img
-                src={defaultAvatarUrl}
+                src=""
                 alt=""
                 className={styles.avatarImage}
                 ref={avatarImageRef}
@@ -110,6 +107,10 @@ const Header = ({ showSearchPart = true }) => {
       );
     }
   };
+
+  useEffect(() => {
+    updateAvatarImage();
+  }, []);
 
   return (
     <div>

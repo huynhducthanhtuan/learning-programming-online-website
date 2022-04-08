@@ -42,6 +42,9 @@ const Profile = () => {
       phoneNumberInputRef.current.value = data.phone_number;
       roleTextRef.current.innerText =
         data.role == 0 ? "Student (*)" : "Teacher (*)";
+
+      // Cập nhật avatarUrl
+      setAvatarUrl(data.pic);
     }
   };
 
@@ -65,19 +68,20 @@ const Profile = () => {
     const userId = isAuthenticated() ? isAuthenticated().user._id : "";
 
     // Call API
-    const data = await updateProfileApi({
+    const payloadData = {
       _id: userId,
-      pic: avatarUrl != "" ? avatarUrl : defaultAvatarUrl,
       name: fullnameInputRef.current.value.trim(),
       email: emailInputRef.current.value.trim(),
       phone_number: phoneNumberInputRef.current.value.trim(),
-    });
+    };
+    if (avatarUrl != "") payloadData["pic"] = avatarUrl;
+    const data = await updateProfileApi(payloadData);
 
     // Xử lí kết quả trả về từ API
     switch (data.message) {
       case "success":
         cleanInputText();
-        updateInfomationFields();
+        await updateInfomationFields();
         setIsUpdated(!isUpdated);
         toast.success("Update profile success");
         break;
@@ -92,7 +96,6 @@ const Profile = () => {
   }, [imageString]);
 
   useEffect(() => {
-    updateInfomationFields();
     if (avatarUrl != "") avatarImageRef.current.src = avatarUrl;
   }, [avatarUrl]);
 
@@ -104,8 +107,8 @@ const Profile = () => {
   return (
     <section>
       <Link to="/">
-        <div className={styles.logoWebsite}>
-          <img alt="" src={logo}></img>
+        <div>
+          <img alt="" src={logo} className={styles.logoWebsite}></img>
         </div>
       </Link>
       <img

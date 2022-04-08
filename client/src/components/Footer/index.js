@@ -37,9 +37,12 @@ const Footer = () => {
         </div>
         <div className="col ">
           <p>Liên hệ qua email</p>
-          <Link to="/" className={styles.footerTextA}>
+          <a
+            href="mailto:tuan40655@gmail.com?subject=Feedback to your Website"
+            className={styles.footerTextA}
+          >
             <span>tuan40655@gmail.com</span>
-          </Link>
+          </a>
         </div>
         <div className="col ">
           <p>Chính sách</p>

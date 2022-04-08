@@ -44,8 +44,8 @@ const Profile = () => {
   return (
     <section>
       <Link to="/">
-        <div className={styles.logoWebsite}>
-          <img alt="" src={logo}></img>
+        <div>
+          <img alt="" src={logo} className={styles.logoWebsite}></img>
         </div>
       </Link>
       <img
