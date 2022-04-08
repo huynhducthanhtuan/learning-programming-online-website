@@ -1,49 +1,57 @@
-import React from 'react';
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { addItem } from '../Cart/helperCart';
+import { toast } from "react-toastify";
+import React from "react";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { isAuthenticated } from "../Auth";
+import { addItem } from "../Cart/helperCart";
 
-const Card = ({course}) => {
-    const navigate = useNavigate()
-    const [redirect, setRedirect] = useState(false)
+const Card = ({ course }) => {
+  const navigate = useNavigate();
+  const [redirect, setRedirect] = useState(false);
+  const { user, token } = isAuthenticated();
 
-    const addToCart = () => {
-        addItem(course, () => {
-            setRedirect(true)
-        })   
+  const addToCart = () => {
+    if (user) {
+      addItem(course, () => {
+        setRedirect(true);
+      });
+    } else {
+      toast.info("YOU MUST BE SIGN IN");
+      navigate("/signin");
     }
-    const shouldRedirect = (redirect) => {
-        if(redirect) {
-          return navigate('/cart')
-        }
-      }
-    const showAddToCart = () => {
-        return (
-            <button className='btn btn-outline-info mt-2 mb-2' onClick={addToCart}>
-            Add to cart
-            </button>
-        )
+  };
+  const shouldRedirect = (redirect) => {
+    if (redirect) {
+      return navigate("/cart");
     }
-
+  };
+  const showAddToCart = () => {
     return (
-        <div key={course._id} className='card' style={{height: "100%"}}>
-            <img className="card-img-top" src={course.image} alt=""></img>
-            <div className='card-header'>{course.name}</div>
-            <div className='card-body'>
-                <p>{course.description.goal}</p>
-                <p>${course.price}</p>
-                <p>Sold {course.sold}</p>
-                
-                <Link to={`/course/${course._id}`} >
-                    <button className='btn btn-outline-warning mt-2 mb-2'>
-                        View detail
-                    </button>
-                </Link>
-                {showAddToCart()}
-                {shouldRedirect(redirect)}
-            </div>
-        </div>
-    )
-}
+      <button className="btn btn-outline-info mt-2 mb-2" onClick={addToCart}>
+        Add to cart
+      </button>
+    );
+  };
 
-export default Card
+  return (
+    <div key={course._id} className="card" style={{ height: "100%" }}>
+      <img className="card-img-top" src={course.image} alt=""></img>
+      <div className="card-header">{course.name}</div>
+      <div className="card-body">
+        <p>{course.description.goal}</p>
+        <p>${course.price}</p>
+        <p>Sold {course.sold}</p>
+
+        <Link to={`/course/${course._id}`}>
+          <button className="btn btn-outline-warning mt-2 mb-2">
+            View detail
+          </button>
+        </Link>
+        {showAddToCart()}
+        {shouldRedirect(redirect)}
+      </div>
+    </div>
+  );
+};
+
+export default Card;

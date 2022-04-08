@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import Header from "../Header";
 import Slider from "react-slick";
@@ -10,7 +10,7 @@ import styles from "./Home.module.css";
 import { isAuth, isAuthenticated } from "../Auth";
 import "./HomeSlick.css";
 import { addItem } from "../Cart/helperCart";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 const Home = () => {
   const [courseBySell, setCourseBySell] = useState([]);
@@ -18,6 +18,7 @@ const Home = () => {
   const [error, setError] = useState(false);
   const [redirect, setRedirect] = useState(false);
   const navigate = useNavigate();
+  const [resultSearchedCourses, setResultSearchedCourses] = useState();
 
   const loadCourseBySell = () => {
     getCourses("sold").then((data) => {
@@ -54,10 +55,15 @@ const Home = () => {
     loadCourseBySell();
     loadCourseByArrival();
   }, []);
-
+  const handleSearchResult = (resultSearch) => {
+    setResultSearchedCourses(resultSearch);
+  };
   return (
     <body className={styles.home}>
-      <Header />
+      <Header
+        handleSearchResult={(resultSearch) => handleSearchResult(resultSearch)}
+      />
+
       <section className={`container_fluid ${styles.homeBanner}`}>
         <img src="./icons/banner.png" alt=""></img>
       </section>
@@ -73,6 +79,9 @@ const Home = () => {
       </section>
       {/* {ResultSearch()} */}
       <section className={`container ${styles.homeSlider}`}>
+        {resultSearchedCourses && (
+          <ResultSearch resultSearch={resultSearchedCourses} />
+        )}
         <h2>New arrivals</h2>
         <div className="d-flex justify-content-between">
           {courseByArrival.map((course, i) => (
@@ -128,7 +137,6 @@ const Home = () => {
           ))}
         </div>
       </section>
-
       <Footer />
     </body>
   );
