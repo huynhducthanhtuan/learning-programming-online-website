@@ -59,7 +59,6 @@ const ChangePassword = () => {
         userId,
         oldPassword: oldPasswordInputRef.current.value.trim(),
         newPassword: newPasswordInputRef.current.value.trim(),
-        newPasswordConfirm: newPasswordConfirmInputRef.current.value.trim(),
       });
 
       // Xử lí kết quả trả về từ API

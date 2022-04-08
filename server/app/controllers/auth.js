@@ -27,7 +27,7 @@ exports.signin = (req, res, next) => {
   User.findOne({ email }, (err, user) => {
     if (err || !user) {
       return res.status(400).json({
-        error: "User not found. Please signup.",
+        error: "Account not found. Please signup.",
       });
     } else {
       // if user is found make sure email and password match
@@ -63,4 +63,16 @@ exports.signin = (req, res, next) => {
 exports.signout = (req, res, next) => {
   res.clearCookie("t");
   res.json({ message: "Sign out success !!" });
+};
+
+exports.isAuthenticated = (req, res, next) => {
+  if (typeof window == "undefined") {
+    return false;
+  } else {
+    if (localStorage.getItem("jwt")) {
+      return JSON.parse(localStorage.getItem("jwt"));
+    } else {
+      return false;
+    }
+  }
 };
