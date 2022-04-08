@@ -4,6 +4,10 @@
   align-items: center;
 }
 
+.headerRightFrame {
+  align-items: center;
+}
+
 .headerButton {
   display: flex;
   justify-content: space-around;

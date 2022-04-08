@@ -48,7 +48,7 @@ const Header = ({ showSearchPart = true }) => {
   const renderList = () => {
     if (isAuthenticated()) {
       return (
-        <div className="d-flex">
+        <div className={`${styles.headerRightFrame} d-flex`}>
           <div className={`${styles.headerButton} ml-4`}>
             <button
               className={`btn btn-outline-primary`}
