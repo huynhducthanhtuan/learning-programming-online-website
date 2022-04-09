@@ -13,5 +13,4 @@ export { default as Cart } from "./Cart";
 export { default as Checkout } from "./Checkout";
 export { default as MyCourses } from "./MyCourses";
 export { default as ViewCourseToLearn } from "./CourseDetail";
-
-
+export { default as ManageCourse } from "./Teacher/ManageCourse";

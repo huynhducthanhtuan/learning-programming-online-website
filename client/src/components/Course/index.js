@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import styles from "./Course.module.css";
 import Header from "../Header";
 import { read } from "./aipCourse";
 import { addItem } from "../Cart/helperCart";
 import { isAuthenticated } from "../Auth";
 import { getUserHasCourses } from "../MyCourses/apiMyCourses";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import onl1 from "../../assets/icons/onl1.png";
 import onl2 from "../../assets/icons/onl2.png";
 import onl3 from "../../assets/icons/onl3.png";
 import bluetick from "../../assets/icons/bluetick.png";
-import oddstar from "../../assets/icons/oddstar.png";
-import staremptypng from "../../assets/icons/staremptypng.png";
+// import oddstar from "../../assets/icons/oddstar.png";
+// import staremptypng from "../../assets/icons/staremptypng.png";
 import detailcourse1 from "../../assets/icons/detailcourse1.png";
 
 const Course = ({ isMyCourse = false }) => {

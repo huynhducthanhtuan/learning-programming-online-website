@@ -11,6 +11,10 @@ const Lesson = new Schema({
     type: String,
     required: true,
   },
+  partId: {
+    type: ObjectId,
+    ref: "Part",
+  },
   comments: [
     {
       text: String,

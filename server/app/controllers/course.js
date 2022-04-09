@@ -9,6 +9,8 @@ exports.read = (req, res, next) => {
 exports.courseById = (req, res, next, id) => {
   Course.findById(id)
     .populate("category")
+    .populate("parts")
+    .populate("parts.lessons")
     .exec((err, course) => {
       if (err || !course) {
         return res.status(400).json({
@@ -19,12 +21,29 @@ exports.courseById = (req, res, next, id) => {
       next();
     });
 };
-
+exports.deleteCourse = (req, res, next) => {
+  Course.findByIdAndDelete({ _id: req.params.courseId })
+    .then((courseDeleted) => {
+      res.json(courseDeleted);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+exports.listManageCourses = (req, res, next) => {
+  Course.find({})
+    .then((courses) => {
+      res.json(courses);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 exports.create = (req, res, next) => {
   const { name, description, price, pic, category } = req.body;
 
   console.log("req.body ", req.body);
-  if (!name || !description || !price) {
+  if (!name || !price) {
     res.status(422).json({ error: "Pleases add all the fields" });
   }
 
