@@ -8,13 +8,13 @@ exports.checkValidOldPassword = (req, res, next) => {
     // Nếu ko có user với _id đó
     if (err || !user) {
       return res.json({
-        message: "Account not found",
+        error: "Account not found",
       });
     } else {
       // Nếu password sai
       if (!user.authenticate(oldPassword)) {
         return res.json({
-          message: "Old password is not valid",
+          error: "Old password is not valid",
         });
       }
 
@@ -25,17 +25,26 @@ exports.checkValidOldPassword = (req, res, next) => {
 };
 
 exports.changePassword = (req, res, next) => {
-  // User.updateOne(
-  //   { _id: req.body._id },
-  //   { password: req.body.newPassword },
-  //   (err, updatedInfo) => {
-  //     if (updatedInfo) {
-  //       return res.json({ message: "Change password success" });
-  //     } else {
-  //       return res.json({ message: "Change password failed" });
-  //     }
-  //   }
-  // );
-  // Cần mã hóa password trước khi cập nhật vào DB
-  // hashed_password, salt
+  // Lấy ra user đó theo _id
+  User.findById(req.body.userId, (error, user) => {
+    // Nếu user đó tồn tại
+    if (user) {
+      // Tạo 1 User mới chứa thông tin của user cũ và password mới
+      const updatedUserInfo = new User({
+        ...user._doc,
+        password: req.body.newPassword,
+      });
+
+      // Cập nhật mật khẩu mới
+      user.updateOne(updatedUserInfo, (error, updatedUser) => {
+        if (updatedUser) {
+          return res.json({ message: "Change password success" });
+        } else {
+          return res.json({ error });
+        }
+      });
+    } else {
+      return res.json({ error });
+    }
+  });
 };

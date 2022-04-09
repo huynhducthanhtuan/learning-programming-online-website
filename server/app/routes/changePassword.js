@@ -6,5 +6,6 @@ const {
 } = require("../controllers/changePassword");
 
 router.post("/", checkValidOldPassword, changePassword);
+// router.post("/", changePassword);
 
 module.exports = router;

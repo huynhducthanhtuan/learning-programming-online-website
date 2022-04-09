@@ -62,7 +62,11 @@ const ChangePassword = () => {
       });
 
       // Xử lí kết quả trả về từ API
-      toast.info(data.message);
+      if (data.message == "Change password success") {
+        toast.success("Change password success");
+      } else {
+        toast.error(data.error);
+      }
     } else {
       toast.error(handleValidateFields().message);
     }

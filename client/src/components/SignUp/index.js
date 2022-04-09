@@ -25,6 +25,7 @@ const SignUp = () => {
       body: JSON.stringify(user),
     })
       .then((res) => {
+        console.log(res.json());
         return res.json();
       })
       .catch((err) => {

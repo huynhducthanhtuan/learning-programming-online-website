@@ -15,7 +15,7 @@ function SignoutModal({
 
   const signOutAction = () => {
     dispatch({ type: "CLEAR" });
-    localStorage.removeItem("jwt");
+    localStorage.clear();
     setOpenSignoutModal(false);
     document.body.style.overflow = "visible";
 
