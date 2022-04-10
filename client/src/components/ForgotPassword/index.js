@@ -73,9 +73,9 @@ const ForgotPassword = () => {
             aria-describedby="emailHelp"
             placeholder="Enter email"
             ref={emailInputRef}
+            style={{ width: "600px" }}
           />
         </div>
-
         <div className={styles.formButton}>
           <button
             className={styles.buttonCancel}
