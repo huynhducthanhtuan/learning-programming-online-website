@@ -1,10 +1,12 @@
 import React, { useRef, useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import styles from "./ForgotPassword.module.css";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import { ForgotPasswordContext } from "../../contexts/ForgotPasswordContext";
 import { submitEmailApi } from "./apiForgotPassword";
+import { getUserRole } from "../../constants";
 import Header from "../Header";
+import HeaderTeacher from "../HeaderTeacher";
 
 const ForgotPassword = () => {
   const navigate = useNavigate();

@@ -6,11 +6,13 @@ const userRoute = require("./user");
 const profileRoute = require("./profile");
 const changePasswordRoute = require("./changePassword");
 const braintreeRoute = require("./braintree");
+const partRoute = require("./part");
 
 function route(app) {
   app.use("/auth", authRoute);
   app.use("/course", courseRoute);
   app.use("/category", categoryRoute);
+  app.use("/part", partRoute);
   app.use("/lesson", lessonRoute);
   app.use("/user", userRoute);
   app.use("/profile", profileRoute);

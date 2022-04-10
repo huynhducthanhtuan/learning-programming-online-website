@@ -1,9 +1,9 @@
-import React, { useRef, useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import React, { useRef, useEffect } from "react";
 import styles from "./Profile.module.css";
+import logo from "../../assets/images/logo192.png";
+import { useNavigate, Link } from "react-router-dom";
 import { isAuthenticated } from "../Auth";
 import { viewProfileApi } from "./apiProfile";
-import logo from "../../assets/images/logo192.png";
 
 const Profile = () => {
   const navigate = useNavigate();

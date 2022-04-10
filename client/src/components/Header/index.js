@@ -1,38 +1,20 @@
 import React, { useRef, useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { UserContext } from "../../App";
 import { isAuthenticated } from "../Auth/index";
 import { itemTotal } from "../Cart/helperCart";
-import { toast } from "react-toastify";
-import { viewProfileApi } from "../Profile/apiProfile";
-import { ProfileModal, SignoutModal } from "../Modal";
+import { ProfileModal } from "../Modal";
 import Search from "../Header/Search";
 import styles from "./Header.module.css";
 import logo from "../../assets/images/logo192.png";
 import cartIcon from "../../assets/icons/shopping-cart.png";
-const defaultAvatarUrl =
-  "https://res.cloudinary.com/dhzbsq7fj/image/upload/v1643101647/avatardefault_92824_aifry9.png";
+import { AvatarImageContext } from "../../contexts";
+import { defaultAvatarUrl } from "../../constants";
 
 const Header = ({ showSearchPart = true }) => {
-  const { state, dispatch } = useContext(UserContext);
   const [openProfileModal, setOpenProfileModal] = useState(false);
+  const { avatarImage } = useContext(AvatarImageContext);
   const avatarImageRef = useRef();
   const navigate = useNavigate();
-
-  const updateAvatarImage = async () => {
-    // Lấy userId từ localStorage
-    const userId = isAuthenticated() ? isAuthenticated().user._id : "";
-
-    // Call API
-    const data = await viewProfileApi({ _id: userId });
-
-    // Xử lí kết quả trả về từ API
-    if (data._id) {
-      avatarImageRef.current.src = data.pic;
-    } else {
-      avatarImageRef.current.src = defaultAvatarUrl;
-    }
-  };
 
   const openMyCourses = () => {
     return navigate("/mycourses");
@@ -71,7 +53,7 @@ const Header = ({ showSearchPart = true }) => {
           <div className={`${styles.headerButton} ml-4`}>
             <div onClick={handleClickAvatarImage}>
               <img
-                src=""
+                src={avatarImage || defaultAvatarUrl}
                 alt=""
                 className={styles.avatarImage}
                 ref={avatarImageRef}
@@ -93,10 +75,6 @@ const Header = ({ showSearchPart = true }) => {
       );
     }
   };
-
-  useEffect(async () => {
-    await updateAvatarImage();
-  }, []);
 
   return (
     <div>

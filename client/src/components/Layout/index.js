@@ -10,7 +10,7 @@ const Layout = ({
 }) => {
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       <div className={`${styles.jumbotron} jumbotron mt-4`}>
         <h2>{title}</h2>
         <p className="lead">{description}</p>

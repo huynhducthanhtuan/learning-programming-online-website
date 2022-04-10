@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import styles from "./Course.module.css";
 import Header from "../Header";
 import { read } from "./aipCourse";
 import { addItem } from "../Cart/helperCart";
 import { isAuthenticated } from "../Auth";
 import { getUserHasCourses } from "../MyCourses/apiMyCourses";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
+import { AvatarImageContext } from "../../contexts";
 import onl1 from "../../assets/icons/onl1.png";
 import onl2 from "../../assets/icons/onl2.png";
 import onl3 from "../../assets/icons/onl3.png";
 import bluetick from "../../assets/icons/bluetick.png";
-import oddstar from "../../assets/icons/oddstar.png";
-import staremptypng from "../../assets/icons/staremptypng.png";
 import detailcourse1 from "../../assets/icons/detailcourse1.png";
 
 const Course = ({ isMyCourse = false }) => {
@@ -21,19 +20,22 @@ const Course = ({ isMyCourse = false }) => {
   const [error, setError] = useState(false);
   const [redirect, setRedirect] = useState(false);
   const [userHasCourses, setUserHasCourses] = useState();
-  const { token, user } = isAuthenticated([]);
-  const { description, name, rate } = course;
+
   const navigate = useNavigate();
+  const { token, user } = isAuthenticated();
+  const { description, name, rate } = course;
 
   useEffect(() => {
     loadSingleProduct(courseId);
-    getUserHasCourses(user._id, token).then((user) => {
-      if (user.error) {
-        toast.error(user.error);
-      } else {
-        setUserHasCourses(user);
-      }
-    });
+    if (user) {
+      getUserHasCourses(user._id, token).then((user) => {
+        if (user.error) {
+          toast.error(user.error);
+        } else {
+          setUserHasCourses(user);
+        }
+      });
+    }
   }, []);
 
   const containeCourse = () => {
@@ -59,10 +61,14 @@ const Course = ({ isMyCourse = false }) => {
   };
 
   const addToCart = (course) => {
-    console.log("course ", course);
-    addItem(course, () => {
-      setRedirect(true);
-    });
+    if (user) {
+      addItem(course, () => {
+        setRedirect(true);
+      });
+    } else {
+      toast.info("YOU MUST BE SIGN IN");
+      navigate("/signin");
+    }
   };
 
   const shouldRedirect = (redirect) => {
@@ -94,7 +100,7 @@ const Course = ({ isMyCourse = false }) => {
 
   return (
     <section>
-      <Header />
+      <Header role={0} />
       {shouldRedirect(redirect)}
       <body className={`container ${styles.detailInformation}`}>
         <h1>{name}</h1>

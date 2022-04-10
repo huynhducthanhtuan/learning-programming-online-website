@@ -1,16 +1,24 @@
+import { toast } from "react-toastify";
 import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { isAuthenticated } from "../Auth";
 import { addItem } from "../Cart/helperCart";
 
 const Card = ({ course }) => {
   const navigate = useNavigate();
   const [redirect, setRedirect] = useState(false);
+  const { user, token } = isAuthenticated();
 
   const addToCart = () => {
-    addItem(course, () => {
-      setRedirect(true);
-    });
+    if (user) {
+      addItem(course, () => {
+        setRedirect(true);
+      });
+    } else {
+      toast.info("YOU MUST BE SIGN IN");
+      navigate("/signin");
+    }
   };
   const shouldRedirect = (redirect) => {
     if (redirect) {

@@ -17,6 +17,7 @@
 .listFieldInfo {
   display: flex;
   justify-content: center;
+  margin-top: 30px;
 }
 
 .listFieldInfoPart {
@@ -39,10 +40,6 @@
 
 .itemFieldNameRole {
   margin-left: 20px !important;
-}
-
-.itemFieldNamePhoneNumber {
-  width: 300px;
 }
 
 .itemInputField {

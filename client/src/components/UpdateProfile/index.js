@@ -1,21 +1,20 @@
 import Axios from "axios";
 import React, { useRef, useState, useEffect } from "react";
 import styles from "./UpdateProfile.module.css";
+import logo from "../../assets/images/logo192.png";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { isAuthenticated } from "../Auth";
 import { viewProfileApi } from "../Profile/apiProfile";
 import { updateProfileApi } from "./apiUpdateProfile";
+import { defaultAvatarUrl } from "../../constants";
 import {
   validateFullname,
   validateEmail,
   validatePhoneNumber,
 } from "./validate";
-import logo from "../../assets/images/logo192.png";
-const defaultAvatarUrl =
-  "https://res.cloudinary.com/dhzbsq7fj/image/upload/v1643101647/avatardefault_92824_aifry9.png";
 
-const Profile = () => {
+const UpdateProfile = () => {
   const avatarImageRef = useRef();
   const fullnameInputRef = useRef();
   const emailInputRef = useRef();
@@ -213,4 +212,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default UpdateProfile;

@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useEffect } from "react";
+import React, { useRef, useContext, useEffect, useState } from "react";
 import styles from "./ForgotPasswordEnterCode.module.css";
 import { useNavigate } from "react-router-dom";
 import { ForgotPasswordContext } from "../../contexts/ForgotPasswordContext";
@@ -16,44 +16,40 @@ const ForgotPasswordEnterCode = () => {
   };
 
   const handleSubmitCode = async (e) => {
-    e.preventDefault();
-
-    // Call API
-    const data = await submitCodeApi({
-      email: email,
-      code: codeInputRef.current.value,
-    });
-
-    // Xử lí kết quả trả về từ API
-    switch (data.message) {
-      case "Please enter code":
-        toast.error(data.message.toLocaleUpperCase());
-        break;
-      case "You were enter wrong code":
-        toast.error(data.message.toLocaleUpperCase());
-        break;
-      case "Correct code":
-        toast.success(data.message.toLocaleUpperCase());
-        navigate("/forgot-password-create-new-password");
-        break;
-    }
+    // e.preventDefault();
+    // // Call API
+    // const data = await submitCodeApi({
+    //   email: email,
+    //   code: codeInputRef.current.value,
+    // });
+    // // Xử lí kết quả trả về từ API
+    // switch (data.message) {
+    //   case "Please enter code":
+    //     toast.error(data.message.toLocaleUpperCase());
+    //     break;
+    //   case "You were enter wrong code":
+    //     toast.error(data.message.toLocaleUpperCase());
+    //     break;
+    //   case "Correct code":
+    //     toast.success(data.message.toLocaleUpperCase());
+    //     navigate("/forgot-password-create-new-password");
+    //     break;
+    // }
   };
 
   const handleReSendCode = async (e) => {
-    e.preventDefault();
-
-    // Call API
-    const data = await resendCodeApi({ email });
-
-    // Xử lí kết quả trả về từ API
-    switch (data.message) {
-      case "Failed to re-send code":
-        toast.error(data.message.toLocaleUpperCase());
-        break;
-      case "Re-send code success. Please check your email":
-        toast.success(data.message.toLocaleUpperCase());
-        break;
-    }
+    // e.preventDefault();
+    // // Call API
+    // const data = await resendCodeApi({ email });
+    // // Xử lí kết quả trả về từ API
+    // switch (data.message) {
+    //   case "Failed to re-send code":
+    //     toast.error(data.message.toLocaleUpperCase());
+    //     break;
+    //   case "Re-send code success. Please check your email":
+    //     toast.success(data.message.toLocaleUpperCase());
+    //     break;
+    // }
   };
 
   useEffect(() => {
@@ -62,7 +58,7 @@ const ForgotPasswordEnterCode = () => {
 
   return (
     <section>
-      <Header />
+      <Header showSearchPart={false} />
       <h1 className={`${styles.headerString} d-flex`}>Forgot Password</h1>
       <img src="../icons/line.png" className={styles.lineAll}></img>
       <form className={styles.form}>

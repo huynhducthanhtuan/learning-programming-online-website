@@ -1,22 +1,20 @@
-import React, { useState, useContext, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { authenticate } from "../Auth";
-import { UserContext } from "../../App";
+import React, { useState, useContext } from "react";
 import styles from "./SignIn.module.css";
-import { ToastContainer, toast } from "react-toastify";
+import { Link, useNavigate } from "react-router-dom";
+import { authenticate, isAuthenticated } from "../Auth";
+import { UserContext } from "../../App";
+import { toast } from "react-toastify";
 
 const SignIn = () => {
-  const { state, dispatch } = useContext(UserContext);
   const navigate = useNavigate();
-
+  const { state, dispatch } = useContext(UserContext);
   const [values, setValues] = useState({
     email: "",
     password: "",
     error: "",
-    redirectUser: false,
   });
 
-  const { email, password, error, redirectUser } = values;
+  const { email, password, error } = values;
 
   const handleChange = (name) => (event) => {
     setValues({ ...values, [name]: event.target.value });
@@ -47,10 +45,6 @@ const SignIn = () => {
     );
   };
 
-  const redirectUserShow = () => {
-    if (redirectUser) return navigate("/");
-  };
-
   const submitForm = (event) => {
     event.preventDefault();
 
@@ -60,11 +54,11 @@ const SignIn = () => {
       } else {
         authenticate(data, () => {
           toast.success("Sign In Success");
-          setValues({ ...values, error: "", redirectUser: true });
+          setValues({ ...values, error: "" });
+          navigate("/");
         });
         dispatch({ type: "USER", payload: data.user });
       }
-      // console.log(data);
     });
   };
 
@@ -123,14 +117,7 @@ const SignIn = () => {
     );
   };
 
-  useEffect(() => window.scrollTo(0, 0), []);
-
-  return (
-    <div className={styles.main}>
-      {signInForm()}
-      {redirectUserShow()}
-    </div>
-  );
+  return <div className={styles.main}>{signInForm()}</div>;
 };
 
 export default SignIn;

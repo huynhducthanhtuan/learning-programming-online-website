@@ -40,3 +40,17 @@ export const createCourse = (userId, token, course) => {
       console.log(err);
     });
 };
+export const getCoursesApi = () => {
+  return fetch("/course//list/manage-courses", {
+    method: "GET",
+  })
+    .then((res) => res.json())
+    .catch((err) => console.log(err));
+};
+export const deleteCourseApi = (courseId) => {
+  return fetch(`/course/delete/${courseId}`, {
+    method: "DELETE",
+  })
+    .then((res) => res.json())
+    .catch((err) => console.log(err));
+};

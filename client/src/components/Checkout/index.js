@@ -140,7 +140,7 @@ const Checkout = () => {
 
   return (
     <section>
-      <Header />
+      <Header role={0} />
       {showError(error)}
       {showSuccsess(success)}
 

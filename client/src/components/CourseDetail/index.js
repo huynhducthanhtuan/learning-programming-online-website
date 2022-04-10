@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../Header";
 import Footer from "../Footer";
 import styles from "./CourseDetail.module.css";
-import { useState } from "react";
 import {
   addIcon,
   dropIcon,
@@ -19,21 +18,9 @@ import LessonDetail from "./LessonDetail";
 import VideoCourse from "./VideoCourse";
 import Comment from "./Comment";
 import CommentContent from "./CommentContent";
-import { useRef } from "react";
+
 const CourseDetail = () => {
   const [toggle, setToggle] = useState("parts");
-  // function lessonsList(lessonsId, buttonId) {
-  //   if (
-  //     document.getElementById(lessonsId).style.display == "none" ||
-  //     document.getElementById(lessonsId).style.display == ""
-  //   ) {
-  //     document.getElementById(lessonsId).style.display = "block";
-  //     document.getElementById(buttonId).style.transform = "rotate(180deg)";
-  //   } else {
-  //     document.getElementById(lessonsId).style.display = "none";
-  //     document.getElementById(buttonId).style.display = "rotate(360deg)";
-  //   }
-  // }
   const [course, setCourse] = useState();
   const [error, setError] = useState();
   const [status, setStatus] = useState();
@@ -41,7 +28,7 @@ const CourseDetail = () => {
   const [idLesson, setIdLesson] = useState();
   const { courseId } = useParams();
   const { lessonId } = useParams();
-  
+
   const loadCourseDetail = (courseId) => {
     read(courseId).then((data) => {
       if (data.error) {
@@ -62,7 +49,6 @@ const CourseDetail = () => {
     });
   };
 
-  
   const renderListPart = () => {
     return (
       <div className={styles.courseParts}>
@@ -100,7 +86,7 @@ const CourseDetail = () => {
   };
   return (
     <section>
-      <Header />
+      <Header role={0} />
 
       <div className={styles.course}>
         <div className={styles.courseVideoAndNotes}>

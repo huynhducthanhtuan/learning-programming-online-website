@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import {
   Home,
   Shop,
@@ -11,33 +11,33 @@ import {
   ForgotPasswordCreateNewPassword,
   Profile,
   UpdateProfile,
-  DashboardTeacher,
   Course,
   AddCategory,
   AddCProduct,
+  ManageCourse,
   CourseDetail,
   Cart,
   Checkout,
   MyCourses,
   ViewCourseToLearn,
-} from "../index";
+} from "../components";
 
-const Root = () => {
+const Screens = () => {
   return (
     <Routes>
       <Route path="/course/:courseId" element={<Course />} />
-      <Route path="/admin/dashboard" element={<DashboardTeacher />} />
       <Route path="/create/category" element={<AddCategory />} />
       <Route path="/create/course" element={<AddCProduct />} />
+      <Route path="/manage/courses" element={<ManageCourse />} />
       <Route path="/signup" element={<Signup />}></Route>
       <Route path="/signin" element={<SignIn />}></Route>
       <Route path="/change-password" element={<ChangePassword />}></Route>
       <Route
-        path="/forgot-password/enter-code"
+        path="/forgot-password-enter-code"
         element={<ForgotPasswordEnterCode />}
       ></Route>
       <Route
-        path="/forgot-password/create-new-password"
+        path="/forgot-password-create-new-password"
         element={<ForgotPasswordCreateNewPassword />}
       ></Route>
       <Route path="/forgot-password" element={<ForgotPassword />}></Route>
@@ -56,4 +56,4 @@ const Root = () => {
     </Routes>
   );
 };
-export default Root;
+export default Screens;

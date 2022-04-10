@@ -1,16 +1,13 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Header } from "..";
-import Carted from "../Carted";
 import { getUserHasCourses } from "./apiMyCourses";
 import { isAuthenticated } from "../Auth";
 import { ToastContainer, toast } from "react-toastify";
+import Carted from "../Carted";
 
 const MyCourses = ({}) => {
   const { token, user } = isAuthenticated([]);
-
   const [userHasCourses, setUserHasCourses] = useState();
 
   useEffect(() => {
@@ -23,10 +20,9 @@ const MyCourses = ({}) => {
     });
   }, []);
 
-  console.log(userHasCourses);
   return (
     <div>
-      <Header />
+      <Header role={0} />
       <div className="container-fluid">
         {userHasCourses &&
           userHasCourses.coursesId.map((course, i) => {

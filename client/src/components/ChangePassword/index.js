@@ -1,10 +1,12 @@
-import React, { useRef, useContext, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import styles from "./ChangePassword.module.css";
 import Header from "../Header";
+import HeaderTeacher from "../HeaderTeacher";
 import { toast } from "react-toastify";
 import { changePasswordApi } from "./apiChangePassword";
 import { isAuthenticated } from "../Auth";
 import { validatePassword } from "./validate";
+import { getUserRole } from "../../constants";
 
 const ChangePassword = () => {
   const oldPasswordInputRef = useRef();
@@ -78,7 +80,11 @@ const ChangePassword = () => {
 
   return (
     <section>
-      <Header />
+      {getUserRole() == 0 ? (
+        <Header showSearchPart={false} />
+      ) : (
+        <HeaderTeacher />
+      )}
       <h1 className={`${styles.headerString} d-flex`}>Change password</h1>
       <img src="./icons/line.png" className={styles.lineAll}></img>
       <form className={styles.form}>

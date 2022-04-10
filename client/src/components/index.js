@@ -1,5 +1,6 @@
 export { default as Home } from "./Home";
 export { default as Header } from "./Header";
+export { default as HeaderTeacher } from "./HeaderTeacher";
 export { default as Shop } from "./Shop";
 export { default as SignIn } from "./SignIn";
 export { default as Signup } from "./SignUp";
@@ -19,3 +20,4 @@ export { default as ForgotPasswordCreateNewPassword } from "./ForgotPasswordCrea
 export { default as ForgotPasswordEnterCode } from "./ForgotPasswordEnterCode";
 export { default as Profile } from "./Profile";
 export { default as UpdateProfile } from "./UpdateProfile";
+export { default as ManageCourse } from "./Teacher/ManageCourse";
