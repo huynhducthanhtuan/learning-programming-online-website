@@ -9,6 +9,7 @@ const {
   read,
   deleteCourse,
   listManageCourses,
+  updateCourse,
 } = require("../controllers/course");
 const AuthController = require("../controllers/auth");
 const {
@@ -27,6 +28,7 @@ router.post("/create/:userId", requireSignIn, isAuth, isAdmin, create);
 router.post("/by/search", listBySearch);
 router.get("/search/courseByName", listSearch);
 router.delete("/delete/:courseId", deleteCourse);
+router.patch("/update/:courseId", updateCourse);
 
 router.param("userId", userById);
 router.param("courseId", courseById);

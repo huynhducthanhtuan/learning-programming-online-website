@@ -6,8 +6,7 @@ exports.create = (req, res, next) => {
   const { partId } = req.params;
 
   const lesson = new Lesson({ title, videoId, partId });
-  console.log(lesson.title);
-  Part.findById({ _id: partId })
+  Part.findById(partId)
     .then((part) => {
       part.lessons.push(lesson);
       part.save();

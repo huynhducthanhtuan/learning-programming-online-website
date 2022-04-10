@@ -1,13 +1,18 @@
 import React from "react";
+import { useRef } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import Layout from "../Layout";
 import { getCoursesApi } from "./apiTeacher";
 import Card from "./Card";
 import ModalEditCourse from "./ModalEditCourse";
+import Modal from "../model/Modal";
 const ManageCourse = () => {
   const [data, setData] = useState([]);
-  const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpenEdit, setModalOpenEdit] = useState(false);
+  const [modalOpenDelete, setModalOpenDelete] = useState(false);
+  const [courseId, setCourseId] = useState("");
+  // const courseId = useRef("");
   const loadCourses = () => {
     getCoursesApi().then((data) => {
       setData(data);
@@ -17,10 +22,24 @@ const ManageCourse = () => {
   useEffect(() => {
     loadCourses();
   }, []);
-  console.log(data);
+  console.log("modalOpenDelete ", modalOpenDelete);
   return (
     <div className="mt-4">
-      {modalOpen && <ModalEditCourse setOpenModal={setModalOpen} />}
+      {modalOpenEdit && (
+        <ModalEditCourse
+          setModalOpenEdit={setModalOpenEdit}
+          courseId={courseId}
+          loadCourses={loadCourses}
+        />
+      )}
+      {modalOpenDelete && (
+        <Modal
+          body="Bạn có muốn xóa khóa học này?"
+          setModalOpenDelete={setModalOpenDelete}
+          courseId={courseId}
+          loadCourses={loadCourses}
+        />
+      )}
       <Layout
         title="DashBoard"
         description="Manage Courses"
@@ -35,7 +54,9 @@ const ManageCourse = () => {
                   <Card
                     course={course}
                     loadCourses={loadCourses}
-                    setModalOpen={setModalOpen}
+                    setModalOpenEdit={setModalOpenEdit}
+                    setModalOpenDelete={setModalOpenDelete}
+                    setCourseId={setCourseId}
                   />
                 </div>
               );

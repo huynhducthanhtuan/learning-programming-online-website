@@ -1,0 +1,8 @@
+.partItem:hover {
+  background-color: aliceblue;
+  cursor: pointer;
+}
+.lessonItem:hover {
+  background-color: rgb(212, 216, 216);
+  cursor: pointer;
+}

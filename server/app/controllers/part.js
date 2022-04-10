@@ -39,7 +39,7 @@ exports.partById = (req, res, next, id) => {
 exports.create = (req, res) => {
   const { topic } = req.body;
   const { courseId } = req.params;
-
+  // res.json({ topic, courseId });
   const part = new Part({ topic, courseId });
   Course.findById({ _id: courseId })
     .then((course) => {

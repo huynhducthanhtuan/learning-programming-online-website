@@ -13,6 +13,10 @@ const Part = new Schema(
       type: ObjectId,
       ref: "Course",
     },
+    isSelect: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );
