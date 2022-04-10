@@ -1,11 +1,10 @@
+import Axios from "axios";
 import React, { useState, useEffect } from "react";
 import Layout from "../Layout";
 import { Link } from "react-router-dom";
 import { isAuthenticated } from "../Auth";
 import { createCourse, getCategories } from "./apiTeacher";
-import { Header } from "..";
-
-import Axios from "axios";
+import HeaderTeacher from "../HeaderTeacher";
 
 const AddCProduct = () => {
   const [image, setImage] = useState("");
@@ -38,6 +37,7 @@ const AddCProduct = () => {
     success,
   } = values;
   const { token, user } = isAuthenticated();
+
   const init = () => {
     getCategories().then((data) => {
       if (data.error) {
@@ -62,6 +62,7 @@ const AddCProduct = () => {
   const handleChange = (name) => (event) => {
     setValues({ ...values, [name]: event.target.value });
   };
+
   const postImage = () => {
     const data = new FormData();
     data.append("file", image);
@@ -72,6 +73,7 @@ const AddCProduct = () => {
       data
     ).then((res) => setUrl(res.data.url));
   };
+
   const clickSubmit = (event) => {
     event.preventDefault();
 
@@ -88,6 +90,7 @@ const AddCProduct = () => {
       }
     });
   };
+
   const showError = () => {
     return (
       <div
@@ -98,6 +101,7 @@ const AddCProduct = () => {
       </div>
     );
   };
+
   const showSuccess = () => {
     return (
       <div
@@ -170,6 +174,7 @@ const AddCProduct = () => {
 
   return (
     <div>
+      <HeaderTeacher />
       <Layout
         title="Add a new Course"
         description={`${user.name} Ready to add a new Course`}
@@ -178,7 +183,7 @@ const AddCProduct = () => {
           {showError()}
           {showSuccess()}
           {newPostForm()}
-          <Link to="/admin/dashboard" className="text-warning">
+          <Link to="/" className="text-warning">
             Go dashboard
           </Link>
         </div>

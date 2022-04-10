@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./SignUp.module.css";
 
@@ -25,11 +25,10 @@ const SignUp = () => {
       body: JSON.stringify(user),
     })
       .then((res) => {
-        console.log(res.json());
         return res.json();
       })
       .catch((err) => {
-        console.log(err);
+        return err;
       });
   };
 
@@ -44,7 +43,6 @@ const SignUp = () => {
       }
     });
   };
-
   const errorShow = () => {
     return (
       <div
@@ -120,8 +118,6 @@ const SignUp = () => {
       </form>
     );
   };
-
-  useEffect(() => window.scrollTo(0, 0), []);
 
   return (
     <section className={`mt-4 ${styles.flex}`}>

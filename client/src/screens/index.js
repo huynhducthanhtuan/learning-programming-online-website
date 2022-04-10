@@ -25,10 +25,6 @@ import {
 const Screens = () => {
   return (
     <Routes>
-      <Route path="/course/:courseId" element={<Course />} />
-      <Route path="/create/category" element={<AddCategory />} />
-      <Route path="/create/course" element={<AddCProduct />} />
-      <Route path="/manage/courses" element={<ManageCourse />} />
       <Route path="/signup" element={<Signup />}></Route>
       <Route path="/signin" element={<SignIn />}></Route>
       <Route path="/change-password" element={<ChangePassword />}></Route>
@@ -52,6 +48,10 @@ const Screens = () => {
         path="/coursedetail/:courseId/:lessonId"
         element={<ViewCourseToLearn />}
       ></Route>
+      <Route path="/course/:courseId" element={<Course />} />
+      <Route path="/create-category" element={<AddCategory />} />
+      <Route path="/create-course" element={<AddCProduct />} />
+      <Route path="/manage-courses" element={<ManageCourse />} />
       <Route path="/" element={<Home />}></Route>
     </Routes>
   );

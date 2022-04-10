@@ -1,9 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import Layout from "../Layout";
 import { getCoursesApi } from "./apiTeacher";
+import HeaderTeacher from "../HeaderTeacher";
 import Card from "./Card";
+import Layout from "../Layout";
 import ModalEditCourse from "./ModalEditCourse";
 
 const ManageCourse = () => {
@@ -18,9 +19,10 @@ const ManageCourse = () => {
   useEffect(() => {
     loadCourses();
   }, []);
-  console.log(data);
+
   return (
     <div className="mt-4">
+      <HeaderTeacher />
       {modalOpen && <ModalEditCourse setOpenModal={setModalOpen} />}
       <Layout
         title="DashBoard"

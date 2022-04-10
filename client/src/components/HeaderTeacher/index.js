@@ -42,7 +42,7 @@ const HeaderTeacher = () => {
           <button
             className={`btn btn-outline-primary`}
             style={{ marginRight: "30px" }}
-            onClick={() => navigate("/create/category")}
+            onClick={() => navigate("/create-category")}
           >
             Create Category
           </button>
@@ -51,7 +51,7 @@ const HeaderTeacher = () => {
           <button
             className={`btn btn-outline-primary`}
             style={{ marginRight: "30px" }}
-            onClick={() => navigate("/create/course")}
+            onClick={() => navigate("/create-course")}
           >
             Create Course
           </button>
@@ -60,9 +60,9 @@ const HeaderTeacher = () => {
           <button
             className={`btn btn-outline-primary`}
             style={{ marginRight: "30px" }}
-            onClick={() => navigate("/manage/courses")}
+            onClick={() => navigate("/manage-courses")}
           >
-            Courses
+            Manage Courses
           </button>
         </div>
         <div className={`${styles.headerButton} ml-4`}>
