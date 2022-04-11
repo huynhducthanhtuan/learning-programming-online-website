@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import onl1 from "../../assets/icons/onl1.png";
 import onl2 from "../../assets/icons/onl2.png";
 import onl3 from "../../assets/icons/onl3.png";
+import ToggleCourse from "../ToggleCourse";
 import bluetick from "../../assets/icons/bluetick.png";
 // import oddstar from "../../assets/icons/oddstar.png";
 // import staremptypng from "../../assets/icons/staremptypng.png";
@@ -140,14 +141,8 @@ const Course = ({ isMyCourse = false }) => {
             <p className={styles.courseDesP}>Description</p>
             <div className={styles.courseDesBox}>
               <p>{description && description.goal}</p>
-              {description &&
-                description.achievement.map((a, i) => (
-                  <div key={i} className={` d-flex ${styles.courseDetailItem}`}>
-                    <img src={bluetick}></img>
-                    <p>{a}</p>
-                  </div>
-                ))}
             </div>
+            <ToggleCourse/>
             <div className={styles.courseDetailRate}>
               <p>Rating and Review</p>
             </div>
