@@ -1,5 +1,5 @@
 export const submitCodeApi = (data) => {
-  return fetch("forgot-password-submit-code/", {
+  return fetch("forgot-password/submit-code/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -11,7 +11,7 @@ export const submitCodeApi = (data) => {
 };
 
 export const resendCodeApi = (data) => {
-  return fetch("forgot-password-resend-code/", {
+  return fetch("forgot-password/resend-code/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

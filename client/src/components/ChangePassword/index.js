@@ -5,7 +5,7 @@ import HeaderTeacher from "../HeaderTeacher";
 import { toast } from "react-toastify";
 import { changePasswordApi } from "./apiChangePassword";
 import { isAuthenticated } from "../Auth";
-import { validatePassword } from "./validate";
+import { validatePassword } from "../../constants";
 import { getUserRole } from "../../constants";
 
 const ChangePassword = () => {

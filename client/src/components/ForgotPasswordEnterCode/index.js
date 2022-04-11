@@ -11,45 +11,42 @@ const ForgotPasswordEnterCode = () => {
   const codeInputRef = useRef();
   const { code, setCode, email, setEmail } = useContext(ForgotPasswordContext);
 
-  const cleanInputText = () => {
-    codeInputRef.current.value = "";
-  };
-
   const handleSubmitCode = async (e) => {
-    // e.preventDefault();
-    // // Call API
-    // const data = await submitCodeApi({
-    //   email: email,
-    //   code: codeInputRef.current.value,
-    // });
-    // // Xử lí kết quả trả về từ API
-    // switch (data.message) {
-    //   case "Please enter code":
-    //     toast.error(data.message.toLocaleUpperCase());
-    //     break;
-    //   case "You were enter wrong code":
-    //     toast.error(data.message.toLocaleUpperCase());
-    //     break;
-    //   case "Correct code":
-    //     toast.success(data.message.toLocaleUpperCase());
-    //     navigate("/forgot-password-create-new-password");
-    //     break;
-    // }
+    e.preventDefault();
+
+    // Call API
+    const data = await submitCodeApi({
+      email: email,
+      code: codeInputRef.current.value,
+    });
+
+    // Xử lí kết quả trả về từ API
+    switch (data.message) {
+      case "Wrong code":
+        toast.error(data.message);
+        break;
+      case "Correct code":
+        toast.success(data.message);
+        navigate("/forgot-password-create-new-password");
+        break;
+    }
   };
 
   const handleReSendCode = async (e) => {
-    // e.preventDefault();
-    // // Call API
-    // const data = await resendCodeApi({ email });
-    // // Xử lí kết quả trả về từ API
-    // switch (data.message) {
-    //   case "Failed to re-send code":
-    //     toast.error(data.message.toLocaleUpperCase());
-    //     break;
-    //   case "Re-send code success. Please check your email":
-    //     toast.success(data.message.toLocaleUpperCase());
-    //     break;
-    // }
+    e.preventDefault();
+
+    // Call API
+    const data = await resendCodeApi({ email });
+
+    // Xử lí kết quả trả về từ API
+    switch (data.message) {
+      case "Re-send code failed":
+        toast.error(data.message);
+        break;
+      case "Re-send code success. Please check your email":
+        toast.success(data.message);
+        break;
+    }
   };
 
   useEffect(() => {
@@ -67,7 +64,7 @@ const ForgotPasswordEnterCode = () => {
         <div>
           <h4>Enter the code here</h4>
           <input
-            className={styles.formControl}
+            className={styles.formControl + " " + styles.formControlInput}
             id="inputCode"
             placeholder="Enter code"
             ref={codeInputRef}

@@ -1,5 +1,5 @@
 export const createNewPasswordApi = (data) => {
-  return fetch("forgot-password-create-new-password/", {
+  return fetch("forgot-password/create-new-password/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -12,7 +12,7 @@ import {
   validateFullname,
   validateEmail,
   validatePhoneNumber,
-} from "./validate";
+} from "../../constants";
 
 const UpdateProfile = () => {
   const avatarImageRef = useRef();

@@ -4,9 +4,8 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { ForgotPasswordContext } from "../../contexts/ForgotPasswordContext";
 import { submitEmailApi } from "./apiForgotPassword";
-import { getUserRole } from "../../constants";
 import Header from "../Header";
-import HeaderTeacher from "../HeaderTeacher";
+import { validateEmail } from "../../constants";
 
 const ForgotPassword = () => {
   const navigate = useNavigate();
@@ -21,31 +20,32 @@ const ForgotPassword = () => {
   const handleSendCode = async (e) => {
     e.preventDefault();
 
-    // Call API
-    const data = await submitEmailApi({
-      email: emailInputRef.current.value,
-    });
+    // Validate email
+    const isValidEmail = validateEmail(emailInputRef.current.value);
 
-    // Xử lí kết quả trả về từ API
-    switch (data.message) {
-      case "Please enter your email":
-        toast.error(data.message.toLocaleUpperCase());
-        break;
-      case "Please enter an valid format email":
-        toast.error(data.message.toLocaleUpperCase());
-        break;
-      case "Email not found":
-        toast.error(data.message.toLocaleUpperCase());
-        break;
-      case "Send code failed":
-        setEmail(emailInputRef.current.value);
-        toast.error(data.message.toLocaleUpperCase());
-        break;
-      case "Send code success. Please check your email":
-        setEmail(emailInputRef.current.value);
-        toast.success(data.message.toLocaleUpperCase());
-        navigate("/forgot-password-enter-code");
-        break;
+    if (isValidEmail.isValid) {
+      // Call API
+      const data = await submitEmailApi({
+        email: emailInputRef.current.value,
+      });
+
+      // Xử lí kết quả trả về từ API
+      switch (data.message) {
+        case "Email not found":
+          toast.error(data.message);
+          break;
+        case "Send code failed":
+          setEmail(emailInputRef.current.value);
+          toast.error(data.message);
+          break;
+        case "Send code success. Please check your email":
+          setEmail(emailInputRef.current.value);
+          toast.success(data.message);
+          navigate("/forgot-password-enter-code");
+          break;
+      }
+    } else {
+      toast.error(isValidEmail.error);
     }
   };
 
@@ -67,8 +67,8 @@ const ForgotPassword = () => {
           </label>
           <input
             type="email"
-            name="user_email"
-            className={styles.formControl}
+            name="email"
+            className={styles.formControl + " " + styles.formControlInput}
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             placeholder="Enter email"

@@ -4,7 +4,7 @@ import { ForgotPasswordContext } from "../../contexts/ForgotPasswordContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { createNewPasswordApi } from "./apiForgotPasswordCreateNewPassword";
-import { getUserRole } from "../../constants";
+import { validatePassword } from "../../constants";
 import Header from "../Header";
 
 const ForgotPasswordCreateNewPassword = () => {
@@ -18,37 +18,54 @@ const ForgotPasswordCreateNewPassword = () => {
     newPasswordConfirmInputRef.current.value = "";
   };
 
-  const handleConfirmPasswords = async (e) => {
-    // e.preventDefault();
-    // // Call API
-    // const data = await createNewPasswordApi({
-    //   email: email,
-    //   newPassword: newPasswordInputRef.current.value,
-    //   newPasswordConfirm: newPasswordConfirmInputRef.current.value,
-    // });
-    // // Xử lí kết quả trả về từ API
-    // switch (data.message) {
-    //   case "User not found":
-    //     toast.error(data.message.toLocaleUpperCase());
-    //     break;
-    //   case "Please enter all information":
-    //     toast.error(data.message.toLocaleUpperCase());
-    //     break;
-    //   case "Please enter passwords has more 8 characters":
-    //     toast.error(data.message.toLocaleUpperCase());
-    //     break;
-    //   case "Please enter the same new password and new password confirm":
-    //     toast.error(data.message.toLocaleUpperCase());
-    //     break;
-    //   case "Create new password failed":
-    //     toast.error(data.message.toLocaleUpperCase());
-    //     break;
-    //   case "Create new password success":
-    //     toast.success(data.message.toLocaleUpperCase());
-    //     cleanInputText();
-    //     navigate("/signin");
-    //     break;
-    // }
+  const handleValidateFields = () => {
+    const isValidNewPassword = validatePassword(
+      newPasswordInputRef.current.value.trim()
+    );
+    const isValidOldPassword = validatePassword(
+      newPasswordConfirmInputRef.current.value.trim()
+    );
+
+    if (!isValidNewPassword.isValid)
+      return { message: `New password: ${isValidNewPassword.error}` };
+    if (!isValidOldPassword.isValid)
+      return { message: `New password confirm: ${isValidOldPassword.error}` };
+    if (
+      newPasswordInputRef.current.value.trim() !=
+      newPasswordConfirmInputRef.current.value.trim()
+    )
+      return {
+        message: "New password and new password confirm are not match",
+      };
+
+    return { message: "success" };
+  };
+
+  const handleCreateNewPassword = async (e) => {
+    e.preventDefault();
+
+    // Validate password
+    if (handleValidateFields().message == "success") {
+      // Call API
+      const data = await createNewPasswordApi({
+        email: email,
+        newPassword: newPasswordInputRef.current.value.trim(),
+        newPasswordConfirm: newPasswordConfirmInputRef.current.value.trim(),
+      });
+
+      // Xử lí kết quả trả về từ API
+      switch (data.message) {
+        case "Create new password failed":
+          toast.error(data.message);
+          break;
+        case "Create new password success":
+          toast.success(data.message);
+          cleanInputText();
+          break;
+      }
+    } else {
+      toast.error(handleValidateFields().message);
+    }
   };
 
   useEffect(() => {
@@ -65,13 +82,13 @@ const ForgotPasswordCreateNewPassword = () => {
         <img src="./icons/line.png" className={styles.line}></img>
         <div>
           <input
-            className={styles.formControl}
+            className={styles.formControl + " " + styles.formControlInput}
             id="new-password-input"
             placeholder="Enter new password"
             ref={newPasswordInputRef}
           />
           <input
-            className={styles.formControl}
+            className={styles.formControl + " " + styles.formControlInput}
             id="confirm-new-password-input"
             placeholder="Confirm new password"
             ref={newPasswordConfirmInputRef}
@@ -81,7 +98,7 @@ const ForgotPasswordCreateNewPassword = () => {
         <div className={styles.formButton}>
           <button
             className={styles.buttonSend}
-            onClick={(e) => handleConfirmPasswords(e)}
+            onClick={(e) => handleCreateNewPassword(e)}
           >
             Confirm
           </button>

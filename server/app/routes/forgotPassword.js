@@ -1,10 +1,15 @@
 const express = require("express");
 const router = express.Router();
-// const { forgotPassword, enterCode, createNewCourse } = require('../controllers/forgotPassword')
-// const { userById } = require("../controllers/user");
+const {
+  submitEmail,
+  submitCode,
+  resendCode,
+  createNewPassword,
+} = require("../controllers/forgotPassword");
 
-// router.get("/", forgotPassword);
-// router.post("/enter-code", enterCode);
-// router.post("/create-new-password", createNewCourse);
+router.post("/submit-email", submitEmail);
+router.post("/submit-code", submitCode);
+router.post("/resend-code", resendCode);
+router.post("/create-new-password", createNewPassword);
 
 module.exports = router;
