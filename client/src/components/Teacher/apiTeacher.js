@@ -96,3 +96,15 @@ export const createPartByCourseId = (courseId, topic) => {
     .then((res) => res.json())
     .catch((err) => console.log(err));
 };
+export const createLessonByPartId = (partId, title, videoId) => {
+  console.log(partId, title, videoId);
+  return fetch(`/lesson/create/${partId}`, {
+    method: "POST",
+    headers: {
+      "Content-type": "Application/json",
+    },
+    body: JSON.stringify({ title, videoId }),
+  })
+    .then((res) => res.json())
+    .catch((err) => console.log(err));
+};

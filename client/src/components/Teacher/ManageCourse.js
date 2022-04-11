@@ -22,7 +22,7 @@ const ManageCourse = () => {
   useEffect(() => {
     loadCourses();
   }, []);
-  console.log("modalOpenDelete ", modalOpenDelete);
+  // console.log("modalOpenDelete ", modalOpenDelete);
   return (
     <div className="mt-4">
       {modalOpenEdit && (

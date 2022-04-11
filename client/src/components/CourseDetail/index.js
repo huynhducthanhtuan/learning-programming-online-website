@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import Header from "../Header";
 import Footer from "../Footer";
 import styles from "./CourseDetail.module.css";
@@ -20,84 +20,36 @@ import VideoCourse from "./VideoCourse";
 import Comment from "./Comment";
 import CommentContent from "./CommentContent";
 import { useRef } from "react";
+import ToggleCourse from "../ToggleCourse";
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 const CourseDetail = () => {
+  const query = useQuery();
+  const lessonId = query.get("lessonId");
+
   const [toggle, setToggle] = useState("parts");
-  // function lessonsList(lessonsId, buttonId) {
-  //   if (
-  //     document.getElementById(lessonsId).style.display == "none" ||
-  //     document.getElementById(lessonsId).style.display == ""
-  //   ) {
-  //     document.getElementById(lessonsId).style.display = "block";
-  //     document.getElementById(buttonId).style.transform = "rotate(180deg)";
-  //   } else {
-  //     document.getElementById(lessonsId).style.display = "none";
-  //     document.getElementById(buttonId).style.display = "rotate(360deg)";
-  //   }
-  // }
   const [course, setCourse] = useState();
   const [error, setError] = useState();
-  const [status, setStatus] = useState();
-  const [lessonCourse, setLessonCourse] = useState();
-  const [idLesson, setIdLesson] = useState();
+  // const [status, setStatus] = useState();
+  // const [lessonCourse, setLessonCourse] = useState();
+  // const [idLesson, setIdLesson] = useState();
   const { courseId } = useParams();
-  const { lessonId } = useParams();
-  
-  const loadCourseDetail = (courseId) => {
+  console.log(courseId);
+
+  const loadSingleProduct = (courseId) => {
     read(courseId).then((data) => {
       if (data.error) {
         setError(data.error);
-      } else setCourse(data);
+      } else {
+        setCourse(data);
+      }
     });
   };
-  console.log(course);
-  console.log(courseId);
   useEffect(() => {
-    loadCourseDetail(courseId);
-    // loadLesson(idLesson);
+    loadSingleProduct(courseId);
   }, []);
 
-  const loadLesson = (idLesson) => {
-    readLesson(idLesson).then((data) => {
-      console.log(data);
-    });
-  };
-
-  
-  const renderListPart = () => {
-    return (
-      <div className={styles.courseParts}>
-        <section>
-          <div className={styles.courseHeader}>
-            <p>{course && course.name}</p>
-          </div>
-          {course &&
-            course.parts.map((part, i) => {
-              return (
-                <div className={styles.courseAllParts} key={i}>
-                  <div className={styles.coursePart}>
-                    <div className={styles.coursePartHeader}>
-                      <p>Part 1: {part.topic}</p>
-
-                      <img
-                        id="dropIcon1"
-                        className={styles.courseDropDownIcon}
-                        src={dropIcon}
-                        alt=""
-                      />
-                    </div>
-                    {part.lessons.map((lessonId, i) => {
-                      return (
-                        <LessonDetail lessonId={lessonId} courseId={courseId} />
-                      );
-                    })}
-                  </div>
-                </div>
-              );
-            })}
-        </section>
-      </div>
-    );
-  };
   return (
     <section>
       <Header />
@@ -217,13 +169,10 @@ const CourseDetail = () => {
                   ? `${styles.tabContent} ${styles.active}`
                   : `${styles.tabContent}`
               }
-            >
-              {/* <CommentContent lessonId={lessonId} /> */}
-              {/* <Comment lessonId={lessonId} /> */}
-            </div>
+            ></div>
           </div>
         </div>
-        {renderListPart()}
+        {course && <ToggleCourse course={course} />}
       </div>
       <div className={styles.courseFooter}>
         <Footer />

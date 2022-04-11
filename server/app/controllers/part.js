@@ -15,6 +15,7 @@ exports.list = (req, res, next) => {
 };
 exports.getPartsByCourseId = (req, res, next) => {
   Part.find({ courseId: req.params.courseId })
+    .populate("lessons")
     .then((parts) => {
       res.json(parts);
     })

@@ -1,23 +1,26 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useState } from "react";
-// import { initialState } from "../../reducers";
 import {
   getCourseApi,
   getPartsByCourseId,
   updateCourseApi,
   getLessonsByPartId,
   createPartByCourseId,
+  createLessonByPartId,
 } from "./apiTeacher";
 import { getCategories } from "./apiTeacher";
 import Axios from "axios";
 import styles from "./Teacher.module.css";
 import { toast } from "react-toastify";
+import ToggleCourse from "../ToggleCourse";
+
+const kvArray = new Map();
 
 const ModalEditCourse = ({ setModalOpenEdit, courseId, loadCourses }) => {
   const [values, setValues] = useState({
     name: "",
-    //   description:"",
+    description: "",
     price: "",
     pic: "",
     category: "",
@@ -29,8 +32,11 @@ const ModalEditCourse = ({ setModalOpenEdit, courseId, loadCourses }) => {
   const [lessons, setLessons] = useState();
   const [image, setImage] = useState("");
   const [url, setUrl] = useState("");
-  const { name, price, category, pic } = values;
-
+  const { name, price, category, pic, description } = values;
+  const topicRef = useRef();
+  const titleRef = useRef();
+  const videoIdRef = useRef();
+  const [openLessons, setOpenLessons] = useState(false);
   const handleChange = (name) => (event) => {
     setValues({ ...values, [name]: event.target.value });
   };
@@ -70,17 +76,168 @@ const ModalEditCourse = ({ setModalOpenEdit, courseId, loadCourses }) => {
     loadCourse();
     loadPartsByCourseId();
   }, []);
-  const loadLessonsByPartId = (partId) => {
-    getLessonsByPartId(partId).then((lessons) => {
+  const loadLessonsByPartId = async (partId, part) => {
+    await getLessonsByPartId(partId).then((lessons) => {
+      // kvArray.set(partId, lessons);
       setLessons(lessons);
+      // setOpenLessons(part.isSelect);
     });
   };
+
   const addPartByCourseId = async (courseId, topic) => {
     const data = await createPartByCourseId(courseId, topic);
-    console.log(data);
-    loadPartsByCourseId();
+
+    loadCourse();
+    topicRef.current.value = "";
   };
-  console.log(topic);
+  const addLessonByPartId = async (partId, title, videoId) => {
+    const data = await createLessonByPartId(partId, title, videoId);
+    // titleRef.current.value = "";
+    // videoIdRef.current.value = "";
+    loadCourse();
+  };
+
+  const showLessons = (part) => {
+    // console.log(part._id);
+    // console.log(kvArray.get(part._id));
+    // console.log(part.isSelect);
+    return (
+      <div>
+        {lessons.map((lesson, index) => {
+          return (
+            <p
+              className={`list-group-item ${styles.lessonItem} h6`}
+              onClick={() => loadLessonsByPartId(lesson._id)}
+              key={lesson._id}
+            >
+              <small>
+                {index + 1}. {lesson.title}
+              </small>
+            </p>
+          );
+        })}
+      </div>
+    );
+  };
+  const showFormAddLesson = (part) => {
+    console.log(part.isSelect);
+
+    return (
+      <div>
+        {
+          <div>
+            <div className="d-flex mt-4 ">
+              <div className="form-group">
+                <span className="text-muted">Title</span>
+                <input
+                  className="form-control mr-sm-2"
+                  type="text"
+                  placeholder="Title "
+                  ref={titleRef}
+                />
+              </div>
+
+              <div className="form-group ml-4">
+                <span className="text-muted">VideoId</span>
+                <input
+                  className="form-control mr-sm-2"
+                  type="text"
+                  placeholder="Video Id"
+                  ref={videoIdRef}
+                />
+              </div>
+            </div>
+
+            <button
+              className="btn btn-outline-success mb-4"
+              onClick={() => {
+                addLessonByPartId(
+                  part._id,
+                  titleRef.current.value,
+                  videoIdRef.current.value
+                );
+              }}
+            >
+              Add Lesson
+            </button>
+          </div>
+        }
+      </div>
+    );
+  };
+  const addLessonBtn = (part) => {
+    // console.log(part.isSelect);
+    return (
+      <>
+        <div
+          className="mt-4 mb-4"
+          style={{
+            padding: "2px",
+            border: "2px dotted #ccc",
+            display: part.isSelect ? "none" : "block",
+          }}
+        >
+          <p
+            className={`text-center m-0 ${styles.addLessonBtnC}`}
+            style={{
+              padding: "2px",
+              // display: part.isSelect ? "none" : "block",
+            }}
+            onClick={() => {
+              part.isSelect = !part.isSelect;
+              console.log(part.isSelect);
+              setOpenLessons(!openLessons);
+            }}
+          >
+            Add lesson
+          </p>
+        </div>
+        <div>
+          {part.isSelect && (
+            <div>
+              <div className="d-flex mt-4 ">
+                <div className="form-group">
+                  <span className="text-muted">Title</span>
+                  <input
+                    className="form-control mr-sm-2"
+                    type="text"
+                    placeholder="Title "
+                    ref={titleRef}
+                  />
+                </div>
+
+                <div className="form-group ml-4">
+                  <span className="text-muted">VideoId</span>
+                  <input
+                    className="form-control mr-sm-2"
+                    type="text"
+                    placeholder="Video Id"
+                    ref={videoIdRef}
+                  />
+                </div>
+              </div>
+
+              <button
+                className="btn btn-outline-success mb-4"
+                onClick={() => {
+                  addLessonByPartId(
+                    part._id,
+                    titleRef.current.value,
+                    videoIdRef.current.value
+                  );
+                  part.isSelect = !part.isSelect;
+                  console.log(part.isSelect);
+                  setOpenLessons(!openLessons);
+                }}
+              >
+                Add Lesson
+              </button>
+            </div>
+          )}
+        </div>
+      </>
+    );
+  };
   const renderParts = () => {
     return (
       <div className="mb-4">
@@ -89,45 +246,18 @@ const ModalEditCourse = ({ setModalOpenEdit, courseId, loadCourses }) => {
             className="form-control mr-sm-2"
             type="text"
             placeholder="Add a part"
-            onChange={(e) => setTopic(e.target.value)}
+            ref={topicRef}
           />
           <button
             className="btn btn-outline-success"
-            onClick={() => addPartByCourseId(course._id, topic)}
+            onClick={() =>
+              addPartByCourseId(course._id, topicRef.current.value)
+            }
           >
             Add Part
           </button>
         </div>
-        {parts.map((part) => {
-          return (
-            <ul className="list-group" key={part._id}>
-              <li
-                className={
-                  part.isSelect
-                    ? `list-group-item ${styles.partItem} list-group-item-info`
-                    : `list-group-item ${styles.partItem}`
-                }
-                onClick={() => {
-                  loadLessonsByPartId(part._id);
-                  part.isSelect = !part.isSelect;
-                }}
-              >
-                {part.topic}
-              </li>
-              {part.isSelect &&
-                lessons.map((lesson) => {
-                  return (
-                    <span
-                      className={`list-group-item ${styles.lessonItem}`}
-                      onClick={() => loadLessonsByPartId(lesson._id)}
-                    >
-                      {lesson.title}
-                    </span>
-                  );
-                })}
-            </ul>
-          );
-        })}
+        {course && <ToggleCourse course={course} addLessonBtn={addLessonBtn} />}
       </div>
     );
   };
@@ -137,6 +267,7 @@ const ModalEditCourse = ({ setModalOpenEdit, courseId, loadCourses }) => {
     const dataSubmit = {
       name: name ? name : course && course.name,
       price: price ? price : course && course.price,
+      description: description ? description : course && course.description,
       pic: url ? url : course && course.image,
       category: category ? category : course && course.category._id,
     };
@@ -174,7 +305,9 @@ const ModalEditCourse = ({ setModalOpenEdit, courseId, loadCourses }) => {
             <textarea
               onChange={handleChange("description")}
               className="form-control"
-              defaultValue={course && course.description.goal}
+              defaultValue={
+                description ? description : course && course.description
+              }
             ></textarea>
           </div>
           <div className="form-group">
@@ -214,7 +347,10 @@ const ModalEditCourse = ({ setModalOpenEdit, courseId, loadCourses }) => {
   };
   return (
     <div className="modalBackground">
-      <div className="modalContainer">
+      <div
+        className="modalContainer"
+        style={{ height: "98vh", overflow: "auto" }}
+      >
         <div className="titleCloseBtn">
           <button
             onClick={() => {
@@ -225,7 +361,7 @@ const ModalEditCourse = ({ setModalOpenEdit, courseId, loadCourses }) => {
           </button>
         </div>
         <div className="title">
-          <h1>Edit Course</h1>
+          <h1 className="mb-4">Edit Course</h1>
         </div>
         {course && courseDetail()}
         {parts && renderParts()}

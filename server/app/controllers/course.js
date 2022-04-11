@@ -9,8 +9,13 @@ exports.read = (req, res, next) => {
 exports.courseById = (req, res, next, id) => {
   Course.findById(id)
     .populate("category")
-    .populate("parts")
-    .populate("parts.lessons")
+    .populate("parts", "_id topic lessons isSelect")
+    .populate({
+      path: "parts",
+      populate: { path: "lessons" },
+    })
+    // .populate("parts.lessons", "_id topic lessons isSelect")
+    // .populate("parts.lessons")
     .exec((err, course) => {
       if (err || !course) {
         return res.status(400).json({
@@ -31,11 +36,11 @@ exports.deleteCourse = (req, res, next) => {
     });
 };
 exports.updateCourse = (req, res, next) => {
-  const { name, price, pic, category } = req.body;
+  const { name, price, pic, category, description } = req.body;
   const { courseId } = req.params.courseId;
   Course.findByIdAndUpdate(
     { _id: req.params.courseId },
-    { name, price, image: pic, category }
+    { name, price, image: pic, category, description }
   )
     .then((courseUpdate) => {
       res.json("Update course success");
@@ -54,7 +59,7 @@ exports.listManageCourses = (req, res, next) => {
     });
 };
 exports.create = (req, res, next) => {
-  const { name, price, pic, category } = req.body;
+  const { name, price, pic, category, description } = req.body;
   console.log("req.body ", req.body);
   if (!name || !price) {
     res.status(422).json({ error: "Pleases add all the fields" });
@@ -65,6 +70,7 @@ exports.create = (req, res, next) => {
     price,
     image: pic,
     category,
+    description,
   });
   course
     .save()

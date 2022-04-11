@@ -32,11 +32,7 @@ const Root = () => {
       <Route path="/cart" element={<Cart />}></Route>
       <Route path="/shop" element={<Shop />}></Route>
       <Route path="/checkout" element={<Checkout />}></Route>
-      <Route path="/coursedetail/:courseId" element={<CourseDetail />}></Route>
-      <Route
-        path="/coursedetail/:courseId/:lessonId"
-        element={<ViewCourseToLearn />}
-      ></Route>
+      <Route path="/learning/:courseId" element={<CourseDetail />}></Route>
       <Route path="/" element={<Home />}></Route>
     </Routes>
   );

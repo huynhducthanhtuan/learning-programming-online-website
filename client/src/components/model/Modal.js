@@ -48,20 +48,20 @@ function Modal({
         <div className="footer">
           <button
             onClick={() => {
+              action && action();
+              deleteCourse && deleteCourse(courseId);
+            }}
+          >
+            Oke
+          </button>
+          <button
+            onClick={() => {
               setOpenModal && setOpenModal(false);
               setModalOpenDelete && setModalOpenDelete(false);
             }}
             id="cancelBtn"
           >
             Cancel
-          </button>
-          <button
-            onClick={() => {
-              action && action();
-              deleteCourse && deleteCourse(courseId);
-            }}
-          >
-            Oke
           </button>
         </div>
       </div>
