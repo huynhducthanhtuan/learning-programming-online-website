@@ -6,10 +6,10 @@ import Card from "../Home/Card";
 const ResultSearch = ({ resultSearch }) => {
   const searchMessage = (resultSearch) => {
     if (resultSearch.length > 0) {
-      return `Found ${resultSearch.length} products`;
+      return `Search results`;
     }
     if (resultSearch.length <= 0) {
-      return "No product found";
+      return "No course found";
     }
   };
   const searchedProducts = (resultSearch = []) => {
@@ -27,7 +27,7 @@ const ResultSearch = ({ resultSearch }) => {
       </div>
     );
   };
-  //
+
   return <div>{searchedProducts(resultSearch)}</div>;
 };
 

@@ -11,8 +11,7 @@ const Course = new Schema(
       required: true,
     },
     description: {
-      goal: String,
-      achievement: [{ type: String }],
+      type: String,
     },
     price: {
       type: Number,

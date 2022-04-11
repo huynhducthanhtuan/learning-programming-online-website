@@ -48,6 +48,10 @@ const Shop = () => {
       }
     });
   };
+  useEffect(() => {
+    init();
+    loadFilterResults(myFilters.filters);
+  }, []);
 
   const handleFilters = (filters, filterBy) => {
     const newFilters = { ...myFilters };
@@ -75,14 +79,10 @@ const Shop = () => {
     return range;
   };
 
-  useEffect(() => {
-    init();
-    loadFilterResults(myFilters.filters);
-  }, []);
-
+  console.log("filteredResult ", filteredResult);
   return (
     <div>
-      <Header role={0} />
+      <Header />
       <div className="container-fluid">
         <div className="row">
           <div className="col-4">

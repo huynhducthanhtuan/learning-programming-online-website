@@ -5,7 +5,7 @@ import Card from "../Home/Card";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import searchIcon from "../../assets/icons/search.png";
 
-const Search = () => {
+const Search = ({ handleSearch }) => {
   const navigate = useNavigate();
   const [data, setData] = useState({
     search: "",
@@ -24,14 +24,16 @@ const Search = () => {
           console.log(response.error);
         } else {
           setData({ ...data, result: response, searched: true });
+          handleSearch(response);
         }
       });
     }
   };
+
   const searchSubmit = (e) => {
     e.preventDefault();
-    console.log(search);
-    navigate(`/shop?search=${search}`);
+    searchData();
+    window.scrollTo(0, 650);
   };
 
   const searchForm = () => {

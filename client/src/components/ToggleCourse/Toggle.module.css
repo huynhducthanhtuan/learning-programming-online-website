@@ -1,0 +1,46 @@
+/* nav */
+.courseContent {
+  list-style: none;
+  /* background: gainsboro; */
+  width: 100%;
+  border-radius: 4px;
+}
+
+.courseContent ul {
+  width: 100%;
+  /* margin: 10px 0px; */
+  /* background: gainsboro; */
+  /* border-radius: 4px; */
+  padding: 0px;
+  display: none;
+  list-style: none;
+}
+
+.partItem {
+  padding: 14px;
+  background-color: #f7f8fa;
+  border-bottom: 1px solid #9e9fa3;
+}
+.courseContent li {
+  width: 100%;
+  /* border-radius: 4px; */
+  /* border: 1px solid #333; */
+  padding: 8px 10px;
+  margin-top: 5px;
+  /* background: whitesmoke; */
+  color: #333;
+}
+
+.courseContentBox {
+  width: 100%;
+  /* background: gainsboro; */
+  border-radius: 4px;
+  padding: 4px 10px;
+  margin: 10px 0px;
+}
+
+.courseContentBox span {
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}

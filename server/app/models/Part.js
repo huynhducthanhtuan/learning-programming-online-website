@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 const slug = require("mongoose-slug-generator");
 const mongooseDelete = require("mongoose-delete");
 const { ObjectId } = mongoose.Schema.Types;
-
 const Part = new Schema(
   {
     topic: {
@@ -13,6 +12,10 @@ const Part = new Schema(
     courseId: {
       type: ObjectId,
       ref: "Course",
+    },
+    isSelect: {
+      type: Boolean,
+      default: false,
     },
   },
   { timestamps: true }

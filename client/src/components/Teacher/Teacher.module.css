@@ -1,0 +1,14 @@
+.partItem:hover {
+  cursor: pointer;
+}
+/* .lessonItem:hover {
+  background-color: rgb(212, 216, 216);
+  cursor: pointer;
+} */
+/* .lessonItem {
+  padding: 8px 18px;
+  font-weight: 400;
+}  */
+.addLessonBtnC:hover {
+  cursor: pointer;
+}

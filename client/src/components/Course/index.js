@@ -7,23 +7,25 @@ import { addItem } from "../Cart/helperCart";
 import { isAuthenticated } from "../Auth";
 import { getUserHasCourses } from "../MyCourses/apiMyCourses";
 import { toast } from "react-toastify";
-import { AvatarImageContext } from "../../contexts";
 import onl1 from "../../assets/icons/onl1.png";
 import onl2 from "../../assets/icons/onl2.png";
 import onl3 from "../../assets/icons/onl3.png";
 import bluetick from "../../assets/icons/bluetick.png";
+import ToggleCourse from "../ToggleCourse";
 import detailcourse1 from "../../assets/icons/detailcourse1.png";
 
 const Course = ({ isMyCourse = false }) => {
   const { courseId } = useParams();
+  const navigate = useNavigate();
+
   const [course, setCourse] = useState({});
   const [error, setError] = useState(false);
   const [redirect, setRedirect] = useState(false);
-  const [userHasCourses, setUserHasCourses] = useState();
 
-  const navigate = useNavigate();
-  const { token, user } = isAuthenticated();
   const { description, name, rate } = course;
+  console.log("course ", course);
+  const [userHasCourses, setUserHasCourses] = useState();
+  const { token, user } = isAuthenticated();
 
   useEffect(() => {
     loadSingleProduct(courseId);
@@ -97,7 +99,7 @@ const Course = ({ isMyCourse = false }) => {
         </button>
       );
   };
-
+  console.log(course);
   return (
     <section>
       <Header role={0} />
@@ -133,15 +135,9 @@ const Course = ({ isMyCourse = false }) => {
           <div className={`col-6 ${styles.courseDescription}`}>
             <p className={styles.courseDesP}>Description</p>
             <div className={styles.courseDesBox}>
-              <p>{description && description.goal}</p>
-              {description &&
-                description.achievement.map((a, i) => (
-                  <div key={i} className={` d-flex ${styles.courseDetailItem}`}>
-                    <img src={bluetick}></img>
-                    <p>{a}</p>
-                  </div>
-                ))}
+              <p>{description}</p>
             </div>
+            {course && <ToggleCourse course={course} />}
             <div className={styles.courseDetailRate}>
               <p>Rating and Review</p>
             </div>

@@ -37,7 +37,6 @@ const AddCProduct = () => {
     success,
   } = values;
   const { token, user } = isAuthenticated();
-
   const init = () => {
     getCategories().then((data) => {
       if (data.error) {
@@ -101,14 +100,13 @@ const AddCProduct = () => {
       </div>
     );
   };
-
   const showSuccess = () => {
     return (
       <div
         className="alert alert-info"
         style={{ display: success ? "" : "none" }}
       >
-        Create product success.
+        Create course success
       </div>
     );
   };

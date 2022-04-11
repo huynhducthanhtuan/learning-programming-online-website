@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Header from "../Header";
 import DashBoardTeacher from "../DashboardTeacher";
 import Footer from "../Footer";
-import styles from "./Home.module.css";
-import { getCourses } from "./apiCore";
-import { isAuthenticated } from "../Auth";
 import { toast } from "react-toastify";
-import { addItem } from "../Cart/helperCart";
 import { enableScrollBehavior, getUserRole } from "../../constants";
 import "./HomeSlick.css";
+import { getCourses } from "./apiCore";
+import ResultSearch from "./ResultSearch";
+import styles from "./Home.module.css";
+import { isAuth, isAuthenticated } from "../Auth";
+import { addItem } from "../Cart/helperCart";
 
 const Home = () => {
   const [courseBySell, setCourseBySell] = useState([]);
@@ -17,6 +18,7 @@ const Home = () => {
   const [error, setError] = useState(false);
   const [redirect, setRedirect] = useState(false);
   const navigate = useNavigate();
+  const [resultSearchedCourses, setResultSearchedCourses] = useState();
 
   const loadCourseBySell = () => {
     getCourses("sold").then((data) => {
@@ -50,10 +52,18 @@ const Home = () => {
     }
   };
 
+  const handleSearchResult = (resultSearch) => {
+    setResultSearchedCourses(resultSearch);
+  };
+
   const renderHome = () => {
     return (
       <div className={styles.home}>
-        <Header />
+        <Header
+          handleSearchResult={(resultSearch) =>
+            handleSearchResult(resultSearch)
+          }
+        />
         <section className={`container_fluid ${styles.homeBanner}`}>
           <img src="./icons/banner.png" alt=""></img>
         </section>
@@ -69,6 +79,9 @@ const Home = () => {
         </section>
         {/* {ResultSearch()} */}
         <section className={`container ${styles.homeSlider}`}>
+          {resultSearchedCourses && (
+            <ResultSearch resultSearch={resultSearchedCourses} />
+          )}
           <h2>New arrivals</h2>
           <div className="d-flex justify-content-between">
             {courseByArrival.map((course, i) => (

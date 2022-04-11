@@ -82,12 +82,14 @@ const ForgotPasswordCreateNewPassword = () => {
         <img src="./icons/line.png" className={styles.line}></img>
         <div>
           <input
+            type="password"
             className={styles.formControl + " " + styles.formControlInput}
             id="new-password-input"
             placeholder="Enter new password"
             ref={newPasswordInputRef}
           />
           <input
+            type="password"
             className={styles.formControl + " " + styles.formControlInput}
             id="confirm-new-password-input"
             placeholder="Confirm new password"

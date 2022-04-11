@@ -15,6 +15,7 @@ function route(app) {
   app.use("/category", categoryRoute);
   app.use("/part", partRoute);
   app.use("/lesson", lessonRoute);
+  app.use("/part", partRoute);
   app.use("/user", userRoute);
   app.use("/profile", profileRoute);
   app.use("/change-password", changePasswordRoute);

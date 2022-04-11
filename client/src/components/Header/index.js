@@ -1,16 +1,19 @@
 import React, { useRef, useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../../App";
+import Search from "../Header/Search";
 import { isAuthenticated } from "../Auth/index";
 import { itemTotal } from "../Cart/helperCart";
 import { ProfileModal } from "../Modal";
-import Search from "../Header/Search";
+import { ToastContainer, toast } from "react-toastify";
 import styles from "./Header.module.css";
 import logo from "../../assets/images/logo192.png";
 import cartIcon from "../../assets/icons/shopping-cart.png";
 import { AvatarImageContext } from "../../contexts";
 import { defaultAvatarUrl } from "../../constants";
 
-const Header = ({ showSearchPart = true }) => {
+const Header = ({ showSearchPart = true, handleSearchResult }) => {
+  const [modalOpen, setModalOpen] = useState(false);
   const [openProfileModal, setOpenProfileModal] = useState(false);
   const { avatarImage } = useContext(AvatarImageContext);
   const avatarImageRef = useRef();
@@ -27,37 +30,45 @@ const Header = ({ showSearchPart = true }) => {
     setOpenProfileModal(!openProfileModal);
   };
 
+  const handleSearch = (resultSearch) => {
+    console.log(resultSearch);
+    handleSearchResult(resultSearch);
+  };
+
   const renderList = () => {
     if (isAuthenticated()) {
       return (
         <div className={`${styles.headerRightFrame} d-flex`}>
-          <div className={`${styles.headerButton} ml-4`}>
-            <button
-              className={`btn btn-outline-primary`}
-              style={{ marginRight: "55px" }}
-              onClick={openMyCourses}
-            >
-              My Courses
-            </button>
-          </div>
-          <div className={`${styles.headerButton}`}>
-            <Link to="/cart">
-              <div className={styles.cartIcon}>
-                <img className={styles.imageIcon} src={cartIcon} alt="" />
-                <sup className={styles.quantityCart}>
-                  <small className={styles.cartBadge}>{itemTotal()}</small>
-                </sup>
+          <div className="d-flex">
+            <div className={`${styles.headerButton} ml-4`}>
+              <button
+                className={`btn btn-outline-primary`}
+                style={{ marginRight: "55px" }}
+                onClick={openMyCourses}
+              >
+                My Courses
+              </button>
+            </div>
+
+            <div className={`${styles.headerButton}`}>
+              <Link to="/cart">
+                <div className={styles.cartIcon}>
+                  <img className={styles.imageIcon} src={cartIcon} alt="" />
+                  <sup className={styles.quantityCart}>
+                    <small className={styles.cartBadge}>{itemTotal()}</small>
+                  </sup>
+                </div>
+              </Link>
+            </div>
+            <div className={`${styles.headerButton} ml-4`}>
+              <div onClick={handleClickAvatarImage}>
+                <img
+                  src={avatarImage || defaultAvatarUrl}
+                  alt=""
+                  className={styles.avatarImage}
+                  ref={avatarImageRef}
+                />
               </div>
-            </Link>
-          </div>
-          <div className={`${styles.headerButton} ml-4`}>
-            <div onClick={handleClickAvatarImage}>
-              <img
-                src={avatarImage || defaultAvatarUrl}
-                alt=""
-                className={styles.avatarImage}
-                ref={avatarImageRef}
-              />
             </div>
           </div>
         </div>
@@ -81,6 +92,7 @@ const Header = ({ showSearchPart = true }) => {
       {openProfileModal && (
         <ProfileModal setOpenProfileModal={setOpenProfileModal} />
       )}
+
       <header className={`container ${styles.header}`}>
         <Link to="/">
           <div className={styles.headerLogo}>
@@ -88,9 +100,12 @@ const Header = ({ showSearchPart = true }) => {
           </div>
         </Link>
 
-        {/* Nếu prop showSearchPart = true thì sẽ render <Search /> */}
-        {/* và ngược lại */}
-        {showSearchPart && <Search />}
+        <Link to="/shop">
+          <button className="btn btn-primary">SHOP</button>
+        </Link>
+
+        {/* {showSearchPart && <Search />} */}
+        <Search handleSearch={(resultSearch) => handleSearch(resultSearch)} />
         {renderList()}
       </header>
     </div>

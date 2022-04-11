@@ -5,9 +5,12 @@ exports.create = (req, res, next) => {
   const { title, videoId } = req.body;
   const { partId } = req.params;
 
-  const lesson = new Lesson({ title, videoId, partId });
-  console.log(lesson.title);
-  Part.findById({ _id: partId })
+  const lesson = new Lesson({
+    title,
+    videoId: `https://www.youtube.com/embed/${videoId}`,
+    partId,
+  });
+  Part.findById(partId)
     .then((part) => {
       part.lessons.push(lesson);
       part.save();

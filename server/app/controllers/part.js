@@ -15,6 +15,7 @@ exports.list = (req, res, next) => {
 };
 exports.getPartsByCourseId = (req, res, next) => {
   Part.find({ courseId: req.params.courseId })
+    .populate("lessons")
     .then((parts) => {
       res.json(parts);
     })
@@ -39,7 +40,7 @@ exports.partById = (req, res, next, id) => {
 exports.create = (req, res) => {
   const { topic } = req.body;
   const { courseId } = req.params;
-
+  // res.json({ topic, courseId });
   const part = new Part({ topic, courseId });
   Course.findById({ _id: courseId })
     .then((course) => {
@@ -47,6 +48,8 @@ exports.create = (req, res) => {
       part.save();
       course.save();
       res.json(course);
+      //   console.log(course.parts);
+      //   res.json(course);
     })
     .catch((err) => {
       console.log(err);

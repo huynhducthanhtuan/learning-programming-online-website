@@ -19,7 +19,6 @@ import {
   Cart,
   Checkout,
   MyCourses,
-  ViewCourseToLearn,
 } from "../components";
 
 const Screens = () => {
@@ -44,10 +43,7 @@ const Screens = () => {
       <Route path="/shop" element={<Shop />}></Route>
       <Route path="/checkout" element={<Checkout />}></Route>
       <Route path="/coursedetail/:courseId" element={<CourseDetail />}></Route>
-      <Route
-        path="/coursedetail/:courseId/:lessonId"
-        element={<ViewCourseToLearn />}
-      ></Route>
+      <Route path="/learning/:courseId" element={<CourseDetail />}></Route>
       <Route path="/course/:courseId" element={<Course />} />
       <Route path="/create-category" element={<AddCategory />} />
       <Route path="/create-course" element={<AddCProduct />} />
