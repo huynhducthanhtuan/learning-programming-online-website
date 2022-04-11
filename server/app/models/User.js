@@ -21,7 +21,6 @@ const userSchema = new mongoose.Schema(
     phone_number: {
       type: String,
       trim: true,
-      required: true,
       maxlength: 11,
     },
     hashed_password: {
