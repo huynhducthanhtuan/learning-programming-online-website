@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Header } from "..";
 import { getUserHasCourses } from "./apiMyCourses";
 import { isAuthenticated } from "../Auth";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import Carted from "../Carted";
 
 const MyCourses = ({}) => {

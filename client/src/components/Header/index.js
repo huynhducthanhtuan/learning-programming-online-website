@@ -1,16 +1,15 @@
 import React, { useRef, useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { UserContext } from "../../App";
-import Search from "../Header/Search";
 import { isAuthenticated } from "../Auth/index";
 import { itemTotal } from "../Cart/helperCart";
 import { ProfileModal } from "../Modal";
-import { ToastContainer, toast } from "react-toastify";
+import { AvatarImageContext } from "../../contexts";
+import { defaultAvatarUrl } from "../../constants";
+import { viewProfileApi } from "../Profile/apiProfile";
 import styles from "./Header.module.css";
 import logo from "../../assets/images/logo192.png";
 import cartIcon from "../../assets/icons/shopping-cart.png";
-import { AvatarImageContext } from "../../contexts";
-import { defaultAvatarUrl } from "../../constants";
+import Search from "../Header/Search";
 
 const Header = ({ showSearchPart = true, handleSearchResult }) => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -18,6 +17,19 @@ const Header = ({ showSearchPart = true, handleSearchResult }) => {
   const { avatarImage } = useContext(AvatarImageContext);
   const avatarImageRef = useRef();
   const navigate = useNavigate();
+
+  const updateAvatarImage = async () => {
+    // Lấy userId từ localStorage
+    const userId = isAuthenticated() ? isAuthenticated().user._id : "";
+
+    // Call API
+    const data = await viewProfileApi({ _id: userId });
+
+    // Xử lí kết quả trả về từ API
+    if (data._id) {
+      avatarImageRef.current.src = data.pic || defaultAvatarUrl;
+    }
+  };
 
   const openMyCourses = () => {
     return navigate("/mycourses");
@@ -86,6 +98,11 @@ const Header = ({ showSearchPart = true, handleSearchResult }) => {
       );
     }
   };
+
+  useEffect(async () => {
+    window.scrollTo(0, 0);
+    await updateAvatarImage();
+  }, []);
 
   return (
     <div>

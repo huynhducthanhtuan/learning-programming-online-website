@@ -29,11 +29,7 @@ const CourseDetail = () => {
   const [toggle, setToggle] = useState("parts");
   const [course, setCourse] = useState();
   const [error, setError] = useState();
-  // const [status, setStatus] = useState();
-  // const [lessonCourse, setLessonCourse] = useState();
-  // const [idLesson, setIdLesson] = useState();
   const { courseId } = useParams();
-  console.log(courseId);
 
   const loadSingleProduct = (courseId) => {
     read(courseId).then((data) => {
@@ -44,13 +40,14 @@ const CourseDetail = () => {
       }
     });
   };
+
   useEffect(() => {
     loadSingleProduct(courseId);
   }, []);
 
   return (
     <section>
-      <Header role={0} />
+      <Header />
 
       <div className={styles.course}>
         <div className={styles.courseVideoAndNotes}>

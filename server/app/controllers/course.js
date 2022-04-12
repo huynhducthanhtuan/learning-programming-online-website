@@ -26,6 +26,7 @@ exports.courseById = (req, res, next, id) => {
       next();
     });
 };
+
 exports.deleteCourse = (req, res, next) => {
   Course.findByIdAndDelete({ _id: req.params.courseId })
     .then((courseDeleted) => {
@@ -35,6 +36,7 @@ exports.deleteCourse = (req, res, next) => {
       console.log(err);
     });
 };
+
 exports.updateCourse = (req, res, next) => {
   const { name, price, pic, category, description } = req.body;
   const { courseId } = req.params.courseId;
@@ -49,6 +51,7 @@ exports.updateCourse = (req, res, next) => {
       console.log(err);
     });
 };
+
 exports.listManageCourses = (req, res, next) => {
   Course.find({})
     .then((courses) => {
@@ -58,6 +61,7 @@ exports.listManageCourses = (req, res, next) => {
       console.log(err);
     });
 };
+
 exports.create = (req, res, next) => {
   const { name, price, pic, category, description } = req.body;
   console.log("req.body ", req.body);
@@ -88,8 +92,6 @@ exports.list = (req, res, next) => {
   const limit = req.query.limit ? parseInt(req.query.limit) : 6;
 
   Course.find({})
-    //   .select('-phot0')
-    // .populate('category')
     .sort([[sortBy, order]])
     .limit(limit)
 
@@ -124,8 +126,6 @@ exports.listBySearch = (req, res) => {
       }
     }
   }
-
-  console.log("findArgs:", findArgs);
 
   Course.find(findArgs)
     .populate("category")

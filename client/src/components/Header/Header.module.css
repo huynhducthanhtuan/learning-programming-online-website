@@ -48,10 +48,16 @@
   border: none;
 }
 
-.headerSearch img {
+.searchIconPart {
+  width: 40px;
+  height: 40px;
   position: absolute;
-  top: 33%;
-  right: 8%;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .buttonSign {

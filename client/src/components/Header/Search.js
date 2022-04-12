@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Header.module.css";
 import { list } from "../Header/apiSearch";
-import Card from "../Home/Card";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import searchIcon from "../../assets/icons/search.png";
 
 const Search = ({ handleSearch }) => {
@@ -40,7 +39,9 @@ const Search = ({ handleSearch }) => {
     return (
       <form onSubmit={searchSubmit}>
         <div className={styles.headerSearch}>
-          <img alt="" src={searchIcon}></img>
+          <div className={styles.searchIconPart} onClick={searchSubmit}>
+            <img alt="" src={searchIcon}></img>
+          </div>
           <input
             type="search"
             className="form-control"
@@ -56,9 +57,7 @@ const Search = ({ handleSearch }) => {
   return (
     <div style={{ height: "55px" }}>
       <div className="container">{searchForm()}</div>
-      <div className="container-fluid mb-3">
-        {/* {result && searchedProducts(result)} */}
-      </div>
+      <div className="container-fluid mb-3"></div>
     </div>
   );
 };

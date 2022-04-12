@@ -82,7 +82,7 @@ const Home = () => {
           {resultSearchedCourses && (
             <ResultSearch resultSearch={resultSearchedCourses} />
           )}
-          <h2>New arrivals</h2>
+          <h2>New courses</h2>
           <div className="d-flex justify-content-between">
             {courseByArrival.map((course, i) => (
               <div key={i} className={`row ${styles.listCourse}`}>
