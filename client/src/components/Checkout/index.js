@@ -27,6 +27,7 @@ const Checkout = () => {
 
   const result = JSON.parse(localStorage.getItem("jwt"));
   const { user, token } = result;
+
   const getToken = (user, token) => {
     getBraintreeClientToken(user._id, token).then((result) => {
       if (result.error) {
@@ -58,9 +59,8 @@ const Checkout = () => {
     let getNonce = data.instance
       .requestPaymentMethod()
       .then((result) => {
-        console.log("result", result);
         nonce = result.nonce;
-        console.log("nonce ", nonce);
+
         //once you have nonce (card type, card number)
         const paymentData = {
           paymentMethodNonce: nonce,
@@ -107,10 +107,10 @@ const Checkout = () => {
               onInstance={(instance) => (data.instance = instance)}
             />
             <button
-              onClick={moveToCourses}
+              onClick={success ? moveToCourses : confirmPay}
               className="btn btn-success btn-block"
             >
-              Confirm
+              Confirm Payment
             </button>
           </div>
         ) : null}

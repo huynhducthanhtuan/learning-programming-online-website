@@ -42,7 +42,7 @@ const Screens = () => {
       <Route path="/cart" element={<Cart />}></Route>
       <Route path="/shop" element={<Shop />}></Route>
       <Route path="/checkout" element={<Checkout />}></Route>
-      <Route path="/coursedetail/:courseId" element={<CourseDetail />}></Route>
+      {/* <Route path="/coursedetail/:courseId" element={<CourseDetail />}></Route> */}
       <Route path="/learning/:courseId" element={<CourseDetail />}></Route>
       <Route path="/course/:courseId" element={<Course />} />
       <Route path="/create-category" element={<AddCategory />} />

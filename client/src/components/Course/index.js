@@ -1,34 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import styles from "./Course.module.css";
-import Header from "../Header";
 import { read } from "./aipCourse";
 import { addItem } from "../Cart/helperCart";
 import { isAuthenticated } from "../Auth";
 import { getUserHasCourses } from "../MyCourses/apiMyCourses";
 import { toast } from "react-toastify";
+import styles from "./Course.module.css";
+import Header from "../Header";
 import onl1 from "../../assets/icons/onl1.png";
 import onl2 from "../../assets/icons/onl2.png";
 import onl3 from "../../assets/icons/onl3.png";
-import bluetick from "../../assets/icons/bluetick.png";
 import ToggleCourse from "../ToggleCourse";
 import detailcourse1 from "../../assets/icons/detailcourse1.png";
 
 const Course = ({ isMyCourse = false }) => {
-  const { courseId } = useParams();
   const navigate = useNavigate();
-
+  const { courseId } = useParams();
   const [course, setCourse] = useState({});
   const [error, setError] = useState(false);
   const [redirect, setRedirect] = useState(false);
-
   const { description, name, rate } = course;
-  console.log("course ", course);
   const [userHasCourses, setUserHasCourses] = useState();
   const { token, user } = isAuthenticated();
 
   useEffect(() => {
     loadSingleProduct(courseId);
+
     if (user) {
       getUserHasCourses(user._id, token).then((user) => {
         if (user.error) {
@@ -58,8 +55,12 @@ const Course = ({ isMyCourse = false }) => {
     });
   };
 
-  const courseDetai = () => {
-    return navigate(`/courseDetail/${courseId}`);
+  const goToCourseDetail = () => {
+    if (course && course.parts) {
+      return navigate(
+        `/learning/${courseId}?lessonId=${course.parts[0].lessons[0]._id}`
+      );
+    }
   };
 
   const addToCart = (course) => {
@@ -92,14 +93,14 @@ const Course = ({ isMyCourse = false }) => {
     } else
       return (
         <button
-          onClick={courseDetai}
+          onClick={goToCourseDetail}
           className={`btn btn-info ${styles.btnRegister}`}
         >
           Start
         </button>
       );
   };
-  console.log(course);
+
   return (
     <section>
       <Header role={0} />

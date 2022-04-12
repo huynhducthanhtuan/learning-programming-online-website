@@ -17,6 +17,7 @@ const MyCourses = ({}) => {
       } else {
         setUserHasCourses(user);
       }
+      console.log(user);
     });
   }, []);
 
