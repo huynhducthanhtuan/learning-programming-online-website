@@ -1,0 +1,117 @@
+.profileBackground {
+  display: block;
+  width: 100vw;
+  height: 160px;
+}
+
+.profileAvatarDesign {
+  position: absolute;
+  width: 190px;
+  height: 190px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 70px;
+  border-radius: 90px;
+}
+
+.listFieldInfo {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.listFieldInfoPart {
+  margin-top: 50px;
+}
+
+.itemFieldInfo {
+  margin-bottom: 20px;
+  list-style-type: none;
+  font-weight: 100;
+  font-size: 24px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.itemFieldName {
+  font-weight: 600;
+}
+
+.itemFieldNameRole {
+  margin-left: 20px !important;
+}
+
+.itemInputField {
+  margin-left: 20px !important;
+  margin-bottom: 0 !important;
+}
+
+.logoWebsite {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  left: 40px;
+  top: 40px;
+  border-radius: 90px;
+}
+
+.buttonForm {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+.chooseAvatarButton {
+  position: absolute;
+  left: 46%;
+  top: 264px;
+}
+
+.headerString {
+  padding: 20px;
+  color: #3751fe;
+  font-weight: 700;
+}
+
+.formHeader {
+  color: #3751fe;
+  font-weight: 700;
+}
+.formButton {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding-top: 25px;
+}
+.buttonUpdate {
+  display: flex;
+  padding: 8px 39px;
+  color: #ffffff;
+  background-color: #3751fe;
+  border: 1px solid;
+  font-size: 18px;
+}
+.form {
+  margin: 0 auto;
+  width: 653px;
+  background-color: #d1d1d1;
+  align-self: center;
+  padding: 30px;
+  box-sizing: border-box;
+  border-radius: 20px;
+}
+
+.formString {
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: black;
+}
+.line {
+  width: 593px;
+}
+.formControl {
+  color: #030303;
+  border: 1px solid #000000 !important;
+  padding: 8px 0px 6px 12px !important;
+  border-radius: 7px !important;
+}

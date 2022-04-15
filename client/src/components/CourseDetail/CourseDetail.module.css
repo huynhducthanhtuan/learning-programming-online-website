@@ -1,0 +1,310 @@
+.courseContainer {
+  background: #d1d7dc;
+}
+
+.course {
+  display: flex;
+}
+
+.courseFooter{
+  margin-top: 60px;
+}
+
+.courseVideoAndNotes{
+  width: 70%;
+}
+.courseParts {
+  width: 30%;
+  height: 500px;
+  background: #ffffff;
+}
+
+.courseVideo {
+  width: 100%;
+  height: 500px;
+  background-color: aquamarine;
+  
+}
+
+.courseHeader {
+  border: 1px solid #d1d7dc;
+  padding: 0.8rem 0.8rem 0.8rem 1.6rem;
+}
+
+.courseHeader p {
+  font-size: 20px;
+  font-weight: 800;
+  height: 100%;
+}
+
+.courseAllParts {
+  z-index: 1;
+  background-color: #fff;
+  border: 1px solid #aabac2;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.coursePart {
+  width: 100%;
+  border-top: 1px solid #aabac2;
+}
+
+.coursePartHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+.coursePartHeader p {
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-self: center;
+  margin-bottom: 0;
+}
+.courseDropDownIcon {
+  width: 20px;
+  height: 20px;
+}
+.courseVideoTimes{
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.courseVideoTimes p{
+  margin-left: 10px;
+  height: 10px;
+}
+
+
+.courseTabs{
+  display: grid;
+  grid-auto-columns: max-content;
+  grid-auto-flow: column;
+  grid-gap: 1.6rem;
+  padding: 0px 16px;
+  margin-left: 50px;
+  box-shadow: inset 0 -1px 0 0 #d1d7dc;
+}
+.courseTab{
+  border: 1px solid #ffffff;
+}
+.courseTab button{
+  border: 1px solid #ffffff;
+  background: #fff;
+  cursor: default;
+}
+
+
+.courseAllLessons {
+  display: block;
+  background: #ffffff;
+}
+.courseLesson {
+  padding: 10px 0 0 25px;
+  border-top: 1px solid #aabac2;
+}
+.courseLesson p:first-child{
+  font-weight: 600;
+}
+
+.courseCreateNote{
+  border: 1px solid rgb(255, 255, 255);
+  margin-left: 130px;
+  margin-top: 33px;
+}
+.courseCreateNote button{
+  background-color: #ffffff;
+  color: #aabac2;
+  padding: 10px;
+  font-weight: 400;
+  line-height: 1.4;
+  font-size: 1.2rem;
+  
+}
+.courseNewNoteButton{
+  display: flex;
+  justify-content: space-between;
+  
+}
+.courseNewNoteButton span{
+  width: 740px;
+  text-align: start;
+}
+.courseNewNoteButton span span{
+  margin-left: 10px;
+  text-align: start;
+}
+.courseNewNoteButton img{
+  height: 25.2px;
+  width: 25.2px;
+}
+.courseNoNote{
+  text-align: center;
+  padding-top: 6.4rem;
+  margin: 0 auto;
+}
+.courseNote{
+  width: 740px;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 32px;
+}
+.courseNoteTimes{
+  font-weight: 600;
+  display: inline-block;
+  min-width: 54px;
+  text-align: center;
+  background: #1c1d1f;
+  color: #fff;
+  line-height: 2.4rem;
+  height: 26px;
+  border-radius: 9999px;
+  padding: 0 0.8rem;
+  display: flex;
+  align-items: center;
+}
+.courseNoteDetail{
+  width: 91%;
+  
+}
+.courseNoteTitle{
+  display: flex;
+  height: 20px;
+}
+.courseNoteTitleName{
+  display: flex;
+  justify-content: space-between;
+}
+.courseNoteTitleName div:first-child{
+  margin-right: 10px;
+  font-weight: 700;
+}
+.courseSpacer{
+  flex: 1;
+}
+.courseNoteButton{
+  border: 0px;
+  display: flex;
+  align-items: center;
+}
+.courseNoteParam{
+  width: 100%;
+  padding: 2.4rem;
+  margin: 1.6rem 0 0;
+  background-color: #f7f9fa;
+  word-wrap: break-word;
+}
+
+
+.courseFilter{
+  margin-top: 50px;
+  margin-left: 24px;
+  display: flex;
+  align-items: center;
+}
+.courseFilterAllPartsButton{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.courseFilterAllPartsButton span{
+  margin-right: 10px;
+  color: #000;
+}
+.courseFilterCurrentPart{
+  margin-left: 20px;
+  
+}
+.courseFilterCurrentPartButton span{
+  color: #000;
+}
+
+
+.tabItem:hover{
+  border-bottom: 2px solid rgb(49, 47, 47);
+}
+.tabItem h6 button{
+  border: 1px solid rgb(255, 255, 255);
+  background-color: #ffffff;
+  font-size: 20px;
+  font-weight: 600;
+  opacity: 0.3;
+  height: fit-content;
+}
+.tabItem.active{
+  
+  border-bottom: 2px solid rgb(49, 47, 47)
+}
+.tabItem h6 button :hover{
+  opacity: 0.8;
+  
+}
+.tabItem.active h6 button{
+  opacity: 1.00;
+}
+
+.tabContent{
+  display: none;
+}
+
+.tabContent.active{
+  display: block;
+}
+
+.courseComment{
+  display: flex;
+  align-items: center;
+  margin-top: 50px;
+  margin-left: 70px;
+  width: 90%;
+  height: 20px;
+}
+.courseInputComment{
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+  border: 1px solid #000000 !important;
+  padding: 0px 10px 0px 10px !important;
+}
+.courseSendIcon{
+  margin-left: 10px;
+  width: 30px;
+  height: 30px;
+}
+.courseAvatar{
+  border-radius:50%;
+    -moz-border-radius:50%;
+    -webkit-border-radius:50%;
+  border-style: groove;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+.courseAComment{
+  width: 800px;
+  display: flex;
+  margin-top: 50px;
+  margin-left: 70px;
+  align-items: flex-start;
+}
+.courseCommentContent{
+  max-width: max-content;
+  background-color: #f2f3f5;
+  border-radius: 18px;
+  color: #1c1e21;
+  display: inline-block;
+  max-width: 586px;
+  min-width: 120px;
+  padding: 9px 12px;
+  position: relative;
+}
+.courseCommentName{
+  color: var(--black-color);
+  font-size: 16px;
+  margin: 0;
+  font-weight: 650;
+  margin-bottom: 5px;
+}

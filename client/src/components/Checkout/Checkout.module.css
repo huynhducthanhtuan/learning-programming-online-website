@@ -1,0 +1,10 @@
+.checkoutLoading{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkoutGifLoading{
+    width: 640px;
+    height: 640px;
+}

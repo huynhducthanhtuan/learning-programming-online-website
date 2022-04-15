@@ -1,0 +1,24 @@
+.modal-container {
+  width: 200px;
+  background-color: white;
+  box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 80px;
+  right: 6px;
+  z-index: 3;
+}
+.modal-body-part {
+  position: relative;
+  flex: 1 1 auto;
+  padding: 0.6rem 1.4rem;
+}
+.modal-body-item {
+  display: block;
+  padding: 6px 10px;
+}
+.modal-body-item:last-child {
+  color: red;
+  cursor: pointer;
+}
