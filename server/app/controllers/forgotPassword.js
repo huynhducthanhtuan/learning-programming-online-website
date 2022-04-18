@@ -25,14 +25,17 @@ exports.submitEmail = (req, res, next) => {
   const html = `
         <div style="padding: 10px; background-color: #003375">
             <div style="padding: 10px; background-color: white;">
-                <h4 style="color: #0085ff">Your code is:</h4>
+                <h4 style="color: #0085ff">Your verification code is:</h4>
                 <span style="color: black">${code}</span>
             </div>
         </div>
     `;
 
   const mainOptions = {
-    from: "LOP Team",
+    from: {
+      name: "LOP's Support Team",
+      address: "baop38391@gmail.com",
+    },
     to: req.body.email,
     subject: "Verify code to create new password - LOP",
     html: html,
@@ -96,14 +99,17 @@ exports.resendCode = (req, res, next) => {
   const html = `
         <div style="padding: 10px; background-color: #003375">
             <div style="padding: 10px; background-color: white;">
-                <h4 style="color: #0085ff">Your code is:</h4>
+                <h4 style="color: #0085ff">Your verification code is:</h4>
                 <span style="color: black">${code}</span>
             </div>
         </div>
     `;
 
   const mainOptions = {
-    from: "LOP Team",
+    from: {
+      name: "LOP's Support Team",
+      address: "baop38391@gmail.com",
+    },
     to: req.body.email,
     subject: "Verify code to create new password - LOP",
     html: html,
