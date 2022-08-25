@@ -46,7 +46,6 @@ exports.submitEmail = (req, res, next) => {
       // Lưu code vào DB
       User.findOne({ email: req.body.email }, (error, user) => {
         if (user) {
-          console.log(user);
           user.updateOne({ code: code }, (error, updatedUser) => {
             console.log(user);
             if (updatedUser) {
