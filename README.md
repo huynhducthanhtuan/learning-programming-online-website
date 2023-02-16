@@ -2,7 +2,7 @@
 
 ### Cách chạy dự án (Back-end):
 
-#### 1. Tại thư mục gốc đã clone về trước đó (learning-programming-online-website), mở CMD
+#### 1. Tại thư mục (learning-programming-online-website/backend), mở CMD
 
 #### 2. Gõ lệnh "npm install" để cài đặt những thư viện mà phía Back-end đang sử dụng
 
